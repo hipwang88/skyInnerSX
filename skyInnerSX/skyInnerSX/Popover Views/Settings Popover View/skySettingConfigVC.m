@@ -7,109 +7,238 @@
 //
 
 #import "skySettingConfigVC.h"
+#import "skyStepperCell.h"
+
+#define kTableStepperCell        @"skyStepperCell"
 
 @interface skySettingConfigVC ()
+
+///////////////////// Property ///////////////////////
+@property (assign, nonatomic) NSInteger ScreenRow;
+@property (assign, nonatomic) NSInteger ScreenColumn;
+
+///////////////////// Methods ////////////////////////
+// 初始化组件
+- (void)initializeComponents;
+// 屏幕拼接行数事件函数
+- (void)screenRowsStepperEventHandler;
+// 屏幕拼接列数事件函数
+- (void)screenColumnsStepperEventHandler;
+// 设置确认事件函数
+- (void)confirmBtnEventHandler;
+
+///////////////////// Ends ///////////////////////////
 
 @end
 
 @implementation skySettingConfigVC
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+@synthesize myTableView = _myTableView;
+@synthesize myDelegate = _myDelegate;
+@synthesize myDataSource = _myDataSource;
+@synthesize ScreenRow = _ScreenRow;
+@synthesize ScreenColumn = _ScreenColumn;
+
+#pragma mark - skySettingConfigVC Methods
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self)
+    {
+        
+    }
+    return self;
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // 控件初始化
+    [self initializeComponents];
+}
+
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    CGSize size = CGSizeMake(320.0f, 680.0f);
+    self.preferredContentSize = size;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [self forcePopoverSize];
+}
+
+- (void)forcePopoverSize
+{
+    CGSize currentSetSizeForPopover  = self.preferredContentSize;
+    CGSize fakeMomentarySize = CGSizeMake(currentSetSizeForPopover.width, currentSetSizeForPopover.height);
+    self.preferredContentSize = fakeMomentarySize;
+    self.preferredContentSize = currentSetSizeForPopover;
+}
+
+#pragma mark - skySettingConfigVC Private Methods
+// 初始化组件
+- (void)initializeComponents
+{
+    // 初始化cell nib
+    [_myTableView registerNib:[UINib nibWithNibName:@"skyStepperCell" bundle:nil] forCellReuseIdentifier:kTableStepperCell];
+}
+// 屏幕拼接行数事件函数
+- (void)screenRowsStepperEventHandler
+{
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    
+    skyStepperCell *cell = (skyStepperCell *)[_myTableView cellForRowAtIndexPath:indexPath];
+    
+    cell.lableValue.text = [NSString stringWithFormat:@"%d",(int)cell.valueStepper.value];
+    
+    _ScreenRow = (int)cell.valueStepper.value;
+}
+
+// 屏幕拼接列数事件函数
+- (void)screenColumnsStepperEventHandler
+{
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
+    
+    skyStepperCell *cell = (skyStepperCell *)[_myTableView cellForRowAtIndexPath:indexPath];
+    
+    cell.lableValue.text = [NSString stringWithFormat:@"%d",(int)cell.valueStepper.value];
+    
+    _ScreenColumn = (int)cell.valueStepper.value;
+}
+
+// 设置确认事件函数
+- (void)confirmBtnEventHandler
+{
+    
+}
+
+#pragma mark - skySettingConfigVC Public Methods
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-
-    return 0;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
-}
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    NSInteger result = 0;
     
-    // Configure the cell...
+    if (section == 0)
+    {
+        result = 2;
+    }
+    else if (section == 1)
+    {
+        result = 1;
+    }
     
-    return cell;
+    return result;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Table view delegate
-
-// In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here, for example:
-    // Create the next view controller.
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:<#@"Nib name"#> bundle:nil];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     
-    // Pass the selected object to the new view controller.
+    if (indexPath.section == 0)
+    {
+        skyStepperCell *cell = (skyStepperCell *)[tableView dequeueReusableCellWithIdentifier:kTableStepperCell];
+        
+        switch (indexPath.row)
+        {
+            case 0:
+                cell.lableTitle.text = @"屏幕行数:";
+                cell.lableValue.text = [NSString stringWithFormat:@"%ld",[_myDataSource getCurrentScreenRow]];
+                cell.valueStepper.minimumValue = 1;
+                cell.valueStepper.maximumValue = 15;
+                cell.valueStepper.stepValue = 1;
+                cell.valueStepper.value = [_myDataSource getCurrentScreenRow];
+                [cell.valueStepper addTarget:self action:@selector(screenRowsStepperEventHandler) forControlEvents:UIControlEventValueChanged];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                // 行数
+                _ScreenRow = [_myDataSource getCurrentScreenRow];
+                break;
+                
+            case 1:
+                cell.lableTitle.text = @"屏幕列数:";
+                cell.lableValue.text = [NSString stringWithFormat:@"%ld",[_myDataSource getCurrentScreenColumn]];
+                cell.valueStepper.minimumValue = 1;
+                cell.valueStepper.maximumValue = 15;
+                cell.valueStepper.stepValue = 1;
+                cell.valueStepper.value = [_myDataSource getCurrentScreenColumn];
+                [cell.valueStepper addTarget:self action:@selector(screenColumnsStepperEventHandler) forControlEvents:UIControlEventValueChanged];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                // 列数
+                _ScreenColumn = [_myDataSource getCurrentScreenColumn];
+                break;
+        }
+        
+        return cell;
+    }
+    else
+    {
+        static NSString *cellIdentifier = @"skySettingConfigCell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        
+        if (cell == nil)
+        {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        }
+        
+        // 设置确认cell
+        cell.textLabel.text = @"确认控制器设置";
+        cell.textLabel.textColor = [UIColor colorWithRed:0.9 green:0.1 blue:0.0 alpha:1.0];
+        cell.textLabel.textAlignment = NSTextAlignmentCenter;
+        
+        return cell;
+    }
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString *result = nil;
     
-    // Push the view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
+    if (section == 0)
+    {
+        result = @"调整屏幕拼接规格";
+    }
+    
+    return result;
 }
-*/
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+{
+    NSString *result = nil;
+    
+    if (section == 0)
+    {
+        result = @"点击双选按钮进行值的加减";
+    }
+    
+    return result;
 }
-*/
+
+#pragma mark - UITableView Delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 1)
+    {
+        [self confirmBtnEventHandler];
+    }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
 
 @end

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "skyPopBaseViewController.h"
 
+// class skySettingSignalVC
 @interface skySettingSignalVC : skyPopBaseViewController
 
 //////////////////////// Property /////////////////////////////

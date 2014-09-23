@@ -16,9 +16,10 @@
 
 // class skyInnerViewController
 // delegate:
-//          skySettingConnection --- 通信连接代理
+//          skySettingConnectionVCDelegate  --- 通信连接代理
+//          skySettingConfigVCDelegate      --- 规格设置代理
 //
-@interface skyInnerViewController : UIViewController<skySettingConnectionVCDelegate>
+@interface skyInnerViewController : UIViewController<skySettingConnectionVCDelegate,skySettingConfigVCDelegate>
 
 ////////////////////////// Property /////////////////////////////
 // 导航栏支持视图

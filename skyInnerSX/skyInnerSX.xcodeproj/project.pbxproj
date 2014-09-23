@@ -31,6 +31,9 @@
 		0661F5BB19D14E3000756D17 /* SCXSet.png in Resources */ = {isa = PBXBuildFile; fileRef = 0661F5B719D14E3000756D17 /* SCXSet.png */; };
 		0661F5BC19D14E3000756D17 /* SignalSet.png in Resources */ = {isa = PBXBuildFile; fileRef = 0661F5B819D14E3000756D17 /* SignalSet.png */; };
 		0661F5BE19D17AB500756D17 /* skySettingConnection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0661F5BD19D17AB500756D17 /* skySettingConnection.xib */; };
+		06AF3EF719D1893D007D4E2E /* skySettingConfig.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06AF3EF619D1893D007D4E2E /* skySettingConfig.xib */; };
+		06AF3EFB19D191B0007D4E2E /* skyStepperCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06AF3EF919D191B0007D4E2E /* skyStepperCell.m */; };
+		06AF3EFC19D191B0007D4E2E /* skyStepperCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06AF3EFA19D191B0007D4E2E /* skyStepperCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +87,10 @@
 		0661F5B719D14E3000756D17 /* SCXSet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SCXSet.png; sourceTree = "<group>"; };
 		0661F5B819D14E3000756D17 /* SignalSet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SignalSet.png; sourceTree = "<group>"; };
 		0661F5BD19D17AB500756D17 /* skySettingConnection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = skySettingConnection.xib; path = "Popover Views/Settings Popover View/skySettingConnection.xib"; sourceTree = "<group>"; };
+		06AF3EF619D1893D007D4E2E /* skySettingConfig.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = skySettingConfig.xib; path = "Popover Views/Settings Popover View/skySettingConfig.xib"; sourceTree = "<group>"; };
+		06AF3EF819D191B0007D4E2E /* skyStepperCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = skyStepperCell.h; path = Cells/skyStepperCell.h; sourceTree = "<group>"; };
+		06AF3EF919D191B0007D4E2E /* skyStepperCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = skyStepperCell.m; path = Cells/skyStepperCell.m; sourceTree = "<group>"; };
+		06AF3EFA19D191B0007D4E2E /* skyStepperCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = skyStepperCell.xib; path = Cells/skyStepperCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +210,9 @@
 		0661F57019D1186300756D17 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				06AF3EF819D191B0007D4E2E /* skyStepperCell.h */,
+				06AF3EF919D191B0007D4E2E /* skyStepperCell.m */,
+				06AF3EFA19D191B0007D4E2E /* skyStepperCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -266,6 +276,7 @@
 				0661F5BD19D17AB500756D17 /* skySettingConnection.xib */,
 				0661F59619D141F100756D17 /* skySettingConfigVC.h */,
 				0661F59719D141F100756D17 /* skySettingConfigVC.m */,
+				06AF3EF619D1893D007D4E2E /* skySettingConfig.xib */,
 				0661F59B19D1422F00756D17 /* skySettingSignalVC.h */,
 				0661F59C19D1422F00756D17 /* skySettingSignalVC.m */,
 				0661F5A019D1425600756D17 /* skySettingUnitVC.h */,
@@ -391,6 +402,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0661F58119D1261000756D17 /* toolbarDrawMode.png in Resources */,
+				06AF3EFC19D191B0007D4E2E /* skyStepperCell.xib in Resources */,
 				0661F55719D1181B00756D17 /* LaunchScreen.xib in Resources */,
 				0661F5BC19D14E3000756D17 /* SignalSet.png in Resources */,
 				0661F57A19D118B000756D17 /* skyInnerViewController.xib in Resources */,
@@ -399,6 +411,7 @@
 				0661F5BE19D17AB500756D17 /* skySettingConnection.xib in Resources */,
 				0661F5B919D14E3000756D17 /* ConnSet.png in Resources */,
 				0661F55419D1181B00756D17 /* Images.xcassets in Resources */,
+				06AF3EF719D1893D007D4E2E /* skySettingConfig.xib in Resources */,
 				0661F5BB19D14E3000756D17 /* SCXSet.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -428,6 +441,7 @@
 				0661F5A319D1425600756D17 /* skySettingUnitVC.m in Sources */,
 				0661F54C19D1181B00756D17 /* AppDelegate.m in Sources */,
 				0661F59419D141BE00756D17 /* skySettingConnectionVC.m in Sources */,
+				06AF3EFB19D191B0007D4E2E /* skyStepperCell.m in Sources */,
 				0661F58B19D13F8200756D17 /* skyPopBaseViewController.m in Sources */,
 				0661F54919D1181B00756D17 /* main.m in Sources */,
 			);

@@ -31,4 +31,23 @@
     
 }
 
+#pragma mark -skySettingConfigVC DataSource
+// 获取当前拼接行数
+- (NSInteger)getCurrentScreenRow
+{
+    return 3;
+}
+
+// 获取当前拼接列数
+- (NSInteger)getCurrentScreenColumn
+{
+    return 4;
+}
+
+// 设置当前行列数
+- (void)setCurrentScreenRow:(NSInteger)nRow andColumn:(NSInteger)nColumn
+{
+    
+}
+
 @end

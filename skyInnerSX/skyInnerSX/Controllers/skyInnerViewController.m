@@ -133,9 +133,11 @@
     [_settingMainVC.controllers addObject:mySettingConnection];
     
     // 2.add skySettingConfigVC
-    skySettingConfigVC *mySettingConfig = [[skySettingConfigVC alloc] init];
+    skySettingConfigVC *mySettingConfig = [[skySettingConfigVC alloc] initWithNibName:@"skySettingConfig" bundle:nil];
     mySettingConfig.title = @"规格参数设置";
     mySettingConfig.rowImage = [UIImage imageNamed:@"SCXSet.png"];
+    mySettingConfig.myDelegate = self;
+    mySettingConfig.myDataSource = _appDelegate.theApp;
     [_settingMainVC.controllers addObject:mySettingConfig];
     
     // 3.add skySettingSignalVC
@@ -237,6 +239,13 @@
 
 // 断开控制器
 - (void)disconnectController
+{
+    
+}
+
+#pragma mark - skySettingConfigVC Delegate
+// 设定行列数
+- (void)setScreenRow:(NSInteger)nRow andColumn:(NSInteger)nColumn
 {
     
 }
