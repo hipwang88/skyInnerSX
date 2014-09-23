@@ -30,6 +30,7 @@
 		0661F5BA19D14E3000756D17 /* ProtocalSet.png in Resources */ = {isa = PBXBuildFile; fileRef = 0661F5B619D14E3000756D17 /* ProtocalSet.png */; };
 		0661F5BB19D14E3000756D17 /* SCXSet.png in Resources */ = {isa = PBXBuildFile; fileRef = 0661F5B719D14E3000756D17 /* SCXSet.png */; };
 		0661F5BC19D14E3000756D17 /* SignalSet.png in Resources */ = {isa = PBXBuildFile; fileRef = 0661F5B819D14E3000756D17 /* SignalSet.png */; };
+		0661F5BE19D17AB500756D17 /* skySettingConnection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0661F5BD19D17AB500756D17 /* skySettingConnection.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,7 @@
 		0661F5B619D14E3000756D17 /* ProtocalSet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ProtocalSet.png; sourceTree = "<group>"; };
 		0661F5B719D14E3000756D17 /* SCXSet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SCXSet.png; sourceTree = "<group>"; };
 		0661F5B819D14E3000756D17 /* SignalSet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SignalSet.png; sourceTree = "<group>"; };
+		0661F5BD19D17AB500756D17 /* skySettingConnection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = skySettingConnection.xib; path = "Popover Views/Settings Popover View/skySettingConnection.xib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,6 +263,7 @@
 				0661F58D19D1412B00756D17 /* skySettingMainVC.m */,
 				0661F59119D141BE00756D17 /* skySettingConnectionVC.h */,
 				0661F59219D141BE00756D17 /* skySettingConnectionVC.m */,
+				0661F5BD19D17AB500756D17 /* skySettingConnection.xib */,
 				0661F59619D141F100756D17 /* skySettingConfigVC.h */,
 				0661F59719D141F100756D17 /* skySettingConfigVC.m */,
 				0661F59B19D1422F00756D17 /* skySettingSignalVC.h */,
@@ -393,6 +396,7 @@
 				0661F57A19D118B000756D17 /* skyInnerViewController.xib in Resources */,
 				0661F58219D1261000756D17 /* toolbarDrawModeHide.png in Resources */,
 				0661F5BA19D14E3000756D17 /* ProtocalSet.png in Resources */,
+				0661F5BE19D17AB500756D17 /* skySettingConnection.xib in Resources */,
 				0661F5B919D14E3000756D17 /* ConnSet.png in Resources */,
 				0661F55419D1181B00756D17 /* Images.xcassets in Resources */,
 				0661F5BB19D14E3000756D17 /* SCXSet.png in Resources */,
@@ -542,6 +546,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = skyInnerSX/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -552,6 +557,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = skyInnerSX/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -610,6 +616,7 @@
 				0661F56819D1181B00756D17 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0661F56919D1181B00756D17 /* Build configuration list for PBXNativeTarget "skyInnerSXTests" */ = {
 			isa = XCConfigurationList;
@@ -618,6 +625,7 @@
 				0661F56B19D1181B00756D17 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

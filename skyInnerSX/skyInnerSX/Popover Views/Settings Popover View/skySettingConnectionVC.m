@@ -10,18 +10,36 @@
 
 @interface skySettingConnectionVC ()
 
+// 初始化视图组件
+- (void)initializeComponents;
+// 连接开关时间函数
+- (void)connectionSwitchValueChanged;
+
 @end
 
 @implementation skySettingConnectionVC
 
-- (void)viewDidLoad {
+@synthesize serverIP = _serverIP;
+@synthesize serverPort = _serverPort;
+@synthesize connectionSwitch = _connectionSwitch;
+@synthesize myDelegate = _myDelegate;
+@synthesize myDataSource = _myDataSource;
+
+#pragma mark - skySettingConnectionVC Methods
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    // 组件初始化
+    [self initializeComponents];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,87 +47,161 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
+#pragma mark - skySettingConnectionVC Public Methods
+// 控制器能否连接
+- (void)controllerCanBeConnected:(BOOL)bFlag
+{
+    if (!bFlag)
+    {
+        NSLog(@"Can not Connect");
+        [_connectionSwitch setOn:NO];
+    }
+}
 
+#pragma mark - skySettingConnectionVC Private Methods
+// 初始控制器组件
+- (void)initializeComponents
+{
+    // 初始化IP输入控件
+    _serverIP = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 160, 30)];
+    _serverIP.placeholder = @"172.16.16.119";
+    _serverIP.text = [_myDataSource getCurrentIPAddress];
+    _serverIP.textAlignment = NSTextAlignmentLeft;
+    _serverIP.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    _serverIP.keyboardAppearance = UIKeyboardTypeNumbersAndPunctuation;
+    _serverIP.delegate = self;
+    // 初始化端口输入控件
+    _serverPort = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 160, 30)];
+    _serverPort.placeholder = @"5000";
+    _serverPort.text = [NSString stringWithFormat:@"%ld",[_myDataSource getCurrentPortNumber]];
+    _serverPort.textAlignment = NSTextAlignmentLeft;
+    _serverPort.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    _serverPort.keyboardAppearance = UIKeyboardTypeNumberPad;
+    _serverPort.delegate = self;
+    // 初始化连接开关控件
+    _connectionSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 160, 30)];
+    _connectionSwitch.on = NO;
+    [_connectionSwitch addTarget:self action:@selector(connectionSwitchValueChanged) forControlEvents:UIControlEventValueChanged];
+}
+
+// 连接开关时间函数
+- (void)connectionSwitchValueChanged
+{
+    if (_connectionSwitch.isOn)
+    {
+        // 连接控制器
+        NSString *ipAddress = _serverIP.text;
+        NSInteger nPort = [_serverPort.text integerValue];
+        
+        // 设置控制器IP地址和端口号
+        [_myDataSource setCurrentIPAddress:ipAddress andPort:nPort];
+        // 连接控制器
+        [_myDelegate connectToController:ipAddress andPort:nPort];
+        
+        NSLog(@"Connection On");
+    }
+    else
+    {
+        NSLog(@"Connection Off");
+        
+        // 断开控制器连接
+        [_myDelegate disconnectController];
+    }
+}
+
+#pragma mark - Table view data source
+// Section Num
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-
-    return 0;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    NSInteger result = 0;
+    
+    if (section == 0)
+    {
+        result = 2;
+    }
+    else if (section == 1)
+    {
+        result = 1;
+    }
+    
+    return result;
 }
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+// 构建Cells
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellIdentifier = @"skySettingConnectionCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
-    // Configure the cell...
+    if (cell == nil)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    
+    // 构造cell
+    if (indexPath.section == 0)
+    {
+        switch (indexPath.row)
+        {
+            case 0: // ServerIp
+                cell.textLabel.text = @"服务器IP";
+                _serverIP.text = [_myDataSource getCurrentIPAddress];
+                cell.accessoryView = self.serverIP;
+                _serverIP.textColor = [UIColor blueColor];
+                break;
+                
+            case 1: // ServerPort
+                cell.textLabel.text = @"服务器端口";
+                _serverPort.text = [[NSString alloc] initWithFormat:@"%ld",[_myDataSource getCurrentPortNumber]];
+                cell.accessoryView = self.serverPort;
+                _serverPort.textColor = [UIColor blueColor];
+                break;
+        }
+    }
+    else if (indexPath.section == 1)
+    {
+        cell.textLabel.text = @"连接控制器";
+        cell.accessoryView = _connectionSwitch;
+    }
     
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString *result = nil;
+    
+    if (section == 0)
+    {
+        result = @"命令盒通信设置";
+    }
+
+    return result;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+{
+    NSString *result = nil;
+    
+    if (section == 0)
+    {
+        result = @"输入控制器IP地址、端口号";
+    }
+    
+    return result;
+}
+
+#pragma mark - UITextFiled Delegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [_serverIP resignFirstResponder];
+    [_serverPort resignFirstResponder];
     return YES;
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Table view delegate
-
-// In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here, for example:
-    // Create the next view controller.
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:<#@"Nib name"#> bundle:nil];
-    
-    // Pass the selected object to the new view controller.
-    
-    // Push the view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

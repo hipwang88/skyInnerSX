@@ -44,6 +44,29 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    CGSize size = CGSizeMake(320.0f, 680.0f);
+    self.preferredContentSize = size;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [self forcePopoverSize];
+}
+
+- (void)forcePopoverSize
+{
+    CGSize currentSetSizeForPopover  = self.preferredContentSize;
+    CGSize fakeMomentarySize = CGSizeMake(currentSetSizeForPopover.width, currentSetSizeForPopover.height);
+    self.preferredContentSize = fakeMomentarySize;
+    self.preferredContentSize = currentSetSizeForPopover;
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

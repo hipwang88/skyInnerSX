@@ -14,7 +14,11 @@
 #import "skySettingSignalVC.h"
 #import "skySettingUnitVC.h"
 
-@interface skyInnerViewController : UIViewController
+// class skyInnerViewController
+// delegate:
+//          skySettingConnection --- 通信连接代理
+//
+@interface skyInnerViewController : UIViewController<skySettingConnectionVCDelegate>
 
 ////////////////////////// Property /////////////////////////////
 // 导航栏支持视图

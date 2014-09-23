@@ -7,7 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "skySettingConnectionVC.h"
 
-@interface skyAppStatus : NSObject
+// class skyAppStatus
+// DataSource:
+//              skySettingConnectionVCDataSource --- 通信设置数据源
+//
+@interface skyAppStatus : NSObject<skySettingConnectionVCDataSource>
 
 @end

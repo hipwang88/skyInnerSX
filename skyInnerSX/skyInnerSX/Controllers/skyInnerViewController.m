@@ -94,16 +94,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 #pragma mark - Public Methods
 
 #pragma mark - Private Methods(Initializeres)
@@ -135,9 +125,11 @@
     self.settingsPopover.popoverContentSize = CGSizeMake(320.0f, 680.0f);
     
     // 1.add skySettingConnectionVC
-    skySettingConnectionVC *mySettingConnection = [[skySettingConnectionVC alloc] init];
-    mySettingConnection.title = @"通信连接";
+    skySettingConnectionVC *mySettingConnection = [[skySettingConnectionVC alloc] initWithNibName:@"skySettingConnection" bundle:nil];
+    mySettingConnection.title = @"通讯连接设置";
     mySettingConnection.rowImage = [UIImage imageNamed:@"ConnSet.png"];
+    mySettingConnection.myDelegate = self;
+    mySettingConnection.myDataSource = _appDelegate.theApp;
     [_settingMainVC.controllers addObject:mySettingConnection];
     
     // 2.add skySettingConfigVC
@@ -234,6 +226,19 @@
 - (void)externButtonEventHandler:(id)paramSender
 {
     NSLog(@"Extern");
+}
+
+#pragma mark - skySettingConnectionVC Delegate
+// 连接控制器
+- (void)connectToController:(NSString *)ipAddress andPort:(NSInteger)nPort
+{
+    
+}
+
+// 断开控制器
+- (void)disconnectController
+{
+    
 }
 
 @end
