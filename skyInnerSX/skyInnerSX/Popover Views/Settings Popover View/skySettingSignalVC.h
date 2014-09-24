@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "skyPopBaseViewController.h"
+#import "skyMatrixMain.h"
 
 // class skySettingSignalVC
-@interface skySettingSignalVC : skyPopBaseViewController
+@interface skySettingSignalVC : skyPopBaseViewController<UITableViewDelegate,UITableViewDataSource>
 
 //////////////////////// Property /////////////////////////////
+@property (strong, nonatomic) NSMutableArray *matrixs;          // Signal Setting页面内控制器装载容器
 
 //////////////////////// Methods //////////////////////////////
 

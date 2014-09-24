@@ -7,108 +7,128 @@
 //
 
 #import "skySettingSignalVC.h"
+#import "skyCVBSMatrixSetting.h"
+#import "skyVGAMatrixSetting.h"
+#import "skyHDMIMatrixSetting.h"
+#import "skyDVIMatrixSetting.h"
 
 @interface skySettingSignalVC ()
+
+///////////////////// Property ////////////////////////
+
+///////////////////// Methods /////////////////////////
+// 初始化视图控件
+- (void)initializeComponents;
+
+///////////////////// Ends ////////////////////////////
 
 @end
 
 @implementation skySettingSignalVC
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+@synthesize matrixs = _matrixs;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self)
+    {
+        _matrixs = [[NSMutableArray alloc] init];
+    }
+    return self;
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // 初始化视图
+    [self initializeComponents];
+}
+
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
+#pragma mark - skySettingSignalVC Private methods
+// 初始化视图控件
+- (void)initializeComponents
+{
+    // add CVBS matrix View Controller
+    skyCVBSMatrixSetting *cvbsMatrixVC = [[skyCVBSMatrixSetting alloc] initWithNibName:@"skyCVBSMatrixSetting" bundle:nil];
+    cvbsMatrixVC.title = @"CVBS矩阵设置";
+    cvbsMatrixVC.rowImage = [UIImage imageNamed:@"CVBSCardDown.png"];
+    [_matrixs addObject:cvbsMatrixVC];
+    
+    // add VGA matrix View Controller
+    skyVGAMatrixSetting *vgaMatrixVC = [[skyVGAMatrixSetting alloc] initWithNibName:@"skyVGAMatrixSetting" bundle:nil];
+    vgaMatrixVC.title = @"VGA矩阵设置";
+    vgaMatrixVC.rowImage = [UIImage imageNamed:@"VGACardDown.png"];
+    [_matrixs addObject:vgaMatrixVC];
+    
+    // add HDMI matrix View Controller
+    skyHDMIMatrixSetting *hdmiMatrixVC = [[skyHDMIMatrixSetting alloc] initWithNibName:@"skyHDMIMatrixSetting" bundle:nil];
+    hdmiMatrixVC.title = @"HDMI矩阵设置";
+    hdmiMatrixVC.rowImage = [UIImage imageNamed:@"HDMICardDown.png"];
+    [_matrixs addObject:hdmiMatrixVC];
+    
+    // add DVI matrix View Controller
+    skyDVIMatrixSetting *dviMatrixVC = [[skyDVIMatrixSetting alloc] initWithNibName:@"skyDVIMatrixSetting" bundle:nil];
+    dviMatrixVC.title = @"DVI矩阵设置";
+    dviMatrixVC.rowImage = [UIImage imageNamed:@"DVICardDown.png"];
+    [_matrixs addObject:dviMatrixVC];
+}
 
+#pragma mark - Table view data source
+// 根据载入视图控制器定义Section个数
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 0;
+    return [_matrixs count];
 }
 
+// 每个Section中有一个Cell
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    return 1;
 }
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellIdentifier = @"skySettingSignalVCCellIdentifier";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    if (cell == nil)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
     
     // Configure the cell...
+    NSInteger row = [indexPath section];
+    skyPopBaseViewController *baseVC = [_matrixs objectAtIndex:row];
+    cell.textLabel.text = baseVC.title;
+    cell.imageView.image = baseVC.rowImage;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 52.0f;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
 #pragma mark - Table view delegate
-
-// In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here, for example:
-    // Create the next view controller.
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:<#@"Nib name"#> bundle:nil];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSUInteger row = [indexPath section];
+    skyPopBaseViewController *nextVC = [_matrixs objectAtIndex:row];
+    nextVC.view.frame = self.view.frame;
+    nextVC.preferredContentSize = self.preferredContentSize;
+    [self.navigationController pushViewController:nextVC animated:YES];
     
-    // Pass the selected object to the new view controller.
-    
-    // Push the view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -141,7 +141,7 @@
     [_settingMainVC.controllers addObject:mySettingConfig];
     
     // 3.add skySettingSignalVC
-    skySettingSignalVC *mySettingSignal = [[skySettingSignalVC alloc] init];
+    skySettingSignalVC *mySettingSignal = [[skySettingSignalVC alloc] initWithNibName:@"skySettingSignal" bundle:nil];
     mySettingSignal.title = @"信号设置";
     mySettingSignal.rowImage = [UIImage imageNamed:@"SignalSet.png"];
     [_settingMainVC.controllers addObject:mySettingSignal];

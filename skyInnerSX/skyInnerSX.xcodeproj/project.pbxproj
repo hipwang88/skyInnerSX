@@ -31,6 +31,20 @@
 		0661F5BB19D14E3000756D17 /* SCXSet.png in Resources */ = {isa = PBXBuildFile; fileRef = 0661F5B719D14E3000756D17 /* SCXSet.png */; };
 		0661F5BC19D14E3000756D17 /* SignalSet.png in Resources */ = {isa = PBXBuildFile; fileRef = 0661F5B819D14E3000756D17 /* SignalSet.png */; };
 		0661F5BE19D17AB500756D17 /* skySettingConnection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0661F5BD19D17AB500756D17 /* skySettingConnection.xib */; };
+		06A7150119D256E0001DD984 /* skySettingSignal.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06A7150019D256E0001DD984 /* skySettingSignal.xib */; };
+		06A7150619D25C35001DD984 /* skyCVBSMatrixSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A7150419D25C35001DD984 /* skyCVBSMatrixSetting.m */; };
+		06A7150719D25C35001DD984 /* skyCVBSMatrixSetting.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06A7150519D25C35001DD984 /* skyCVBSMatrixSetting.xib */; };
+		06A7150B19D25C51001DD984 /* skyVGAMatrixSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A7150919D25C51001DD984 /* skyVGAMatrixSetting.m */; };
+		06A7150C19D25C51001DD984 /* skyVGAMatrixSetting.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06A7150A19D25C51001DD984 /* skyVGAMatrixSetting.xib */; };
+		06A7151019D25C6E001DD984 /* skyHDMIMatrixSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A7150E19D25C6E001DD984 /* skyHDMIMatrixSetting.m */; };
+		06A7151119D25C6E001DD984 /* skyHDMIMatrixSetting.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06A7150F19D25C6E001DD984 /* skyHDMIMatrixSetting.xib */; };
+		06A7151519D25C85001DD984 /* skyDVIMatrixSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A7151319D25C85001DD984 /* skyDVIMatrixSetting.m */; };
+		06A7151619D25C85001DD984 /* skyDVIMatrixSetting.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06A7151419D25C85001DD984 /* skyDVIMatrixSetting.xib */; };
+		06A7151919D25DDF001DD984 /* skyMatrixMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A7151819D25DDF001DD984 /* skyMatrixMain.m */; };
+		06A7151E19D26350001DD984 /* CVBSCardDown.png in Resources */ = {isa = PBXBuildFile; fileRef = 06A7151A19D26350001DD984 /* CVBSCardDown.png */; };
+		06A7151F19D26350001DD984 /* DVICardDown.png in Resources */ = {isa = PBXBuildFile; fileRef = 06A7151B19D26350001DD984 /* DVICardDown.png */; };
+		06A7152019D26350001DD984 /* HDMICardDown.png in Resources */ = {isa = PBXBuildFile; fileRef = 06A7151C19D26350001DD984 /* HDMICardDown.png */; };
+		06A7152119D26350001DD984 /* VGACardDown.png in Resources */ = {isa = PBXBuildFile; fileRef = 06A7151D19D26350001DD984 /* VGACardDown.png */; };
 		06AF3EF719D1893D007D4E2E /* skySettingConfig.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06AF3EF619D1893D007D4E2E /* skySettingConfig.xib */; };
 		06AF3EFB19D191B0007D4E2E /* skyStepperCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06AF3EF919D191B0007D4E2E /* skyStepperCell.m */; };
 		06AF3EFC19D191B0007D4E2E /* skyStepperCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06AF3EFA19D191B0007D4E2E /* skyStepperCell.xib */; };
@@ -87,6 +101,25 @@
 		0661F5B719D14E3000756D17 /* SCXSet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SCXSet.png; sourceTree = "<group>"; };
 		0661F5B819D14E3000756D17 /* SignalSet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SignalSet.png; sourceTree = "<group>"; };
 		0661F5BD19D17AB500756D17 /* skySettingConnection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = skySettingConnection.xib; path = "Popover Views/Settings Popover View/skySettingConnection.xib"; sourceTree = "<group>"; };
+		06A7150019D256E0001DD984 /* skySettingSignal.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = skySettingSignal.xib; path = "Popover Views/Settings Popover View/skySettingSignal.xib"; sourceTree = "<group>"; };
+		06A7150319D25C35001DD984 /* skyCVBSMatrixSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = skyCVBSMatrixSetting.h; path = "Popover Views/MatrixSetting Popover View/skyCVBSMatrixSetting.h"; sourceTree = "<group>"; };
+		06A7150419D25C35001DD984 /* skyCVBSMatrixSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = skyCVBSMatrixSetting.m; path = "Popover Views/MatrixSetting Popover View/skyCVBSMatrixSetting.m"; sourceTree = "<group>"; };
+		06A7150519D25C35001DD984 /* skyCVBSMatrixSetting.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = skyCVBSMatrixSetting.xib; path = "Popover Views/MatrixSetting Popover View/skyCVBSMatrixSetting.xib"; sourceTree = "<group>"; };
+		06A7150819D25C51001DD984 /* skyVGAMatrixSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = skyVGAMatrixSetting.h; path = "Popover Views/MatrixSetting Popover View/skyVGAMatrixSetting.h"; sourceTree = "<group>"; };
+		06A7150919D25C51001DD984 /* skyVGAMatrixSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = skyVGAMatrixSetting.m; path = "Popover Views/MatrixSetting Popover View/skyVGAMatrixSetting.m"; sourceTree = "<group>"; };
+		06A7150A19D25C51001DD984 /* skyVGAMatrixSetting.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = skyVGAMatrixSetting.xib; path = "Popover Views/MatrixSetting Popover View/skyVGAMatrixSetting.xib"; sourceTree = "<group>"; };
+		06A7150D19D25C6E001DD984 /* skyHDMIMatrixSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = skyHDMIMatrixSetting.h; path = "Popover Views/MatrixSetting Popover View/skyHDMIMatrixSetting.h"; sourceTree = "<group>"; };
+		06A7150E19D25C6E001DD984 /* skyHDMIMatrixSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = skyHDMIMatrixSetting.m; path = "Popover Views/MatrixSetting Popover View/skyHDMIMatrixSetting.m"; sourceTree = "<group>"; };
+		06A7150F19D25C6E001DD984 /* skyHDMIMatrixSetting.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = skyHDMIMatrixSetting.xib; path = "Popover Views/MatrixSetting Popover View/skyHDMIMatrixSetting.xib"; sourceTree = "<group>"; };
+		06A7151219D25C85001DD984 /* skyDVIMatrixSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = skyDVIMatrixSetting.h; path = "Popover Views/MatrixSetting Popover View/skyDVIMatrixSetting.h"; sourceTree = "<group>"; };
+		06A7151319D25C85001DD984 /* skyDVIMatrixSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = skyDVIMatrixSetting.m; path = "Popover Views/MatrixSetting Popover View/skyDVIMatrixSetting.m"; sourceTree = "<group>"; };
+		06A7151419D25C85001DD984 /* skyDVIMatrixSetting.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = skyDVIMatrixSetting.xib; path = "Popover Views/MatrixSetting Popover View/skyDVIMatrixSetting.xib"; sourceTree = "<group>"; };
+		06A7151719D25DDF001DD984 /* skyMatrixMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = skyMatrixMain.h; path = "Popover Views/MatrixSetting Popover View/skyMatrixMain.h"; sourceTree = "<group>"; };
+		06A7151819D25DDF001DD984 /* skyMatrixMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = skyMatrixMain.m; path = "Popover Views/MatrixSetting Popover View/skyMatrixMain.m"; sourceTree = "<group>"; };
+		06A7151A19D26350001DD984 /* CVBSCardDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CVBSCardDown.png; sourceTree = "<group>"; };
+		06A7151B19D26350001DD984 /* DVICardDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DVICardDown.png; sourceTree = "<group>"; };
+		06A7151C19D26350001DD984 /* HDMICardDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HDMICardDown.png; sourceTree = "<group>"; };
+		06A7151D19D26350001DD984 /* VGACardDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VGACardDown.png; sourceTree = "<group>"; };
 		06AF3EF619D1893D007D4E2E /* skySettingConfig.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = skySettingConfig.xib; path = "Popover Views/Settings Popover View/skySettingConfig.xib"; sourceTree = "<group>"; };
 		06AF3EF819D191B0007D4E2E /* skyStepperCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = skyStepperCell.h; path = Cells/skyStepperCell.h; sourceTree = "<group>"; };
 		06AF3EF919D191B0007D4E2E /* skyStepperCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = skyStepperCell.m; path = Cells/skyStepperCell.m; sourceTree = "<group>"; };
@@ -176,6 +209,10 @@
 		0661F56C19D1184400756D17 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				06A7151A19D26350001DD984 /* CVBSCardDown.png */,
+				06A7151B19D26350001DD984 /* DVICardDown.png */,
+				06A7151C19D26350001DD984 /* HDMICardDown.png */,
+				06A7151D19D26350001DD984 /* VGACardDown.png */,
 				0661F5B519D14E3000756D17 /* ConnSet.png */,
 				0661F5B619D14E3000756D17 /* ProtocalSet.png */,
 				0661F5B719D14E3000756D17 /* SCXSet.png */,
@@ -225,6 +262,7 @@
 				0661F58419D13EBB00756D17 /* Model Popover View */,
 				0661F58519D13ED700756D17 /* Signal Popover View */,
 				0661F58719D13F0700756D17 /* ISXWin Popover View */,
+				06A7150219D25BDA001DD984 /* MatrixSetting Popover View */,
 			);
 			name = "Popover Views";
 			sourceTree = "<group>";
@@ -279,6 +317,7 @@
 				06AF3EF619D1893D007D4E2E /* skySettingConfig.xib */,
 				0661F59B19D1422F00756D17 /* skySettingSignalVC.h */,
 				0661F59C19D1422F00756D17 /* skySettingSignalVC.m */,
+				06A7150019D256E0001DD984 /* skySettingSignal.xib */,
 				0661F5A019D1425600756D17 /* skySettingUnitVC.h */,
 				0661F5A119D1425600756D17 /* skySettingUnitVC.m */,
 			);
@@ -319,6 +358,27 @@
 				0661F58A19D13F8200756D17 /* skyPopBaseViewController.m */,
 			);
 			name = "Base Popover Controller";
+			sourceTree = "<group>";
+		};
+		06A7150219D25BDA001DD984 /* MatrixSetting Popover View */ = {
+			isa = PBXGroup;
+			children = (
+				06A7151719D25DDF001DD984 /* skyMatrixMain.h */,
+				06A7151819D25DDF001DD984 /* skyMatrixMain.m */,
+				06A7150319D25C35001DD984 /* skyCVBSMatrixSetting.h */,
+				06A7150419D25C35001DD984 /* skyCVBSMatrixSetting.m */,
+				06A7150519D25C35001DD984 /* skyCVBSMatrixSetting.xib */,
+				06A7150819D25C51001DD984 /* skyVGAMatrixSetting.h */,
+				06A7150919D25C51001DD984 /* skyVGAMatrixSetting.m */,
+				06A7150A19D25C51001DD984 /* skyVGAMatrixSetting.xib */,
+				06A7150D19D25C6E001DD984 /* skyHDMIMatrixSetting.h */,
+				06A7150E19D25C6E001DD984 /* skyHDMIMatrixSetting.m */,
+				06A7150F19D25C6E001DD984 /* skyHDMIMatrixSetting.xib */,
+				06A7151219D25C85001DD984 /* skyDVIMatrixSetting.h */,
+				06A7151319D25C85001DD984 /* skyDVIMatrixSetting.m */,
+				06A7151419D25C85001DD984 /* skyDVIMatrixSetting.xib */,
+			);
+			name = "MatrixSetting Popover View";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -405,14 +465,23 @@
 				06AF3EFC19D191B0007D4E2E /* skyStepperCell.xib in Resources */,
 				0661F55719D1181B00756D17 /* LaunchScreen.xib in Resources */,
 				0661F5BC19D14E3000756D17 /* SignalSet.png in Resources */,
+				06A7150C19D25C51001DD984 /* skyVGAMatrixSetting.xib in Resources */,
+				06A7151E19D26350001DD984 /* CVBSCardDown.png in Resources */,
+				06A7151F19D26350001DD984 /* DVICardDown.png in Resources */,
+				06A7151619D25C85001DD984 /* skyDVIMatrixSetting.xib in Resources */,
+				06A7151119D25C6E001DD984 /* skyHDMIMatrixSetting.xib in Resources */,
 				0661F57A19D118B000756D17 /* skyInnerViewController.xib in Resources */,
 				0661F58219D1261000756D17 /* toolbarDrawModeHide.png in Resources */,
 				0661F5BA19D14E3000756D17 /* ProtocalSet.png in Resources */,
+				06A7152119D26350001DD984 /* VGACardDown.png in Resources */,
+				06A7150719D25C35001DD984 /* skyCVBSMatrixSetting.xib in Resources */,
 				0661F5BE19D17AB500756D17 /* skySettingConnection.xib in Resources */,
 				0661F5B919D14E3000756D17 /* ConnSet.png in Resources */,
+				06A7152019D26350001DD984 /* HDMICardDown.png in Resources */,
 				0661F55419D1181B00756D17 /* Images.xcassets in Resources */,
 				06AF3EF719D1893D007D4E2E /* skySettingConfig.xib in Resources */,
 				0661F5BB19D14E3000756D17 /* SCXSet.png in Resources */,
+				06A7150119D256E0001DD984 /* skySettingSignal.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,14 +504,19 @@
 				0661F5A819D1427D00756D17 /* skyModelViewController.m in Sources */,
 				0661F59E19D1422F00756D17 /* skySettingSignalVC.m in Sources */,
 				0661F58F19D1412B00756D17 /* skySettingMainVC.m in Sources */,
+				06A7151519D25C85001DD984 /* skyDVIMatrixSetting.m in Sources */,
 				0661F5B119D143A400756D17 /* skyISXWinPopoverVC.m in Sources */,
 				0661F5B419D143C600756D17 /* skySignalViewController.m in Sources */,
+				06A7151019D25C6E001DD984 /* skyHDMIMatrixSetting.m in Sources */,
 				0661F59919D141F100756D17 /* skySettingConfigVC.m in Sources */,
+				06A7150B19D25C51001DD984 /* skyVGAMatrixSetting.m in Sources */,
 				0661F5A319D1425600756D17 /* skySettingUnitVC.m in Sources */,
+				06A7151919D25DDF001DD984 /* skyMatrixMain.m in Sources */,
 				0661F54C19D1181B00756D17 /* AppDelegate.m in Sources */,
 				0661F59419D141BE00756D17 /* skySettingConnectionVC.m in Sources */,
 				06AF3EFB19D191B0007D4E2E /* skyStepperCell.m in Sources */,
 				0661F58B19D13F8200756D17 /* skyPopBaseViewController.m in Sources */,
+				06A7150619D25C35001DD984 /* skyCVBSMatrixSetting.m in Sources */,
 				0661F54919D1181B00756D17 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
