@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0631A1CF19D2980500439139 /* skySliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0631A1CD19D2980500439139 /* skySliderCell.m */; };
+		0631A1D019D2980500439139 /* skySliderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0631A1CE19D2980500439139 /* skySliderCell.xib */; };
 		0661F54919D1181B00756D17 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0661F54819D1181B00756D17 /* main.m */; };
 		0661F54C19D1181B00756D17 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0661F54B19D1181B00756D17 /* AppDelegate.m */; };
 		0661F55419D1181B00756D17 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0661F55319D1181B00756D17 /* Images.xcassets */; };
@@ -60,6 +62,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0631A1CC19D2980500439139 /* skySliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = skySliderCell.h; path = Cells/skySliderCell.h; sourceTree = "<group>"; };
+		0631A1CD19D2980500439139 /* skySliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = skySliderCell.m; path = Cells/skySliderCell.m; sourceTree = "<group>"; };
+		0631A1CE19D2980500439139 /* skySliderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = skySliderCell.xib; path = Cells/skySliderCell.xib; sourceTree = "<group>"; };
 		0661F54319D1181B00756D17 /* skyInnerSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = skyInnerSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0661F54719D1181B00756D17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0661F54819D1181B00756D17 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -247,6 +252,9 @@
 				06AF3EF819D191B0007D4E2E /* skyStepperCell.h */,
 				06AF3EF919D191B0007D4E2E /* skyStepperCell.m */,
 				06AF3EFA19D191B0007D4E2E /* skyStepperCell.xib */,
+				0631A1CC19D2980500439139 /* skySliderCell.h */,
+				0631A1CD19D2980500439139 /* skySliderCell.m */,
+				0631A1CE19D2980500439139 /* skySliderCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -476,6 +484,7 @@
 				0661F55419D1181B00756D17 /* Images.xcassets in Resources */,
 				06AF3EF719D1893D007D4E2E /* skySettingConfig.xib in Resources */,
 				0661F5BB19D14E3000756D17 /* SCXSet.png in Resources */,
+				0631A1D019D2980500439139 /* skySliderCell.xib in Resources */,
 				06A7150119D256E0001DD984 /* skySettingSignal.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -511,6 +520,7 @@
 				06AF3EFB19D191B0007D4E2E /* skyStepperCell.m in Sources */,
 				0661F58B19D13F8200756D17 /* skyPopBaseViewController.m in Sources */,
 				06A7150619D25C35001DD984 /* skyCVBSMatrixSetting.m in Sources */,
+				0631A1CF19D2980500439139 /* skySliderCell.m in Sources */,
 				0661F54919D1181B00756D17 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -579,7 +589,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -615,7 +625,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -628,7 +638,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = skyInnerSX/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -639,7 +649,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = skyInnerSX/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

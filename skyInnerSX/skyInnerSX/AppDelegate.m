@@ -23,14 +23,15 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    // 程序状态管理初始
+    _theApp = [[skyAppStatus alloc] init];
+
     // 安装程序主视图控制器
     _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     _appViewController = [[skyInnerViewController alloc] initWithNibName:@"skyInnerViewController" bundle:nil];
     _navigator = [[UINavigationController alloc] initWithRootViewController:_appViewController];
     _window.rootViewController = _navigator;
     [_window makeKeyAndVisible];
-    // 程序状态管理初始
-    _theApp = [[skyAppStatus alloc] init];
     
     return YES;
 }

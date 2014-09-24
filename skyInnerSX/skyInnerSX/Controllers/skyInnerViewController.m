@@ -121,6 +121,7 @@
     // 设置主视图初始
     self.settingMainVC = [[skySettingMainVC alloc] initWithStyle:UITableViewStyleGrouped];
     self.settingsNavgation = [[UINavigationController alloc] initWithRootViewController:_settingMainVC];
+    self.settingsNavgation.interactivePopGestureRecognizer.enabled = NO;
     self.settingsPopover = [[UIPopoverController alloc] initWithContentViewController:_settingsNavgation];
     self.settingsPopover.popoverContentSize = CGSizeMake(320.0f, 680.0f);
     
@@ -144,6 +145,7 @@
     skySettingSignalVC *mySettingSignal = [[skySettingSignalVC alloc] initWithNibName:@"skySettingSignal" bundle:nil];
     mySettingSignal.title = @"信号设置";
     mySettingSignal.rowImage = [UIImage imageNamed:@"SignalSet.png"];
+    mySettingSignal.myDataSource = _appDelegate.theApp;
     [_settingMainVC.controllers addObject:mySettingSignal];
     
     // 4.add skySettingUnitVC
@@ -221,6 +223,7 @@
         // 没显示则关闭其他视图后弹出显示
         [_currentPopover dismissPopoverAnimated:YES];
         [_modelsPopover presentPopoverFromBarButtonItem:_modelButton permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        _currentPopover = _settingsPopover;
     }
 }
 

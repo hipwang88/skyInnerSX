@@ -7,10 +7,6 @@
 //
 
 #import "skySettingSignalVC.h"
-#import "skyCVBSMatrixSetting.h"
-#import "skyVGAMatrixSetting.h"
-#import "skyHDMIMatrixSetting.h"
-#import "skyDVIMatrixSetting.h"
 
 @interface skySettingSignalVC ()
 
@@ -27,6 +23,7 @@
 @implementation skySettingSignalVC
 
 @synthesize matrixs = _matrixs;
+@synthesize myDataSource = _myDataSource;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -59,6 +56,7 @@
     skyCVBSMatrixSetting *cvbsMatrixVC = [[skyCVBSMatrixSetting alloc] initWithNibName:@"skyCVBSMatrixSetting" bundle:nil];
     cvbsMatrixVC.title = @"CVBS矩阵设置";
     cvbsMatrixVC.rowImage = [UIImage imageNamed:@"CVBSCardDown.png"];
+    cvbsMatrixVC.myDataSource = self;
     [_matrixs addObject:cvbsMatrixVC];
     
     // add VGA matrix View Controller
@@ -119,6 +117,18 @@
     return 52.0f;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString *result = nil;
+    
+    if (section == 0)
+    {
+        result = @"选择设置相关矩阵";
+    }
+    
+    return result;
+}
+
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -129,6 +139,19 @@
     [self.navigationController pushViewController:nextVC animated:YES];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark - skyCVBSMatrixSetting DataSource
+// 获取CVBS矩阵使用输入路数
+- (int)getCurrentCVBSInputs
+{
+    return [_myDataSource getCVBSMatrixInputs];
+}
+
+// 设置CVBS矩阵使用输入路数
+- (void)setCurrentCVBSInputs:(int)nInputs
+{
+    [_myDataSource setCVBSMatrixInputs:nInputs];
 }
 
 @end

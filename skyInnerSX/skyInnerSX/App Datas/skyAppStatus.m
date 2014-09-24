@@ -31,7 +31,7 @@
     
 }
 
-#pragma mark -skySettingConfigVC DataSource
+#pragma mark - skySettingConfigVC DataSource
 // 获取当前拼接行数
 - (NSInteger)getCurrentScreenRow
 {
@@ -48,6 +48,50 @@
 - (void)setCurrentScreenRow:(NSInteger)nRow andColumn:(NSInteger)nColumn
 {
     
+}
+
+#pragma mark - skySettingSignalVC DataSource
+// CVBS矩阵设置
+- (void)setCVBSMatrixInputs:(int)nInputs
+{
+    
+}
+
+- (int)getCVBSMatrixInputs
+{
+    return 6;
+}
+
+// VGA矩阵设置
+- (void)setVGAMatrixInputs:(int)nInputs
+{
+    
+}
+
+- (int)getVGAMatrixInputs
+{
+    return 8;
+}
+
+// HDMI矩阵设置
+- (void)setHDMIMatrixInputs:(int)nInputs
+{
+    
+}
+
+- (int)getHDMIMatrixInputs
+{
+    return 12;
+}
+
+// DVI矩阵设置
+- (void)setDVIMatrixInputs:(int)nInputs
+{
+    
+}
+- (int)getDVIMatrixInputs
+{
+    return 0;
 }
 
 @end
