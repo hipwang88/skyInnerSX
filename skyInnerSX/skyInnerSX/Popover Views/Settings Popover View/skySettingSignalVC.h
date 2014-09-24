@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "skyPopBaseViewController.h"
-#import "skyMatrixMain.h"
 
 // class skySettingSignalVC
 @interface skySettingSignalVC : skyPopBaseViewController<UITableViewDelegate,UITableViewDataSource>
