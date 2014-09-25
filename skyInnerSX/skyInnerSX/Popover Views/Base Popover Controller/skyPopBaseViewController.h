@@ -13,4 +13,7 @@
 // Cell图片
 @property (strong, nonatomic) UIImage *rowImage;
 
+// 载入响应函数
+- (void)pushViewToFront;
+
 @end

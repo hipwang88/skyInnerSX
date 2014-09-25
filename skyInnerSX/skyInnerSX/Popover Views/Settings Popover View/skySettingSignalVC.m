@@ -136,6 +136,7 @@
     skyPopBaseViewController *nextVC = [_matrixs objectAtIndex:row];
     nextVC.view.frame = self.view.frame;
     nextVC.preferredContentSize = self.preferredContentSize;
+    [nextVC pushViewToFront];
     [self.navigationController pushViewController:nextVC animated:YES];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

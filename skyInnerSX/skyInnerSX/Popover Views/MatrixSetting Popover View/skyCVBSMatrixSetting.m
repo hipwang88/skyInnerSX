@@ -22,6 +22,8 @@
 - (void)switchValueChangedEventHandler;
 // Slider数值变化事件函数
 - (void)sliderValueChangedEventHandler;
+// 矩阵确认设置事件函数
+- (void)confirmMatrixSetEventHandler;
 // 增加输入设置Cell
 - (void)addInputCell;
 // 删除输入设置Cell
@@ -103,6 +105,12 @@
     [_myDataSource setCurrentCVBSInputs:nValue];
 }
 
+// 矩阵确认设置事件函数
+- (void)confirmMatrixSetEventHandler
+{
+    
+}
+
 // 增加输入设置Cell
 - (void)addInputCell
 {
@@ -130,6 +138,17 @@
     [_myTableView endUpdates];
     
     // 完成编辑将输入值变为0
+}
+
+#pragma mark - Overrider Functions
+// 载入响应函数
+- (void)pushViewToFront
+{
+    [super pushViewToFront];
+    
+    // 载入界面时重新计算状态
+    _useCVBSSwitch.on = [_myDataSource getCurrentCVBSInputs] != 0 ? YES : NO;
+    [_myTableView reloadData];
 }
 
 #pragma mark - skyCVBSMatrixSetting Public Methods
@@ -252,7 +271,25 @@
 #pragma mark - TableView Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (_useCVBSSwitch.isOn)
+    {
+        if (indexPath.section == 2)
+        {
+            [self confirmMatrixSetEventHandler];
+        }
+    }
+    else
+    {
+        if (indexPath.section == 1)
+        {
+            [self confirmMatrixSetEventHandler];
+        }
+    }
     
+    // 取消选中状态
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    // 弹回上一个界面
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

@@ -16,4 +16,10 @@
 
 @synthesize rowImage = _rowImage;
 
+// 载入响应函数
+- (void)pushViewToFront
+{
+    NSLog(@"Push matrix view");
+}
+
 @end
