@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
@@ -21,10 +20,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="gaE-W2-62t">
-                        <rect key="frame" x="164" y="7" width="94" height="29"/>
+                        <rect key="frame" x="142" y="7" width="94" height="29"/>
                     </stepper>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MSW-0S-mTF">
-                        <rect key="frame" x="266" y="7" width="46" height="30"/>
+                        <rect key="frame" x="244" y="8" width="68" height="30"/>
                         <state key="normal" title="Button">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
@@ -36,7 +35,7 @@
                 <outlet property="cellStepper" destination="gaE-W2-62t" id="3FQ-Vv-7Zl"/>
                 <outlet property="cellTitle" destination="ndu-NP-4N8" id="Ee4-zj-Gx1"/>
             </connections>
-            <point key="canvasLocation" x="140" y="153"/>
+            <point key="canvasLocation" x="140" y="152"/>
         </tableViewCell>
     </objects>
 </document>
