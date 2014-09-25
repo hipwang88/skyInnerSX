@@ -155,6 +155,10 @@
     mySettingUnit.myDelegate = self;
     mySettingUnit.myDataSource = _appDelegate.theApp;
     [_settingMainVC.controllers addObject:mySettingUnit];
+    // 初始化skySettingUnitVC单元选择视图
+    mySettingUnit.selectionView = [[skyUnitSelectionVC alloc] initWithStyle:UITableViewStylePlain];
+    mySettingUnit.selectionView.myDelegate = self;
+    mySettingUnit.selectionView.myDataSource = _appDelegate.theApp;
     
     /****************** 情景模式弹出视图 **********************/
     self.modelVC = [[skyModelViewController alloc] initWithStyle:UITableViewStyleGrouped];
@@ -251,6 +255,31 @@
 #pragma mark - skySettingConfigVC Delegate
 // 设定行列数
 - (void)setScreenRow:(NSInteger)nRow andColumn:(NSInteger)nColumn
+{
+    
+}
+
+#pragma mark - skyUnitSelectionVC Delegate
+// 选择某个机芯单元
+- (void)selectOneUnitAtIndex:(int)nIndex
+{
+    
+}
+
+// 取消选择某个机芯单元
+- (void)unSelectOneUnitAtIndex:(int)nIndex
+{
+    
+}
+
+// 选择全部机芯单元
+- (void)selectAllUnit
+{
+    
+}
+
+// 取消全部选择的机芯单元
+- (void)unSelectAllUnit
 {
     
 }

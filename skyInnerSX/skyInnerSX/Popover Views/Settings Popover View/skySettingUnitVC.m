@@ -75,6 +75,7 @@
 @synthesize useKeyboardSwitch = _useKeyboardSwitch;
 @synthesize myDelegate = _myDelegate;
 @synthesize myDataSource = _myDataSource;
+@synthesize selectionView = _selectionView;
 
 #pragma mark - skySettingUnitVC Methods
 
@@ -525,7 +526,7 @@
 {
     if (indexPath.section == 0)         // 单元选择
     {
-        
+        [self.navigationController pushViewController:_selectionView animated:YES];
     }
     else if (indexPath.section == 1)    // 控制
     {

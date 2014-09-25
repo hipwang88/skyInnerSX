@@ -18,7 +18,8 @@
 //              skySettingConfigVCDataSource     --- 规格设置数据源
 //              skySettingSignalVCDataSource     --- 信号源设置数据源
 //              skySettingUnitVCDataSource       --- 屏幕控制数据源
+//              skyUnitSelectionVCDataSource     --- 单元选择数据源
 //
-@interface skyAppStatus : NSObject<skySettingConnectionVCDataSource,skySettingConfigVCDataSource,skySettingSignalVCDataSource,skySettingUnitVCDataSource>
+@interface skyAppStatus : NSObject<skySettingConnectionVCDataSource,skySettingConfigVCDataSource,skySettingSignalVCDataSource,skySettingUnitVCDataSource,skyUnitSelectionVCDataSource>
 
 @end

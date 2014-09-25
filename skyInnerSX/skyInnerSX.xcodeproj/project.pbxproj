@@ -38,6 +38,8 @@
 		0677F50D19D3BB2E0051AC0C /* skySettingUnit.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0677F50C19D3BB2E0051AC0C /* skySettingUnit.xib */; };
 		0677F51119D3C2890051AC0C /* skyStepperBtnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0677F50F19D3C2890051AC0C /* skyStepperBtnCell.m */; };
 		0677F51219D3C2890051AC0C /* skyStepperBtnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0677F51019D3C2890051AC0C /* skyStepperBtnCell.xib */; };
+		0677F51719D40EC60051AC0C /* skyUnitSelectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0677F51519D40EC60051AC0C /* skyUnitSelectionVC.m */; };
+		0677F51819D40EC60051AC0C /* skyUnitSelectionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0677F51619D40EC60051AC0C /* skyUnitSelectionVC.xib */; };
 		06A7150119D256E0001DD984 /* skySettingSignal.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06A7150019D256E0001DD984 /* skySettingSignal.xib */; };
 		06A7150619D25C35001DD984 /* skyCVBSMatrixSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A7150419D25C35001DD984 /* skyCVBSMatrixSetting.m */; };
 		06A7150719D25C35001DD984 /* skyCVBSMatrixSetting.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06A7150519D25C35001DD984 /* skyCVBSMatrixSetting.xib */; };
@@ -117,6 +119,9 @@
 		0677F50E19D3C2890051AC0C /* skyStepperBtnCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = skyStepperBtnCell.h; path = Cells/skyStepperBtnCell.h; sourceTree = "<group>"; };
 		0677F50F19D3C2890051AC0C /* skyStepperBtnCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = skyStepperBtnCell.m; path = Cells/skyStepperBtnCell.m; sourceTree = "<group>"; };
 		0677F51019D3C2890051AC0C /* skyStepperBtnCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = skyStepperBtnCell.xib; path = Cells/skyStepperBtnCell.xib; sourceTree = "<group>"; };
+		0677F51419D40EC60051AC0C /* skyUnitSelectionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = skyUnitSelectionVC.h; path = "Popover Views/Unit Selection Popover/skyUnitSelectionVC.h"; sourceTree = "<group>"; };
+		0677F51519D40EC60051AC0C /* skyUnitSelectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = skyUnitSelectionVC.m; path = "Popover Views/Unit Selection Popover/skyUnitSelectionVC.m"; sourceTree = "<group>"; };
+		0677F51619D40EC60051AC0C /* skyUnitSelectionVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = skyUnitSelectionVC.xib; path = "Popover Views/Unit Selection Popover/skyUnitSelectionVC.xib"; sourceTree = "<group>"; };
 		06A7150019D256E0001DD984 /* skySettingSignal.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = skySettingSignal.xib; path = "Popover Views/Settings Popover View/skySettingSignal.xib"; sourceTree = "<group>"; };
 		06A7150319D25C35001DD984 /* skyCVBSMatrixSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = skyCVBSMatrixSetting.h; path = "Popover Views/MatrixSetting Popover View/skyCVBSMatrixSetting.h"; sourceTree = "<group>"; };
 		06A7150419D25C35001DD984 /* skyCVBSMatrixSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = skyCVBSMatrixSetting.m; path = "Popover Views/MatrixSetting Popover View/skyCVBSMatrixSetting.m"; sourceTree = "<group>"; };
@@ -286,6 +291,7 @@
 				0661F58519D13ED700756D17 /* Signal Popover View */,
 				0661F58719D13F0700756D17 /* ISXWin Popover View */,
 				06A7150219D25BDA001DD984 /* MatrixSetting Popover View */,
+				0677F51319D40E1B0051AC0C /* Unit Selection Popover */,
 			);
 			name = "Popover Views";
 			sourceTree = "<group>";
@@ -382,6 +388,16 @@
 				0661F58A19D13F8200756D17 /* skyPopBaseViewController.m */,
 			);
 			name = "Base Popover Controller";
+			sourceTree = "<group>";
+		};
+		0677F51319D40E1B0051AC0C /* Unit Selection Popover */ = {
+			isa = PBXGroup;
+			children = (
+				0677F51419D40EC60051AC0C /* skyUnitSelectionVC.h */,
+				0677F51519D40EC60051AC0C /* skyUnitSelectionVC.m */,
+				0677F51619D40EC60051AC0C /* skyUnitSelectionVC.xib */,
+			);
+			name = "Unit Selection Popover";
 			sourceTree = "<group>";
 		};
 		06A7150219D25BDA001DD984 /* MatrixSetting Popover View */ = {
@@ -488,6 +504,7 @@
 				0677F51219D3C2890051AC0C /* skyStepperBtnCell.xib in Resources */,
 				0661F55719D1181B00756D17 /* LaunchScreen.xib in Resources */,
 				0661F5BC19D14E3000756D17 /* SignalSet.png in Resources */,
+				0677F51819D40EC60051AC0C /* skyUnitSelectionVC.xib in Resources */,
 				06A7150C19D25C51001DD984 /* skyVGAMatrixSetting.xib in Resources */,
 				06A7151E19D26350001DD984 /* CVBSCardDown.png in Resources */,
 				06A7151F19D26350001DD984 /* DVICardDown.png in Resources */,
@@ -530,6 +547,7 @@
 				0661F5A819D1427D00756D17 /* skyModelViewController.m in Sources */,
 				0661F59E19D1422F00756D17 /* skySettingSignalVC.m in Sources */,
 				0677F50A19D3B7E70051AC0C /* skyMenuCell.m in Sources */,
+				0677F51719D40EC60051AC0C /* skyUnitSelectionVC.m in Sources */,
 				0661F58F19D1412B00756D17 /* skySettingMainVC.m in Sources */,
 				06A7151519D25C85001DD984 /* skyDVIMatrixSetting.m in Sources */,
 				0661F5B119D143A400756D17 /* skyISXWinPopoverVC.m in Sources */,

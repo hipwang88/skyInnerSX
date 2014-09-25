@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "skyPopBaseViewController.h"
+#import "skyUnitSelectionVC.h"
 
 // Delegate Protocol
 @protocol skySettingUnitVCDelegate <NSObject>
@@ -31,6 +32,7 @@
 @property (strong, nonatomic) UISwitch *useKeyboardSwitch;                      // 虚拟键盘使用开关
 @property (strong, nonatomic) id<skySettingUnitVCDelegate> myDelegate;          // 代理对象
 @property (strong, nonatomic) id<skySettingUnitVCDataSource> myDataSource;      // 数据源对象
+@property (strong, nonatomic) skyUnitSelectionVC *selectionView;                // 单元选择视图
 
 //////////////////////// Methods //////////////////////////////
 

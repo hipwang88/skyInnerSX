@@ -19,8 +19,9 @@
 //          skySettingConnectionVCDelegate  --- 通信连接代理
 //          skySettingConfigVCDelegate      --- 规格设置代理
 //          skySettingUnitVCDelegate        --- 屏幕控制设置代理
+//          skyUnitSelectionVCDelegate      --- 屏幕单元选择代理
 //
-@interface skyInnerViewController : UIViewController<skySettingConnectionVCDelegate,skySettingConfigVCDelegate,skySettingUnitVCDelegate>
+@interface skyInnerViewController : UIViewController<skySettingConnectionVCDelegate,skySettingConfigVCDelegate,skySettingUnitVCDelegate,skyUnitSelectionVCDelegate>
 
 ////////////////////////// Property /////////////////////////////
 // 导航栏支持视图
