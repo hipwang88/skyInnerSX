@@ -41,7 +41,7 @@
 //          skyHDMIMatrixSettingDataSource  --- HDMI矩阵设置数据源
 //          skyDVIMatrixSettingDataSource   --- DVI矩阵设置数据源
 //
-@interface skySettingSignalVC : skyPopBaseViewController<UITableViewDelegate,UITableViewDataSource,skyCVBSMatrixSettingDataSource,skyVGAMatrixSettingDataSource,skyHDMIMatrixSettingDataSource>
+@interface skySettingSignalVC : skyPopBaseViewController<UITableViewDelegate,UITableViewDataSource,skyCVBSMatrixSettingDataSource,skyVGAMatrixSettingDataSource,skyHDMIMatrixSettingDataSource,skyDVIMatrixSettingDataSource>
 
 //////////////////////// Property /////////////////////////////
 @property (strong, nonatomic) NSMutableArray *matrixs;                          // Signal Setting页面内控制器装载容器

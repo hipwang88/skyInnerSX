@@ -173,6 +173,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    int nValue = [_myDataSource getCurrentCVBSInputs];
+    
     if (indexPath.section == 0)
     {
         // 矩阵启用选择
@@ -189,7 +191,7 @@
         cell.accessoryView = _useCVBSSwitch;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         // 设置状态
-        [_useCVBSSwitch setOn:[_myDataSource getCurrentCVBSInputs] != 0];
+        [_useCVBSSwitch setOn:nValue != 0];
         
         return cell;
     }
@@ -200,13 +202,16 @@
             // 矩阵输入路数设定
             skySliderCell *sliderCell = (skySliderCell *)[tableView dequeueReusableCellWithIdentifier:kSliderCell];
             
+            // 刚刚启用
+            nValue = nValue == 0 ? 1 : nValue;
+            
             // 布置外观
             sliderCell.labelTitle.text = @"矩阵输入路数";
-            sliderCell.labelValue.text = [NSString stringWithFormat:@"%d",[_myDataSource getCurrentCVBSInputs]];
+            sliderCell.labelValue.text = [NSString stringWithFormat:@"%d",nValue];
             sliderCell.cellSilder.minimumValue = 1;
             sliderCell.cellSilder.maximumValue = 256;
             sliderCell.cellSilder.continuous = NO;
-            sliderCell.cellSilder.value = [_myDataSource getCurrentCVBSInputs];
+            sliderCell.cellSilder.value = nValue;
             [sliderCell.cellSilder addTarget:self action:@selector(sliderValueChangedEventHandler) forControlEvents:UIControlEventTouchDragInside];
             sliderCell.selectionStyle = UITableViewCellSelectionStyleNone;
             

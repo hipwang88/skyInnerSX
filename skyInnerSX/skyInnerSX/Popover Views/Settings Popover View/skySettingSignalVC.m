@@ -77,6 +77,7 @@
     skyDVIMatrixSetting *dviMatrixVC = [[skyDVIMatrixSetting alloc] initWithNibName:@"skyDVIMatrixSetting" bundle:nil];
     dviMatrixVC.title = @"DVI矩阵设置";
     dviMatrixVC.rowImage = [UIImage imageNamed:@"DVICardDown.png"];
+    dviMatrixVC.myDataSource = self;
     [_matrixs addObject:dviMatrixVC];
 }
 
@@ -181,6 +182,19 @@
 - (void)setCurrentHDMIInputs:(int)nInputs
 {
     [_myDataSource setHDMIMatrixInputs:nInputs];
+}
+
+#pragma mark - skyDVIMatrixSetting DataSource
+// 获取当前DVI矩阵输入路数
+- (int)getCurrentDVIInputs
+{
+    return [_myDataSource getDVIMatrixInputs];
+}
+
+// 设置当前DVI矩阵输入路数
+- (void)setCurrentDVIInputs:(int)nInputs
+{
+    [_myDataSource setDVIMatrixInputs:nInputs];
 }
 
 @end
