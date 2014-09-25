@@ -178,7 +178,7 @@
     if (indexPath.section == 0)
     {
         // 矩阵启用选择
-        static NSString *cellIdentifier = @"skyCVBSMatrixSettingCellIdentifier";
+        static NSString *cellIdentifier = @"skyVGAMatrixSettingCellIdentifier";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         
         if (cell == nil)

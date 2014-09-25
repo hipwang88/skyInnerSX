@@ -70,6 +70,7 @@
     skyHDMIMatrixSetting *hdmiMatrixVC = [[skyHDMIMatrixSetting alloc] initWithNibName:@"skyHDMIMatrixSetting" bundle:nil];
     hdmiMatrixVC.title = @"HDMI矩阵设置";
     hdmiMatrixVC.rowImage = [UIImage imageNamed:@"HDMICardDown.png"];
+    hdmiMatrixVC.myDataSource = self;
     [_matrixs addObject:hdmiMatrixVC];
     
     // add DVI matrix View Controller
@@ -167,6 +168,19 @@
 - (void)setCurrentVGAInputs:(int)nInputs
 {
     [_myDataSource setVGAMatrixInputs:nInputs];
+}
+
+#pragma mark - skyHDMIMatrixSetting DataSource
+// 获取当前HDMI矩阵输入路数
+- (int)getCurrentHDMIInputs
+{
+    return [_myDataSource getHDMIMatrixInputs];
+}
+
+// 设置当前HDMI矩阵输入路数
+- (void)setCurrentHDMIInputs:(int)nInputs
+{
+    [_myDataSource setHDMIMatrixInputs:nInputs];
 }
 
 @end
