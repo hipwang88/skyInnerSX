@@ -63,6 +63,7 @@
     skyVGAMatrixSetting *vgaMatrixVC = [[skyVGAMatrixSetting alloc] initWithNibName:@"skyVGAMatrixSetting" bundle:nil];
     vgaMatrixVC.title = @"VGA矩阵设置";
     vgaMatrixVC.rowImage = [UIImage imageNamed:@"VGACardDown.png"];
+    vgaMatrixVC.myDataSource = self;
     [_matrixs addObject:vgaMatrixVC];
     
     // add HDMI matrix View Controller
@@ -153,6 +154,19 @@
 - (void)setCurrentCVBSInputs:(int)nInputs
 {
     [_myDataSource setCVBSMatrixInputs:nInputs];
+}
+
+#pragma mark - skyVGAMatrixSetting DataSource
+// 获取当前VGA输入路数
+- (int)getCurrentVGAInputs
+{
+    return [_myDataSource getVGAMatrixInputs];
+}
+
+// 设置当前VGA输入路数
+- (void)setCurrentVGAInputs:(int)nInputs
+{
+    [_myDataSource setVGAMatrixInputs:nInputs];
 }
 
 @end

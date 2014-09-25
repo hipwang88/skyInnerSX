@@ -108,7 +108,7 @@
 // 矩阵确认设置事件函数
 - (void)confirmMatrixSetEventHandler
 {
-    
+    NSLog(@"ConfirmMatrixSet");
 }
 
 // 增加输入设置Cell
