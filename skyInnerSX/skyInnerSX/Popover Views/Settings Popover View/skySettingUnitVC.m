@@ -10,6 +10,14 @@
 
 @interface skySettingUnitVC ()
 
+///////////////////// Property ///////////////////////
+
+///////////////////// Methods ////////////////////////
+// 初始化控件
+- (void)initializeComponents;
+
+///////////////////// Ends ///////////////////////////
+
 @end
 
 @implementation skySettingUnitVC
@@ -18,6 +26,18 @@
 @synthesize useKeyboardSwitch = _useKeyboardSwitch;
 @synthesize myDelegate = _myDelegate;
 @synthesize myDataSource = _myDataSource;
+
+#pragma mark - skySettingUnitVC Methods
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self)
+    {
+        
+    }
+    return self;
+}
 
 - (void)viewDidLoad
 {
@@ -35,6 +55,15 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - skySettingUnitVC Private Methods
+// 初始化控件
+- (void)initializeComponents
+{
+    
+}
+
+#pragma mark - skySettingUnitVC Public Methods
 
 #pragma mark - Table view data source
 
