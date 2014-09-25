@@ -131,61 +131,61 @@
 // 显示编号事件函数
 - (void)showPanelNumEventHandler
 {
-    
+    NSLog(@"ShowPanelNumber");
 }
 
 // 隐藏编号事件函数
 - (void)hidePanelNumEventHandler
 {
-    
+    NSLog(@"HidePanelNumber");
 }
 
 // 屏幕开机事件函数
 - (void)unitOnEventHandler
 {
-    
+    NSLog(@"UnitSwitchOn");
 }
 
 // 屏幕关机事件函数
 - (void)unitOffEventHandler
 {
-    
+    NSLog(@"UnitSwitchOff");
 }
 
 // 白平衡自动调整事件函数
 - (void)addjustWBEventHandler
 {
-    
+    NSLog(@"Addjust White Balance");
 }
 
 // 位置自动调整事件函数
 - (void)addjusetPositionEventHandler
 {
-    
+    NSLog(@"Addjust Position");
 }
 
 // 亮度调整事件函数
 - (void)brightnessValueChangedEventHandler
 {
-    
+    NSLog(@"Birghtness Value Change");
 }
 
 // 对比度调整事件函数
 - (void)contrastValueChangedEventHandler
 {
-    
+    NSLog(@"Contrast Value Change");
 }
 
 // 亮度复位事件函数
 - (void)birghtnessResetEventHandler
 {
-    
+    NSLog(@"Brightness Reset");
 }
 
 // 对比度服务事件函数
 - (void)contrastResetEventHandler
 {
-    
+    NSLog(@"Contrast Reset");
 }
 
 // 菜单按钮事件
@@ -197,49 +197,49 @@
 // 上按钮事件
 - (void)upBtnClick
 {
-    
+    NSLog(@"UpClick");
 }
 
 // 下按钮事件
 - (void)downBtnClick
 {
-    
+    NSLog(@"DownClick");
 }
 
 // 左按钮事件
 - (void)leftBtnClick
 {
-    
+    NSLog(@"LeftClick");
 }
 
 // 右按钮事件
 - (void)rightBtnClick
 {
-    
+    NSLog(@"RightClick");
 }
 
 // 屏显按钮事件
 - (void)panelDisplayBtnClick
 {
-    
+    NSLog(@"PanelDisplayClick");
 }
 
 // 信号按钮事件
 - (void)signalBtnClick
 {
-    
+    NSLog(@"SignalClick");
 }
 
 // 确认按钮事件
 - (void)confirmBtnClick
 {
-    
+    NSLog(@"ConfirmClick");
 }
 
 // 退出按钮事件
 - (void)quitBtnClick
 {
-    
+    NSLog(@"QuitClick");
 }
 
 // 添加虚拟键盘
@@ -523,7 +523,41 @@
 #pragma mark - Table view Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section == 0)         // 单元选择
+    {
+        
+    }
+    else if (indexPath.section == 1)    // 控制
+    {
+        switch (indexPath.row)
+        {
+            case 0: // 显示编号
+                [self showPanelNumEventHandler];
+                break;
+                
+            case 1: // 隐藏编号
+                [self hidePanelNumEventHandler];
+                break;
+                
+            case 2: // 屏幕开启
+                [self unitOnEventHandler];
+                break;
+                
+            case 3: // 屏幕关闭
+                [self unitOffEventHandler];
+                break;
+                
+            case 4: // 位置自动调整
+                [self addjusetPositionEventHandler];
+                break;
+                
+            case 5: // 白平衡自动调整
+                [self addjustWBEventHandler];
+                break;
+        }
+    }
     
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end
