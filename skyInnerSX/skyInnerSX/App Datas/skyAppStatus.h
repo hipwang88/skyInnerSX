@@ -10,12 +10,15 @@
 #import "skySettingConnectionVC.h"
 #import "skySettingConfigVC.h"
 #import "skySettingSignalVC.h"
+#import "skySettingUnitVC.h"
 
 // class skyAppStatus
 // DataSource:
 //              skySettingConnectionVCDataSource --- 通信设置数据源
 //              skySettingConfigVCDataSource     --- 规格设置数据源
 //              skySettingSignalVCDataSource     --- 信号源设置数据源
-@interface skyAppStatus : NSObject<skySettingConnectionVCDataSource,skySettingConfigVCDataSource,skySettingSignalVCDataSource>
+//              skySettingUnitVCDataSource       --- 屏幕控制数据源
+//
+@interface skyAppStatus : NSObject<skySettingConnectionVCDataSource,skySettingConfigVCDataSource,skySettingSignalVCDataSource,skySettingUnitVCDataSource>
 
 @end

@@ -149,9 +149,11 @@
     [_settingMainVC.controllers addObject:mySettingSignal];
     
     // 4.add skySettingUnitVC
-    skySettingUnitVC *mySettingUnit = [[skySettingUnitVC alloc] init];
+    skySettingUnitVC *mySettingUnit = [[skySettingUnitVC alloc] initWithNibName:@"skySettingUnit" bundle:nil];
     mySettingUnit.title = @"屏幕控制";
     mySettingUnit.rowImage = [UIImage imageNamed:@"ProtocalSet.png"];
+    mySettingUnit.myDelegate = self;
+    mySettingUnit.myDataSource = _appDelegate.theApp;
     [_settingMainVC.controllers addObject:mySettingUnit];
     
     /****************** 情景模式弹出视图 **********************/
