@@ -94,4 +94,36 @@
     return 0;
 }
 
+#pragma mark - skyUnitSelectionVC DataSource
+// 获取单元选择数组
+- (NSMutableArray *)getCurrentSelectionUnits
+{
+    NSMutableArray *array = [NSMutableArray arrayWithObjects:@"1",@"3",@"5", nil];
+    return array;
+}
+
+// 设置单元选择数组
+- (void)setCurrentSelectionUnits:(NSMutableArray *)selectArray
+{
+    
+}
+
+// 单元全部选择
+- (void)selectAllUnit
+{
+    
+}
+
+// 单元全不选
+- (void)unSelectAllUnit
+{
+    
+}
+
+// 获取单元总数
+- (int)getCountOfUnits
+{
+    return 12;
+}
+
 @end

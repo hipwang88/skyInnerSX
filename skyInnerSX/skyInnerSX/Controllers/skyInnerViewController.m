@@ -263,13 +263,13 @@
 // 选择某个机芯单元
 - (void)selectOneUnitAtIndex:(int)nIndex
 {
-    
+    NSLog([NSString stringWithFormat:@"Select Unit %d",nIndex],nil);
 }
 
 // 取消选择某个机芯单元
 - (void)unSelectOneUnitAtIndex:(int)nIndex
 {
-    
+    NSLog([NSString stringWithFormat:@"UnSelect Unit %d",nIndex],nil);
 }
 
 // 选择全部机芯单元

@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="skyUnitSelectionVC">
             <connections>
+                <outlet property="myTable" destination="i5M-Pr-FkT" id="d9N-kx-2i3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

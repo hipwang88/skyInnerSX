@@ -10,14 +10,49 @@
 
 @interface skyUnitSelectionVC ()
 
+///////////////////// Property //////////////////////
+@property (strong, nonatomic) NSMutableArray *selectionArray;               // 选择数组
+@property (strong, nonatomic) UIBarButtonItem *selectAllBarItem;            // 全选按钮
+@property (strong, nonatomic) UIBarButtonItem *unSelectAllBarItem;          // 全不选按钮
+@property (assign, nonatomic) int nCountOfUnits;                            // 机芯单元总数
+
+///////////////////// Methods ///////////////////////
+// 初始化控件
+- (void)initializeComponents;
+// 全选按钮事件函数
+- (void)selectAllEventHandler;
+// 全不选按钮事件函数
+- (void)unSelectAllEventHandler;
+
+///////////////////// Ends //////////////////////////
 
 @end
 
 @implementation skyUnitSelectionVC
 
+@synthesize myTable = _myTable;
+@synthesize myDelegate = _myDelegate;
+@synthesize myDataSource = _myDataSource;
+@synthesize selectionArray = _selectionArray;
+@synthesize selectAllBarItem = _selectAllBarItem;
+@synthesize unSelectAllBarItem = _unSelectAllBarItem;
+
+#pragma mark - skyUnitSelectionVC Methods
+
+- (id)initWithStyle:(UITableViewStyle)style
+{
+    self = [super initWithStyle:style];
+    if (self)
+    {
+        self.title = @"选择单元";
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    // 初始控件
+    [self initializeComponents];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -25,86 +60,139 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    // 选择数组初始
+    _selectionArray = [_myDataSource getCurrentSelectionUnits];
+    _nCountOfUnits = [_myDataSource getCountOfUnits];
+}
+
+#pragma mark - skyUnitSelectionVC Private Methods
+// 初始化控件
+- (void)initializeComponents
+{
+    // Navigation Bar Item初始
+    _selectAllBarItem = [[UIBarButtonItem alloc] initWithTitle:@"全选" style:UIBarButtonItemStylePlain target:self action:@selector(selectAllEventHandler)];
+    _unSelectAllBarItem = [[UIBarButtonItem alloc] initWithTitle:@"全不选" style:UIBarButtonItemStylePlain target:self action:@selector(unSelectAllEventHandler)];
+    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:_unSelectAllBarItem,_selectAllBarItem, nil]];
+}
+
+// 全选按钮事件函数
+- (void)selectAllEventHandler
+{
+    NSLog(@"全选事件函数");
+    
+    // 数据更新
+    [_selectionArray removeAllObjects];
+    for (int i = 1; i <= _nCountOfUnits; i++)
+    {
+        NSString *obj = [NSString stringWithFormat:@"%d",i];
+        [_selectionArray addObject:obj];
+    }
+    [_myDataSource setCurrentSelectionUnits:_selectionArray];
+    // 代理函数 全选
+    [_myDelegate selectAllUnit];
+    
+    [_myTable reloadData];
+}
+
+// 全不选按钮事件函数
+- (void)unSelectAllEventHandler
+{
+    NSLog(@"全不选事件函数");
+    
+    // 数据更新
+    [_selectionArray removeAllObjects];
+    for (int i = 1; i <= _nCountOfUnits; i++)
+    {
+        NSString *obj = [NSString stringWithFormat:@"%d",i];
+        if ([_selectionArray containsObject:obj])
+        {
+            [_selectionArray removeObject:obj];
+        }
+    }
+    [_myDataSource setCurrentSelectionUnits:_selectionArray];
+    // 代理函数 全选
+    [_myDelegate unSelectAllUnit];
+    
+    [_myTable reloadData];
+
+}
+
+#pragma mark - skyUnitSelectionVC Public Methods
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    return [_myDataSource getCountOfUnits];
 }
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellIdentifier = @"UnitSelectionCellIdentifier";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
-    // Configure the cell...
+    if (cell == nil)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    
+    // 设置单元选择Cell
+    cell.textLabel.text = [NSString stringWithFormat:@"%ld",indexPath.row+1];
+    cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16];
+
+    // 判断选中情况
+    if ([_selectionArray containsObject:[NSString stringWithFormat:@"%ld",indexPath.row+1]])
+    {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+    else
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+#pragma mark - Table view Delegate
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Table view delegate
-
-// In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here, for example:
-    // Create the next view controller.
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:<#@"Nib name"#> bundle:nil];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    int nIndex = (int)indexPath.row+1;
+    NSString *obj = [NSString stringWithFormat:@"%ld",indexPath.row+1];
     
-    // Pass the selected object to the new view controller.
+    if ([_selectionArray containsObject:obj])
+    {
+        // 取消选中
+        [_selectionArray removeObject:obj];
+        // 更新数据源
+        [_myDataSource setCurrentSelectionUnits:_selectionArray];
+        // 代理函数 -- 取消选择
+        [_myDelegate unSelectOneUnitAtIndex:nIndex];
+    }
+    else
+    {
+        // 选中单元
+        [_selectionArray addObject:obj];
+        // 更新数据源
+        [_myDataSource setCurrentSelectionUnits:_selectionArray];
+        // 代理函数 -- 选择单元
+        [_myDelegate selectOneUnitAtIndex:nIndex];
+    }
     
-    // Push the view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
+    // 更新数据
+    //_selectionArray = [_myDataSource getCurrentSelectionUnits];
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    // 更新界面
+    [tableView reloadData];
 }
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -25,7 +25,16 @@
 // DataSource Protocol
 @protocol skyUnitSelectionVCDataSource <NSObject>
 
-
+// 获取单元选择数组
+- (NSMutableArray *)getCurrentSelectionUnits;
+// 设置单元选择数组
+- (void)setCurrentSelectionUnits:(NSMutableArray *)selectArray;
+// 单元全部选择
+- (void)selectAllUnit;
+// 单元全不选
+- (void)unSelectAllUnit;
+// 获取单元总数
+- (int)getCountOfUnits;
 
 @end
 
@@ -35,6 +44,7 @@
 @interface skyUnitSelectionVC : UITableViewController
 
 //////////////////// Property /////////////////////////
+@property (strong, nonatomic) IBOutlet UITableView *myTable;
 @property (strong, nonatomic) id<skyUnitSelectionVCDelegate> myDelegate;
 @property (strong, nonatomic) id<skyUnitSelectionVCDataSource> myDataSource;
 
