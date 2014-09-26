@@ -13,6 +13,9 @@
 #import "skySettingConfigVC.h"
 #import "skySettingSignalVC.h"
 #import "skySettingUnitVC.h"
+#import "skyISXWin.h"
+#import "skyUnderPaint.h"
+#import "skyInner6M48TVSDK.h"
 
 // class skyInnerViewController
 // delegate:
@@ -32,6 +35,13 @@
 @property (strong, nonatomic) UIPopoverController *currentPopover;              // 临时值：当前弹出视图 -- 用来隐藏弹出视图
 @property (strong, nonatomic) skySettingMainVC *settingMainVC;                  // 设置主视图控制器
 @property (strong, nonatomic) skyModelViewController *modelVC;                  // 情景模式主视图控制器
+
+// 拼接客户区底图
+@property (strong, nonatomic) skyUnderPaint *underPaint;
+// 拼接单元组
+@property (strong, nonatomic) NSMutableArray *isxWinContainer;
+// 控制协议
+@property (strong, nonatomic) skyInner6M48TVSDK *spliceTVProtocol;
 
 ////////////////////////// Methods //////////////////////////////
 

@@ -393,4 +393,41 @@
     return _appScreenRows*_appScreenColumns;
 }
 
+#pragma mark - skyUnderPaint DataSource
+// 获取拼接行数
+- (int)getSpliceRows
+{
+    return _appScreenRows;
+}
+
+// 获取拼接列数
+- (int)getSpliceColumns
+{
+    return _appScreenColumns;
+}
+
+// 获取单元宽度
+- (int)getSpliceUnitWidth
+{
+    return _appUnitWidth;
+}
+
+// 获取单元高度
+- (int)getSpliceUnitHeight
+{
+    return _appUnitHeight;
+}
+
+// 获取主控区域宽度
+- (int)getScreenWidth
+{
+    return _appScreenWidth;
+}
+
+// 获取主控区域高度
+- (int)getScreenHeight
+{
+    return _appScreenHeight;
+}
+
 @end

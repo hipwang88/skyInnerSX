@@ -11,6 +11,7 @@
 #import "skySettingConfigVC.h"
 #import "skySettingSignalVC.h"
 #import "skySettingUnitVC.h"
+#import "skyUnderPaint.h"
 
 //
 // Screen Size
@@ -47,8 +48,9 @@
 //              skySettingSignalVCDataSource     --- 信号源设置数据源
 //              skySettingUnitVCDataSource       --- 屏幕控制数据源
 //              skyUnitSelectionVCDataSource     --- 单元选择数据源
+//              skyUnderPaintDataSource          --- 主客户区底图数据源
 //
-@interface skyAppStatus : NSObject<skySettingConnectionVCDataSource,skySettingConfigVCDataSource,skySettingSignalVCDataSource,skySettingUnitVCDataSource,skyUnitSelectionVCDataSource>
+@interface skyAppStatus : NSObject<skySettingConnectionVCDataSource,skySettingConfigVCDataSource,skySettingSignalVCDataSource,skySettingUnitVCDataSource,skyUnitSelectionVCDataSource,skyUnderPaintDataSource>
 
 /////////////////////////// Property ///////////////////////////////
 // 程序基本运行数据字典

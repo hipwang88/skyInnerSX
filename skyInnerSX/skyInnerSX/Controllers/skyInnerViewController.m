@@ -11,7 +11,12 @@
 
 @interface skyInnerViewController ()
 {
-    
+    CGPoint         startCanvas;        // 控制区起始点
+    int             nRows;              // 拼接行数
+    int             nColumn;            // 拼接列数
+    int             nWinWidth;          // 单元宽度
+    int             nWinHeight;         // 单元高度
+    NSMutableArray *pArrayChess;        // 拼接占位数组
 }
 
 ////////////////////////// Property /////////////////////////////
@@ -64,6 +69,9 @@
 @synthesize modelButton = _modelButton;
 @synthesize externButton = _externButton;
 @synthesize appDelegate = _appDelegate;
+@synthesize underPaint = _underPaint;
+@synthesize isxWinContainer = _isxWinContainer;
+@synthesize spliceTVProtocol = _spliceTVProtocol;
 
 #pragma mark - ViewController Methods
 
@@ -173,7 +181,13 @@
 // 3.初始化拼接主控区域
 - (void)initializeSpliceArea
 {
-    
+    /***************** 客户区底图初始 ********************/
+    self.underPaint = [[skyUnderPaint alloc] initWithFrame:self.view.frame];
+    self.underPaint.myDataSource = _appDelegate.theApp;
+    [self.view addSubview:_underPaint];
+    [_underPaint getUnderPaintSpec];
+    startCanvas = [_underPaint getStartCanvasPoint];
+    /***************** 客户区窗口初始 ********************/
 }
 
 // 4.初始化扩展功能视图
@@ -185,7 +199,17 @@
 // 5.初始化运行数据
 - (void)initializeAppDatas
 {
+    int total;
+    //self.externVisible = NO;
+    nWinWidth = _appDelegate.theApp.appUnitWidth * 2;
+    nWinHeight = _appDelegate.theApp.appUnitHeight * 2;
+    nRows = _appDelegate.theApp.appScreenRows;
+    nColumn = _appDelegate.theApp.appScreenColumns;
     
+    total = nRows *nColumn;
+    pArrayChess = [[NSMutableArray alloc] initWithCapacity:total];
+    for (int i = 0; i < total; i++)
+        [pArrayChess insertObject:[NSNumber numberWithInt:i+1] atIndex:i];
 }
 
 // 6.初始化协议适配器
