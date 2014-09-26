@@ -13,7 +13,7 @@
 {
     CGPoint         startCanvas;        // 控制区起始点
     int             nRows;              // 拼接行数
-    int             nColumn;            // 拼接列数
+    int             nColumns;           // 拼接列数
     int             nWinWidth;          // 单元宽度
     int             nWinHeight;         // 单元高度
     NSMutableArray *pArrayChess;        // 拼接占位数组
@@ -50,6 +50,10 @@
 - (void)modelButtonEventHandler:(id)paramSender;
 // 视图扩展按钮事件函数
 - (void)externButtonEventHandler:(id)paramSender;
+
+/****************** 界面处理函数 ******************/
+// 界面重新布置
+- (void)reloadUI;
 
 ////////////////////////// Ends /////////////////////////////////
 
@@ -204,9 +208,9 @@
     nWinWidth = _appDelegate.theApp.appUnitWidth * 2;
     nWinHeight = _appDelegate.theApp.appUnitHeight * 2;
     nRows = _appDelegate.theApp.appScreenRows;
-    nColumn = _appDelegate.theApp.appScreenColumns;
+    nColumns = _appDelegate.theApp.appScreenColumns;
     
-    total = nRows *nColumn;
+    total = nRows *nColumns;
     pArrayChess = [[NSMutableArray alloc] initWithCapacity:total];
     for (int i = 0; i < total; i++)
         [pArrayChess insertObject:[NSNumber numberWithInt:i+1] atIndex:i];
@@ -263,6 +267,41 @@
     NSLog(@"Extern");
 }
 
+// 界面重新布置
+- (void)reloadUI
+{
+    /*********************** 状态数据重置 **************************/
+    [_appDelegate.theApp calculateWorkingArea];
+    
+    NSInteger total;
+    //self.externVisible = NO;
+    nWinWidth = _appDelegate.theApp.appUnitWidth * 2;
+    nWinHeight = _appDelegate.theApp.appUnitHeight * 2;
+    nRows = _appDelegate.theApp.appScreenRows;
+    nColumns = _appDelegate.theApp.appScreenColumns;
+    
+    total = nRows *nColumns;
+    [pArrayChess removeAllObjects];
+    pArrayChess = [[NSMutableArray alloc] initWithCapacity:total];
+    for (int i = 0; i < total; i++)
+        [pArrayChess insertObject:[NSNumber numberWithInt:i+1] atIndex:i];
+    
+    // 后台数据删除
+    
+    /*********************** 客户区上视图移除 ***********************/
+    // 移除主控区底图
+    [_underPaint removeFromSuperview];
+    
+    /*********************** 主控区底图绘制 ************************/
+    self.underPaint = [[skyUnderPaint alloc] initWithFrame:self.view.frame];
+    self.underPaint.myDataSource = _appDelegate.theApp;                 // 指定代理
+    [self.view addSubview:self.underPaint];
+    [self.underPaint getUnderPaintSpec];
+    startCanvas = [_underPaint getStartCanvasPoint];                    // 获取起始点位置
+    
+    /*********************** 客户区窗口绘制 ************************/
+}
+
 #pragma mark - skySettingConnectionVC Delegate
 // 连接控制器
 - (void)connectToController:(NSString *)ipAddress andPort:(NSInteger)nPort
@@ -278,9 +317,14 @@
 
 #pragma mark - skySettingConfigVC Delegate
 // 设定行列数
-- (void)setScreenRow:(NSInteger)nRow andColumn:(NSInteger)nColumn
+- (void)setScreenRow:(int)nRow andColumn:(int)nColumn
 {
+    // 界面配置
+    [_settingsPopover dismissPopoverAnimated:YES];
+    [self reloadUI];
     
+    // 协议发送
+    [_spliceTVProtocol innerSXSetSpliceRow:nRow andColumn:nColumn];
 }
 
 #pragma mark - skyUnitSelectionVC Delegate

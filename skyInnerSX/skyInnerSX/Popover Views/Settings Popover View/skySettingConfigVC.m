@@ -14,8 +14,8 @@
 @interface skySettingConfigVC ()
 
 ///////////////////// Property ///////////////////////
-@property (assign, nonatomic) NSInteger ScreenRow;
-@property (assign, nonatomic) NSInteger ScreenColumn;
+@property (assign, nonatomic) int ScreenRow;
+@property (assign, nonatomic) int ScreenColumn;
 
 ///////////////////// Methods ////////////////////////
 // 初始化组件
@@ -120,7 +120,10 @@
 // 设置确认事件函数
 - (void)confirmBtnEventHandler
 {
-    
+    // 数据源设置
+    [_myDataSource setCurrentScreenRow:_ScreenRow andColumn:_ScreenColumn];
+    // 控制代理
+    [_myDelegate setScreenRow:_ScreenRow andColumn:_ScreenColumn];
 }
 
 #pragma mark - skySettingConfigVC Public Methods

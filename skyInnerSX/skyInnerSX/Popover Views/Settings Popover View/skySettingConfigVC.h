@@ -25,7 +25,7 @@
 @protocol skySettingConfigVCDelegate <NSObject>
 
 // 设定行列数
-- (void)setScreenRow:(NSInteger)nRow andColumn:(NSInteger)nColumn;
+- (void)setScreenRow:(int)nRow andColumn:(int)nColumn;
 
 @end
 
