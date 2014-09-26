@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		060C64D719D508B400E67106 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 060C64D619D508B400E67106 /* CFNetwork.framework */; };
+		060C64DA19D50BF700E67106 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 060C64D919D50BF700E67106 /* CoreGraphics.framework */; };
 		0631A1CF19D2980500439139 /* skySliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0631A1CD19D2980500439139 /* skySliderCell.m */; };
 		0631A1D019D2980500439139 /* skySliderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0631A1CE19D2980500439139 /* skySliderCell.xib */; };
 		0661F54919D1181B00756D17 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0661F54819D1181B00756D17 /* main.m */; };
@@ -72,7 +74,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		060C64D419D4F5A300E67106 /* definitions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = definitions.h; path = "App Datas/definitions.h"; sourceTree = "<group>"; };
+		060C64D619D508B400E67106 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		060C64D919D50BF700E67106 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		060C64DB19D50CC300E67106 /* definitions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = definitions.h; path = "App Datas/definitions.h"; sourceTree = "<group>"; };
 		0631A1CC19D2980500439139 /* skySliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = skySliderCell.h; path = Cells/skySliderCell.h; sourceTree = "<group>"; };
 		0631A1CD19D2980500439139 /* skySliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = skySliderCell.m; path = Cells/skySliderCell.m; sourceTree = "<group>"; };
 		0631A1CE19D2980500439139 /* skySliderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = skySliderCell.xib; path = Cells/skySliderCell.xib; sourceTree = "<group>"; };
@@ -160,6 +164,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				060C64DA19D50BF700E67106 /* CoreGraphics.framework in Frameworks */,
+				060C64D719D508B400E67106 /* CFNetwork.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,11 +179,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		060C64D819D508D200E67106 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				060C64D919D50BF700E67106 /* CoreGraphics.framework */,
+				060C64D619D508B400E67106 /* CFNetwork.framework */,
+			);
+			name = Framework;
+			sourceTree = "<group>";
+		};
 		0661F53A19D1181B00756D17 = {
 			isa = PBXGroup;
 			children = (
 				0661F54519D1181B00756D17 /* skyInnerSX */,
 				0661F55F19D1181B00756D17 /* skyInnerSXTests */,
+				060C64D819D508D200E67106 /* Framework */,
 				0661F54419D1181B00756D17 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -334,7 +350,7 @@
 			children = (
 				0661F57C19D118DB00756D17 /* skyAppStatus.h */,
 				0661F57D19D118DB00756D17 /* skyAppStatus.m */,
-				060C64D419D4F5A300E67106 /* definitions.h */,
+				060C64DB19D50CC300E67106 /* definitions.h */,
 			);
 			name = "App Datas";
 			sourceTree = "<group>";

@@ -9,6 +9,8 @@
 #ifndef skyInnerSX_definitions_h
 #define skyInnerSX_definitions_h
 
+#import <CoreGraphics/CoreGraphics.h>
+
 // 锚点定位
 typedef struct skyResizableAnchorPoint
 {
@@ -27,7 +29,11 @@ typedef struct skyPointAndResizableAnchorPoint
 }skyPointAndResizableAnchorPoint;
 
 
-// 协议类型定义
+// 信号类型
+#define SIGNAL_CVBS             0
+#define SIGNAL_VGA              1
+#define SIGNAL_HDMI             2
+#define SIGNAL_DVI              3
 
 //
 // 命令延迟
