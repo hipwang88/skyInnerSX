@@ -188,7 +188,7 @@
     }
     
     // 更新数据
-    //_selectionArray = [_myDataSource getCurrentSelectionUnits];
+    _selectionArray = [_myDataSource getCurrentSelectionUnits];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     // 更新界面

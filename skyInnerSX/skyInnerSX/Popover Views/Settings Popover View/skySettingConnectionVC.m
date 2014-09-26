@@ -73,7 +73,7 @@
     // 初始化端口输入控件
     _serverPort = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 160, 30)];
     _serverPort.placeholder = @"5000";
-    _serverPort.text = [NSString stringWithFormat:@"%ld",[_myDataSource getCurrentPortNumber]];
+    _serverPort.text = [NSString stringWithFormat:@"%d",[_myDataSource getCurrentPortNumber]];
     _serverPort.textAlignment = NSTextAlignmentLeft;
     _serverPort.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     _serverPort.keyboardAppearance = UIKeyboardTypeNumberPad;
@@ -91,7 +91,7 @@
     {
         // 连接控制器
         NSString *ipAddress = _serverIP.text;
-        NSInteger nPort = [_serverPort.text integerValue];
+        int nPort = [_serverPort.text intValue];
         
         // 设置控制器IP地址和端口号
         [_myDataSource setCurrentIPAddress:ipAddress andPort:nPort];
@@ -157,7 +157,7 @@
                 
             case 1: // ServerPort
                 cell.textLabel.text = @"服务器端口";
-                _serverPort.text = [[NSString alloc] initWithFormat:@"%ld",[_myDataSource getCurrentPortNumber]];
+                _serverPort.text = [[NSString alloc] initWithFormat:@"%d",[_myDataSource getCurrentPortNumber]];
                 cell.accessoryView = self.serverPort;
                 _serverPort.textColor = [UIColor blueColor];
                 break;

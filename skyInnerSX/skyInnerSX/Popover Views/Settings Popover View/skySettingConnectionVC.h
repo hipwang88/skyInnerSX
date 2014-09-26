@@ -15,9 +15,9 @@
 // 获取当前IP地址
 - (NSString *)getCurrentIPAddress;
 // 获取当前端口号
-- (NSInteger)getCurrentPortNumber;
+- (int)getCurrentPortNumber;
 // 设置当前控制器IP地址和端口
-- (void)setCurrentIPAddress:(NSString *)ipAddress andPort:(NSInteger)nPort;
+- (void)setCurrentIPAddress:(NSString *)ipAddress andPort:(int)nPort;
 
 @end
 

@@ -13,11 +13,11 @@
 @protocol skySettingConfigVCDataSource <NSObject>
 
 // 获取当前拼接行数
-- (NSInteger)getCurrentScreenRow;
+- (int)getCurrentScreenRow;
 // 获取当前拼接列数
-- (NSInteger)getCurrentScreenColumn;
+- (int)getCurrentScreenColumn;
 // 设置当前行列数
-- (void)setCurrentScreenRow:(NSInteger)nRow andColumn:(NSInteger)nColumn;
+- (void)setCurrentScreenRow:(int)nRow andColumn:(int)nColumn;
 
 @end
 

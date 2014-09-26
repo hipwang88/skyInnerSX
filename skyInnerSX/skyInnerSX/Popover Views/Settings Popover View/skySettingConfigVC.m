@@ -160,7 +160,7 @@
         {
             case 0:
                 cell.lableTitle.text = @"屏幕行数:";
-                cell.lableValue.text = [NSString stringWithFormat:@"%ld",[_myDataSource getCurrentScreenRow]];
+                cell.lableValue.text = [NSString stringWithFormat:@"%d",[_myDataSource getCurrentScreenRow]];
                 cell.valueStepper.minimumValue = 1;
                 cell.valueStepper.maximumValue = 15;
                 cell.valueStepper.stepValue = 1;
@@ -173,7 +173,7 @@
                 
             case 1:
                 cell.lableTitle.text = @"屏幕列数:";
-                cell.lableValue.text = [NSString stringWithFormat:@"%ld",[_myDataSource getCurrentScreenColumn]];
+                cell.lableValue.text = [NSString stringWithFormat:@"%d",[_myDataSource getCurrentScreenColumn]];
                 cell.valueStepper.minimumValue = 1;
                 cell.valueStepper.maximumValue = 15;
                 cell.valueStepper.stepValue = 1;
