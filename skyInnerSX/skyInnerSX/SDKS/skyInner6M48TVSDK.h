@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+// class skyInner6M48TVSDK --- 内置拼接6M48开放协议
 @interface skyInner6M48TVSDK : NSObject
 
 @end
