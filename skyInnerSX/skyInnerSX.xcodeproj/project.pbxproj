@@ -33,6 +33,9 @@
 		0661F5BB19D14E3000756D17 /* SCXSet.png in Resources */ = {isa = PBXBuildFile; fileRef = 0661F5B719D14E3000756D17 /* SCXSet.png */; };
 		0661F5BC19D14E3000756D17 /* SignalSet.png in Resources */ = {isa = PBXBuildFile; fileRef = 0661F5B819D14E3000756D17 /* SignalSet.png */; };
 		0661F5BE19D17AB500756D17 /* skySettingConnection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0661F5BD19D17AB500756D17 /* skySettingConnection.xib */; };
+		0662F45519D4EF1B006FADD7 /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 0662F45419D4EF1B006FADD7 /* AsyncSocket.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		0662F45819D4EFDB006FADD7 /* skyInner6M48TVSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 0662F45719D4EFDB006FADD7 /* skyInner6M48TVSDK.m */; };
+		0662F45B19D4EFFF006FADD7 /* skyProtocolAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0662F45A19D4EFFF006FADD7 /* skyProtocolAdapter.m */; };
 		0677F50A19D3B7E70051AC0C /* skyMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0677F50819D3B7E70051AC0C /* skyMenuCell.m */; };
 		0677F50B19D3B7E70051AC0C /* skyMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0677F50919D3B7E70051AC0C /* skyMenuCell.xib */; };
 		0677F50D19D3BB2E0051AC0C /* skySettingUnit.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0677F50C19D3BB2E0051AC0C /* skySettingUnit.xib */; };
@@ -112,6 +115,12 @@
 		0661F5B719D14E3000756D17 /* SCXSet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SCXSet.png; sourceTree = "<group>"; };
 		0661F5B819D14E3000756D17 /* SignalSet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SignalSet.png; sourceTree = "<group>"; };
 		0661F5BD19D17AB500756D17 /* skySettingConnection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = skySettingConnection.xib; path = "Popover Views/Settings Popover View/skySettingConnection.xib"; sourceTree = "<group>"; };
+		0662F45319D4EF1B006FADD7 /* AsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AsyncSocket.h; path = Net/AsyncSocket.h; sourceTree = "<group>"; };
+		0662F45419D4EF1B006FADD7 /* AsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AsyncSocket.m; path = Net/AsyncSocket.m; sourceTree = "<group>"; };
+		0662F45619D4EFDB006FADD7 /* skyInner6M48TVSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = skyInner6M48TVSDK.h; path = SDKS/skyInner6M48TVSDK.h; sourceTree = "<group>"; };
+		0662F45719D4EFDB006FADD7 /* skyInner6M48TVSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = skyInner6M48TVSDK.m; path = SDKS/skyInner6M48TVSDK.m; sourceTree = "<group>"; };
+		0662F45919D4EFFF006FADD7 /* skyProtocolAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = skyProtocolAdapter.h; path = "Protocol Adapter/skyProtocolAdapter.h"; sourceTree = "<group>"; };
+		0662F45A19D4EFFF006FADD7 /* skyProtocolAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = skyProtocolAdapter.m; path = "Protocol Adapter/skyProtocolAdapter.m"; sourceTree = "<group>"; };
 		0677F50719D3B7E70051AC0C /* skyMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = skyMenuCell.h; path = Cells/skyMenuCell.h; sourceTree = "<group>"; };
 		0677F50819D3B7E70051AC0C /* skyMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = skyMenuCell.m; path = Cells/skyMenuCell.m; sourceTree = "<group>"; };
 		0677F50919D3B7E70051AC0C /* skyMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = skyMenuCell.xib; path = Cells/skyMenuCell.xib; sourceTree = "<group>"; };
@@ -245,6 +254,8 @@
 		0661F56D19D1184F00756D17 /* Protocol Adapter */ = {
 			isa = PBXGroup;
 			children = (
+				0662F45919D4EFFF006FADD7 /* skyProtocolAdapter.h */,
+				0662F45A19D4EFFF006FADD7 /* skyProtocolAdapter.m */,
 			);
 			name = "Protocol Adapter";
 			sourceTree = "<group>";
@@ -252,6 +263,8 @@
 		0661F56E19D1185800756D17 /* SDKs */ = {
 			isa = PBXGroup;
 			children = (
+				0662F45619D4EFDB006FADD7 /* skyInner6M48TVSDK.h */,
+				0662F45719D4EFDB006FADD7 /* skyInner6M48TVSDK.m */,
 			);
 			name = SDKs;
 			sourceTree = "<group>";
@@ -259,6 +272,8 @@
 		0661F56F19D1185E00756D17 /* Net */ = {
 			isa = PBXGroup;
 			children = (
+				0662F45319D4EF1B006FADD7 /* AsyncSocket.h */,
+				0662F45419D4EF1B006FADD7 /* AsyncSocket.m */,
 			);
 			name = Net;
 			sourceTree = "<group>";
@@ -547,6 +562,7 @@
 				0661F5A819D1427D00756D17 /* skyModelViewController.m in Sources */,
 				0661F59E19D1422F00756D17 /* skySettingSignalVC.m in Sources */,
 				0677F50A19D3B7E70051AC0C /* skyMenuCell.m in Sources */,
+				0662F45519D4EF1B006FADD7 /* AsyncSocket.m in Sources */,
 				0677F51719D40EC60051AC0C /* skyUnitSelectionVC.m in Sources */,
 				0661F58F19D1412B00756D17 /* skySettingMainVC.m in Sources */,
 				06A7151519D25C85001DD984 /* skyDVIMatrixSetting.m in Sources */,
@@ -555,12 +571,14 @@
 				06A7151019D25C6E001DD984 /* skyHDMIMatrixSetting.m in Sources */,
 				0661F59919D141F100756D17 /* skySettingConfigVC.m in Sources */,
 				06A7150B19D25C51001DD984 /* skyVGAMatrixSetting.m in Sources */,
+				0662F45B19D4EFFF006FADD7 /* skyProtocolAdapter.m in Sources */,
 				0661F5A319D1425600756D17 /* skySettingUnitVC.m in Sources */,
 				0661F54C19D1181B00756D17 /* AppDelegate.m in Sources */,
 				0677F51119D3C2890051AC0C /* skyStepperBtnCell.m in Sources */,
 				0661F59419D141BE00756D17 /* skySettingConnectionVC.m in Sources */,
 				06AF3EFB19D191B0007D4E2E /* skyStepperCell.m in Sources */,
 				0661F58B19D13F8200756D17 /* skyPopBaseViewController.m in Sources */,
+				0662F45819D4EFDB006FADD7 /* skyInner6M48TVSDK.m in Sources */,
 				06A7150619D25C35001DD984 /* skyCVBSMatrixSetting.m in Sources */,
 				0631A1CF19D2980500439139 /* skySliderCell.m in Sources */,
 				0661F54919D1181B00756D17 /* main.m in Sources */,
