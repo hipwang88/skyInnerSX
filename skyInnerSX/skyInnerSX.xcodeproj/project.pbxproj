@@ -65,6 +65,7 @@
 		06AF3EF719D1893D007D4E2E /* skySettingConfig.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06AF3EF619D1893D007D4E2E /* skySettingConfig.xib */; };
 		06AF3EFB19D191B0007D4E2E /* skyStepperCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06AF3EF919D191B0007D4E2E /* skyStepperCell.m */; };
 		06AF3EFC19D191B0007D4E2E /* skyStepperCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06AF3EFA19D191B0007D4E2E /* skyStepperCell.xib */; };
+		06C4851119D7B20700780BAC /* skyWinBoarder.m in Sources */ = {isa = PBXBuildFile; fileRef = 06C4851019D7B20700780BAC /* skyWinBoarder.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -167,6 +168,8 @@
 		06AF3EF819D191B0007D4E2E /* skyStepperCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = skyStepperCell.h; path = Cells/skyStepperCell.h; sourceTree = "<group>"; };
 		06AF3EF919D191B0007D4E2E /* skyStepperCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = skyStepperCell.m; path = Cells/skyStepperCell.m; sourceTree = "<group>"; };
 		06AF3EFA19D191B0007D4E2E /* skyStepperCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = skyStepperCell.xib; path = Cells/skyStepperCell.xib; sourceTree = "<group>"; };
+		06C4850F19D7B20700780BAC /* skyWinBoarder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = skyWinBoarder.h; path = "ISX View/skyWinBoarder.h"; sourceTree = "<group>"; };
+		06C4851019D7B20700780BAC /* skyWinBoarder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = skyWinBoarder.m; path = "ISX View/skyWinBoarder.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -347,6 +350,8 @@
 				060C64E019D54D0500E67106 /* skyISXWin.m */,
 				060C64DC19D54CC600E67106 /* skyUnderPaint.h */,
 				060C64DD19D54CC600E67106 /* skyUnderPaint.m */,
+				06C4850F19D7B20700780BAC /* skyWinBoarder.h */,
+				06C4851019D7B20700780BAC /* skyWinBoarder.m */,
 			);
 			name = "ISX View";
 			sourceTree = "<group>";
@@ -615,6 +620,7 @@
 				060C64DE19D54CC600E67106 /* skyUnderPaint.m in Sources */,
 				06AF3EFB19D191B0007D4E2E /* skyStepperCell.m in Sources */,
 				0661F58B19D13F8200756D17 /* skyPopBaseViewController.m in Sources */,
+				06C4851119D7B20700780BAC /* skyWinBoarder.m in Sources */,
 				060C64E119D54D0500E67106 /* skyISXWin.m in Sources */,
 				0662F45819D4EFDB006FADD7 /* skyInner6M48TVSDK.m in Sources */,
 				06A7150619D25C35001DD984 /* skyCVBSMatrixSetting.m in Sources */,
