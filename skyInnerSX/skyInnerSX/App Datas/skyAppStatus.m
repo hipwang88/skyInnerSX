@@ -433,4 +433,122 @@
     return _appScreenHeight;
 }
 
+#pragma mark - skyISXWin DataSource
+// 数据源初始化
+- (void)initISXWinDataSource:(id)sender
+{
+    skyISXWin *isxWin = (skyISXWin *)sender;
+    int nWinNum = isxWin.winNumber;
+    
+    // 一个窗口一个文件 拼接窗口 skyISXWin_X X-nWinNum
+    NSString *appDefaultsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *appStandardDir = [appDefaultsPath stringByAppendingPathComponent:@"AppStandard"];
+    [[NSFileManager defaultManager] createDirectoryAtPath:appStandardDir withIntermediateDirectories:YES attributes:nil error:nil];
+    NSString *appDefaultFileName = [appStandardDir stringByAppendingPathComponent:[NSString stringWithFormat:@"skyISXWin_%d",nWinNum]];
+    
+    // 字典
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:appDefaultFileName];
+    if (!dict)
+    {
+        // 如果没有这样的文件 就重新创建字典
+        dict = [[NSMutableDictionary alloc] init];
+        
+        // 用窗口的默认值写入文件
+        // 棋盘数据
+        isxWin.startPoint = CGPointMake((nWinNum-1)%_appScreenColumns, (nWinNum-1)/_appScreenColumns);
+        isxWin.winSize = CGSizeMake(1, 1);
+        // 窗口状态开关
+        [isxWin setISXWinMove:NO];
+        [isxWin setISXWinScale:YES];
+        [isxWin setISXWinBigPicture:NO];
+        // 信号类型与通道数据
+        isxWin.winSourceType = 0;       // 默认HDMI
+        isxWin.winChannelNumber = nWinNum; // 默认一对一
+        // 窗口与单元大小设置
+        [isxWin setISXWinBasicWinWidth:_appUnitWidth*2];
+        [isxWin setISXWinBasicWinHeight:_appUnitHeight*2];
+        [isxWin setISXWinCurrentWinWidth:_appUnitWidth*2];
+        [isxWin setISXWinCurrentWinHeight:_appUnitHeight*2];
+        
+        // 窗口数据写入字典
+        [dict setObject:[NSString stringWithFormat:@"%f",isxWin.startPoint.x] forKey:kISXWINSTARTX];
+        [dict setObject:[NSString stringWithFormat:@"%f",isxWin.startPoint.y] forKey:kISXWINSTARTY];
+        [dict setObject:[NSString stringWithFormat:@"%f",isxWin.winSize.width] forKey:kISXWINSIZEW];
+        [dict setObject:[NSString stringWithFormat:@"%f",isxWin.winSize.height] forKey:kISXWINSIZEH];
+        [dict setObject:[NSString stringWithFormat:@"%d",[isxWin getISXWinMove] ? 1:0] forKey:kISXWINMOVE];
+        [dict setObject:[NSString stringWithFormat:@"%d",[isxWin getISXWinScale] ? 1:0] forKey:kISXWINSCALE];
+        [dict setObject:[NSString stringWithFormat:@"%d",[isxWin getISXWinBigPicture] ? 1:0] forKey:kISXWINBIGPIC];
+        [dict setObject:[NSString stringWithFormat:@"%d",isxWin.winSourceType] forKey:kISXWINSIGNALTYPE];
+        [dict setObject:[NSString stringWithFormat:@"%d",isxWin.winChannelNumber] forKey:kISXWINCHANNELNUM];
+        [dict setObject:[NSString stringWithFormat:@"%d",[isxWin getISXWinBasicWinWidth]] forKey:kISXWINBWIDTH];
+        [dict setObject:[NSString stringWithFormat:@"%d",[isxWin getISXWinBasicWinHeight]] forKey:kISXWINBHEIGHT];
+        [dict setObject:[NSString stringWithFormat:@"%d",[isxWin getISXWinCurrentWinWidth]] forKey:kISXWINCWIDTH];
+        [dict setObject:[NSString stringWithFormat:@"%d",[isxWin getISXWinCurrentWinHeight]] forKey:kISXWINCHEIGHT];
+        
+        // 写入文件
+        [dict writeToFile:appDefaultFileName atomically:YES];
+    }
+    else
+    {
+        // 如果文件存在读取文件数据
+        isxWin.startPoint = CGPointMake([[dict objectForKey:kISXWINSTARTX] floatValue], [[dict objectForKey:kISXWINSTARTY] floatValue]);
+        isxWin.winSize = CGSizeMake([[dict objectForKey:kISXWINSIZEW] floatValue], [[dict objectForKey:kISXWINSIZEH] floatValue]);
+        [isxWin setISXWinMove:[[dict objectForKey:kISXWINMOVE] intValue] == 1 ? YES : NO];
+        [isxWin setISXWinScale:[[dict objectForKey:kISXWINSCALE] intValue] == 1 ? YES : NO];
+        [isxWin setISXWinBigPicture:[[dict objectForKey:kISXWINBIGPIC] intValue] == 1 ? YES : NO];
+        isxWin.winSourceType = [[dict objectForKey:kISXWINSIGNALTYPE] intValue];
+        isxWin.winChannelNumber = [[dict objectForKey:kISXWINCHANNELNUM] intValue];
+        [isxWin setISXWinBasicWinWidth:[[dict objectForKey:kISXWINBWIDTH] intValue]];
+        [isxWin setISXWinBasicWinHeight:[[dict objectForKey:kISXWINBHEIGHT] intValue]];
+        [isxWin setISXWinCurrentWinWidth:[[dict objectForKey:kISXWINCWIDTH] intValue]];
+        [isxWin setISXWinCurrentWinHeight:[[dict objectForKey:kISXWINCHEIGHT] intValue]];
+    }
+}
+
+// 数据序列化到文件
+- (void)saveISXWinDataSource:(id)sender
+{
+    skyISXWin *isxWin = (skyISXWin *)sender;
+    int nWinNum = isxWin.winNumber;
+    
+    // 一个窗口一个文件 拼接窗口 skyISXWin_X X-nWinNum
+    NSString *appDefaultsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *appStandardDir = [appDefaultsPath stringByAppendingPathComponent:@"AppStandard"];
+    [[NSFileManager defaultManager] createDirectoryAtPath:appStandardDir withIntermediateDirectories:YES attributes:nil error:nil];
+    NSString *appDefaultFileName = [appStandardDir stringByAppendingPathComponent:[NSString stringWithFormat:@"skyISXWin_%d",nWinNum]];
+    
+    // 字典
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    
+    // 窗口数据写入字典
+    [dict setObject:[NSString stringWithFormat:@"%f",isxWin.startPoint.x] forKey:kISXWINSTARTX];
+    [dict setObject:[NSString stringWithFormat:@"%f",isxWin.startPoint.y] forKey:kISXWINSTARTY];
+    [dict setObject:[NSString stringWithFormat:@"%f",isxWin.winSize.width] forKey:kISXWINSIZEW];
+    [dict setObject:[NSString stringWithFormat:@"%f",isxWin.winSize.height] forKey:kISXWINSIZEH];
+    [dict setObject:[NSString stringWithFormat:@"%d",[isxWin getISXWinMove] ? 1:0] forKey:kISXWINMOVE];
+    [dict setObject:[NSString stringWithFormat:@"%d",[isxWin getISXWinScale] ? 1:0] forKey:kISXWINSCALE];
+    [dict setObject:[NSString stringWithFormat:@"%d",[isxWin getISXWinBigPicture] ? 1:0] forKey:kISXWINBIGPIC];
+    [dict setObject:[NSString stringWithFormat:@"%d",isxWin.winSourceType] forKey:kISXWINSIGNALTYPE];
+    [dict setObject:[NSString stringWithFormat:@"%d",isxWin.winChannelNumber] forKey:kISXWINCHANNELNUM];
+    [dict setObject:[NSString stringWithFormat:@"%d",[isxWin getISXWinBasicWinWidth]] forKey:kISXWINBWIDTH];
+    [dict setObject:[NSString stringWithFormat:@"%d",[isxWin getISXWinBasicWinHeight]] forKey:kISXWINBHEIGHT];
+    [dict setObject:[NSString stringWithFormat:@"%d",[isxWin getISXWinCurrentWinWidth]] forKey:kISXWINCWIDTH];
+    [dict setObject:[NSString stringWithFormat:@"%d",[isxWin getISXWinCurrentWinHeight]] forKey:kISXWINCHEIGHT];
+    
+    // 写入文件
+    [dict writeToFile:appDefaultFileName atomically:YES];
+}
+
+// 窗口的情景数据序列化到文件
+- (void)saveISXWinModelDataSource:(id)sender AtIndex:(NSInteger)nIndex
+{
+    
+}
+
+// 反序列化窗口情景模式
+- (void)loadISXWinModelDataSource:(id)sender AtIndex:(NSInteger)nIndex
+{
+    
+}
+
 @end

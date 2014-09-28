@@ -23,8 +23,12 @@
 //          skySettingConfigVCDelegate      --- 规格设置代理
 //          skySettingUnitVCDelegate        --- 屏幕控制设置代理
 //          skyUnitSelectionVCDelegate      --- 屏幕单元选择代理
+//          skyISXWinDelegate               --- 拼接窗口代理
 //
-@interface skyInnerViewController : UIViewController<skySettingConnectionVCDelegate,skySettingConfigVCDelegate,skySettingUnitVCDelegate,skyUnitSelectionVCDelegate>
+@interface skyInnerViewController : UIViewController<skySettingConnectionVCDelegate,skySettingConfigVCDelegate,skySettingUnitVCDelegate,skyUnitSelectionVCDelegate,skyISXWinDelegate>
+{
+    skyISXWin   *currentISXWin;         // 当前控制窗口
+}
 
 ////////////////////////// Property /////////////////////////////
 // 导航栏支持视图

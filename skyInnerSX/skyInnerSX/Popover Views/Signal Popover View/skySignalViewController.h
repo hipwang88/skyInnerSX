@@ -8,6 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol skySignalViewControllerDataSource <NSObject>
+
+
+
+@end
+
+@protocol skySignalViewControllerDelegate <NSObject>
+
+
+
+@end
+
 @interface skySignalViewController : UITableViewController
+
+@property (strong, nonatomic) id<skySignalViewControllerDelegate> myDelegate;
+@property (strong, nonatomic) id<skySignalViewControllerDataSource> myDataSource;
 
 @end

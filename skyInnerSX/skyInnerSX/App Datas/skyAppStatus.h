@@ -12,6 +12,8 @@
 #import "skySettingSignalVC.h"
 #import "skySettingUnitVC.h"
 #import "skyUnderPaint.h"
+#import "skyISXWin.h"
+#import "skySignalViewController.h"
 
 //
 // Screen Size
@@ -40,6 +42,21 @@
 //
 // Unit Selection Key
 #define kUNITSELECTIONS             @"appUnitSelections"
+//
+// ISX Window
+#define kISXWINSTARTX               @"skyISXWin_StartX"
+#define kISXWINSTARTY               @"skyISXWin_StartY"
+#define kISXWINSIZEW                @"skyISXWin_Size.W"
+#define kISXWINSIZEH                @"skyISXWin_Size.H"
+#define kISXWINMOVE                 @"skyISXWin_Move"
+#define kISXWINSCALE                @"skyISXWin_Scale"
+#define kISXWINBIGPIC               @"skyISXWin_BigPicture"
+#define kISXWINSIGNALTYPE           @"skyISXWin_SignalType"
+#define kISXWINCHANNELNUM           @"skyISXWin_ChannelNum"
+#define kISXWINBWIDTH               @"skyISXWin_BasicWidth"
+#define kISXWINBHEIGHT              @"skyISXWin_BasicHeight"
+#define kISXWINCWIDTH               @"skyISXWin_CurrentWidth"
+#define kISXWINCHEIGHT              @"skyISXWin_CurrentHeight"
 
 // class skyAppStatus
 // DataSource:
@@ -48,8 +65,10 @@
 //              skySettingSignalVCDataSource     --- 信号源设置数据源
 //              skyUnitSelectionVCDataSource     --- 单元选择数据源
 //              skyUnderPaintDataSource          --- 主客户区底图数据源
+//              skyISXWinDataSource              --- 拼接窗口数据源
+//              skySignalViewControllerDataSource--- 窗口信号切换视图数据源
 //
-@interface skyAppStatus : NSObject<skySettingConnectionVCDataSource,skySettingConfigVCDataSource,skySettingSignalVCDataSource,skyUnitSelectionVCDataSource,skyUnderPaintDataSource>
+@interface skyAppStatus : NSObject<skySettingConnectionVCDataSource,skySettingConfigVCDataSource,skySettingSignalVCDataSource,skyUnitSelectionVCDataSource,skyUnderPaintDataSource,skyISXWinDataSource,skySignalViewControllerDataSource>
 
 /////////////////////////// Property ///////////////////////////////
 // 程序基本运行数据字典

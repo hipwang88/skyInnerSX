@@ -66,6 +66,8 @@
 		06AF3EFB19D191B0007D4E2E /* skyStepperCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06AF3EF919D191B0007D4E2E /* skyStepperCell.m */; };
 		06AF3EFC19D191B0007D4E2E /* skyStepperCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06AF3EFA19D191B0007D4E2E /* skyStepperCell.xib */; };
 		06C4851119D7B20700780BAC /* skyWinBoarder.m in Sources */ = {isa = PBXBuildFile; fileRef = 06C4851019D7B20700780BAC /* skyWinBoarder.m */; };
+		06C4851419D7EE0600780BAC /* scxWin_Btn_Normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 06C4851219D7EE0600780BAC /* scxWin_Btn_Normal.png */; };
+		06C4851519D7EE0600780BAC /* scxWin_Btn_Select.png in Resources */ = {isa = PBXBuildFile; fileRef = 06C4851319D7EE0600780BAC /* scxWin_Btn_Select.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,6 +172,8 @@
 		06AF3EFA19D191B0007D4E2E /* skyStepperCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = skyStepperCell.xib; path = Cells/skyStepperCell.xib; sourceTree = "<group>"; };
 		06C4850F19D7B20700780BAC /* skyWinBoarder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = skyWinBoarder.h; path = "ISX View/skyWinBoarder.h"; sourceTree = "<group>"; };
 		06C4851019D7B20700780BAC /* skyWinBoarder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = skyWinBoarder.m; path = "ISX View/skyWinBoarder.m"; sourceTree = "<group>"; };
+		06C4851219D7EE0600780BAC /* scxWin_Btn_Normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scxWin_Btn_Normal.png; sourceTree = "<group>"; };
+		06C4851319D7EE0600780BAC /* scxWin_Btn_Select.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scxWin_Btn_Select.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,6 +271,8 @@
 		0661F56C19D1184400756D17 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				06C4851219D7EE0600780BAC /* scxWin_Btn_Normal.png */,
+				06C4851319D7EE0600780BAC /* scxWin_Btn_Select.png */,
 				06A7151A19D26350001DD984 /* CVBSCardDown.png */,
 				06A7151B19D26350001DD984 /* DVICardDown.png */,
 				06A7151C19D26350001DD984 /* HDMICardDown.png */,
@@ -563,6 +569,7 @@
 				06A7150C19D25C51001DD984 /* skyVGAMatrixSetting.xib in Resources */,
 				06A7151E19D26350001DD984 /* CVBSCardDown.png in Resources */,
 				06A7151F19D26350001DD984 /* DVICardDown.png in Resources */,
+				06C4851519D7EE0600780BAC /* scxWin_Btn_Select.png in Resources */,
 				060C64E519D5574400E67106 /* SMC_Logo.jpg in Resources */,
 				06A7151619D25C85001DD984 /* skyDVIMatrixSetting.xib in Resources */,
 				06A7151119D25C6E001DD984 /* skyHDMIMatrixSetting.xib in Resources */,
@@ -579,6 +586,7 @@
 				06AF3EF719D1893D007D4E2E /* skySettingConfig.xib in Resources */,
 				0661F5BB19D14E3000756D17 /* SCXSet.png in Resources */,
 				0677F50B19D3B7E70051AC0C /* skyMenuCell.xib in Resources */,
+				06C4851419D7EE0600780BAC /* scxWin_Btn_Normal.png in Resources */,
 				0631A1D019D2980500439139 /* skySliderCell.xib in Resources */,
 				06A7150119D256E0001DD984 /* skySettingSignal.xib in Resources */,
 			);

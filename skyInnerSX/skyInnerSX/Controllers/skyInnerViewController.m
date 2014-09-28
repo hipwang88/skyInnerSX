@@ -190,7 +190,35 @@
     [self.view addSubview:_underPaint];
     [_underPaint getUnderPaintSpec];
     startCanvas = [_underPaint getStartCanvasPoint];
+    
     /***************** 客户区窗口初始 ********************/
+    // 拼接窗口
+    _isxWinContainer = [[NSMutableArray alloc] init];
+    CGRect isxWinRect;
+    CGRect limitRect = CGRectMake(startCanvas.x, startCanvas.y, nColumns*nWinWidth, nRows*nWinHeight);
+    int nCount = nRows * nColumns;
+    for (int i = 0; i < nCount; i++)
+    {
+        // 计算大小位置
+        int x = i % nColumns;
+        int y = i / nColumns;
+        isxWinRect = CGRectMake(startCanvas.x+x*nWinWidth, startCanvas.y+y*nWinHeight, nWinWidth, nWinHeight);
+        
+        // 初始化漫游窗口
+        skyISXWin *isxWin = [[skyISXWin alloc] initWithFrame:isxWinRect withRow:nRows andColumn:nColumns];
+        isxWin.myDelegate = self;
+        isxWin.myDataSource = _appDelegate.theApp;
+        isxWin.startCanvas = startCanvas;           // 窗口活动区域起始点
+        isxWin.limitRect = limitRect;               // 窗口活动区域矩形
+        // 窗口值初始
+        [isxWin initializeISXWin:i+1];
+        [isxWin hideBoarderView];
+        
+        // 将漫游窗口加入容器数组
+        [self.isxWinContainer addObject:isxWin];
+        [self.view addSubview:isxWin];
+    }
+    currentISXWin = [_isxWinContainer objectAtIndex:0];
 }
 
 // 4.初始化扩展功能视图
@@ -485,6 +513,55 @@
 {
     // 协议发送
     [_spliceTVProtocol innerSXSelectNone];
+}
+
+#pragma mark - skyISXWin Delegate
+// 开始进行缩放或者移动
+- (void)isxWinBeginEditing:(id)sender
+{
+    
+}
+
+// 全局数组数值更新 -- 父控制器中一个维持大画面状态值的数组
+- (void)updateBigPicStatusWithStart:(CGPoint)ptStart andSize:(CGSize)szArea withWinNum:(int)nNum
+{
+    
+}
+
+// 判断窗口是否遇到大画面
+- (BOOL)isISXWinCanReachBigPicture:(CGRect)rectFrame
+{
+    return true;
+}
+
+// 窗口拼接
+- (void)isxWinSpliceScreen:(id)sender
+{
+    
+}
+
+// 窗口满屏
+- (void)isxWinFullScreen:(id)sender
+{
+    
+}
+
+// 窗口大画面分解
+- (void)isxWinResolveScreen:(id)sender
+{
+    
+}
+
+// 信号切换
+- (void)isxWin:(id)sender Signal:(int)nType SwitchTo:(int)nChannel
+{
+    
+}
+
+// 获取数据代理
+- (id<skySignalViewControllerDataSource>)isxWinSignalDataSource
+{
+    return _appDelegate.theApp;
 }
 
 @end
