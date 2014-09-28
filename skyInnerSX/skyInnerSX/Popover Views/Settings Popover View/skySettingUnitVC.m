@@ -14,6 +14,10 @@
 #define kMenuCell                           @"skyMenuCell"
 
 @interface skySettingUnitVC ()
+{
+    int nBrightnessValue;
+    int nContrastValue;
+}
 
 ///////////////////// Property ///////////////////////
 
@@ -74,7 +78,6 @@
 @synthesize myTableView = _myTableView;
 @synthesize useKeyboardSwitch = _useKeyboardSwitch;
 @synthesize myDelegate = _myDelegate;
-@synthesize myDataSource = _myDataSource;
 @synthesize selectionView = _selectionView;
 
 #pragma mark - skySettingUnitVC Methods
@@ -114,6 +117,10 @@
     _useKeyboardSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 160, 30)];
     _useKeyboardSwitch.on = NO;
     [_useKeyboardSwitch addTarget:self action:@selector(useKeyboardValueChangedEventHandler) forControlEvents:UIControlEventValueChanged];
+    
+    // 数值
+    nBrightnessValue = 256;
+    nContrastValue = 256;
 }
 
 // 虚拟键盘开关事件函数
@@ -132,115 +139,165 @@
 // 显示编号事件函数
 - (void)showPanelNumEventHandler
 {
-    NSLog(@"ShowPanelNumber");
+    [_myDelegate showPanelNum];
 }
 
 // 隐藏编号事件函数
 - (void)hidePanelNumEventHandler
 {
-    NSLog(@"HidePanelNumber");
+    [_myDelegate hidePanelNum];
 }
 
 // 屏幕开机事件函数
 - (void)unitOnEventHandler
 {
-    NSLog(@"UnitSwitchOn");
+    [_myDelegate unitOn];
 }
 
 // 屏幕关机事件函数
 - (void)unitOffEventHandler
 {
-    NSLog(@"UnitSwitchOff");
+    [_myDelegate unitOff];
 }
 
 // 白平衡自动调整事件函数
 - (void)addjustWBEventHandler
 {
-    NSLog(@"Addjust White Balance");
+    [_myDelegate addjustWB];
 }
 
 // 位置自动调整事件函数
 - (void)addjusetPositionEventHandler
 {
-    NSLog(@"Addjust Position");
+    [_myDelegate addjusetPosition];
 }
 
 // 亮度调整事件函数
 - (void)brightnessValueChangedEventHandler
 {
-    NSLog(@"Birghtness Value Change");
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:2];
+    
+    skyStepperBtnCell *cell = (skyStepperBtnCell *)[_myTableView cellForRowAtIndexPath:indexPath];
+    
+    if (nBrightnessValue < (int)cell.cellStepper.value)
+    {
+        [_myDelegate brightnessIncrease];
+    }
+    else
+    {
+        [_myDelegate brightnessDecrease];
+    }
+    // 更新值
+    nBrightnessValue = (int)cell.cellStepper.value;
+    if (nBrightnessValue >=512 || nBrightnessValue <= 1)
+    {
+        cell.cellStepper.value = 256;
+        nBrightnessValue = 256;
+    }
 }
 
 // 对比度调整事件函数
 - (void)contrastValueChangedEventHandler
 {
-    NSLog(@"Contrast Value Change");
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:2];
+    
+    skyStepperBtnCell *cell = (skyStepperBtnCell *)[_myTableView cellForRowAtIndexPath:indexPath];
+    
+    if (nContrastValue < (int)cell.cellStepper.value)
+    {
+        [_myDelegate contrastIncrease];
+    }
+    else
+    {
+        [_myDelegate contrastDecrease];
+    }
+    // 更新值
+    nContrastValue = (int)cell.cellStepper.value;
+    if (nContrastValue >=512 || nContrastValue <= 1)
+    {
+        cell.cellStepper.value = 256;
+        nContrastValue = 256;
+    }
 }
 
 // 亮度复位事件函数
 - (void)birghtnessResetEventHandler
 {
-    NSLog(@"Brightness Reset");
+    // 数值复位
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:2];
+    skyStepperBtnCell *cell = (skyStepperBtnCell *)[_myTableView cellForRowAtIndexPath:indexPath];
+    cell.cellStepper.value = 256;
+    nBrightnessValue = 256;
+    
+    // 协议发送
+    [_myDelegate brightnessRest];
 }
 
 // 对比度服务事件函数
 - (void)contrastResetEventHandler
 {
-    NSLog(@"Contrast Reset");
+    // 数值复位
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:2];
+    skyStepperBtnCell *cell = (skyStepperBtnCell *)[_myTableView cellForRowAtIndexPath:indexPath];
+    cell.cellStepper.value = 256;
+    nContrastValue = 256;
+    
+    // 协议发送
+    [_myDelegate contrastRest];
 }
 
 // 菜单按钮事件
 - (void)menuBtnClick
 {
-    NSLog(@"MenuClick");
+    [_myDelegate sendMenuClick];
 }
 
 // 上按钮事件
 - (void)upBtnClick
 {
-    NSLog(@"UpClick");
+    [_myDelegate sendUpClick];
 }
 
 // 下按钮事件
 - (void)downBtnClick
 {
-    NSLog(@"DownClick");
+    [_myDelegate sendDownClick];
 }
 
 // 左按钮事件
 - (void)leftBtnClick
 {
-    NSLog(@"LeftClick");
+    [_myDelegate sendLeftClick];
 }
 
 // 右按钮事件
 - (void)rightBtnClick
 {
-    NSLog(@"RightClick");
+    [_myDelegate sendRightClick];
 }
 
 // 屏显按钮事件
 - (void)panelDisplayBtnClick
 {
-    NSLog(@"PanelDisplayClick");
+    [_myDelegate sendPanelDisplayClick];
 }
 
 // 信号按钮事件
 - (void)signalBtnClick
 {
-    NSLog(@"SignalClick");
+    [_myDelegate sendSignalClick];
 }
 
 // 确认按钮事件
 - (void)confirmBtnClick
 {
-    NSLog(@"ConfirmClick");
+    [_myDelegate sendConfirmClick];
 }
 
 // 退出按钮事件
 - (void)quitBtnClick
 {
-    NSLog(@"QuitClick");
+    [_myDelegate sendQuitClick];
 }
 
 // 添加虚拟键盘
@@ -393,7 +450,7 @@
                 stepperBtnCell.cellStepper.minimumValue = 0;
                 stepperBtnCell.cellStepper.maximumValue = 512;
                 stepperBtnCell.cellStepper.stepValue = 1;
-                stepperBtnCell.cellStepper.value = 256;
+                stepperBtnCell.cellStepper.value = nBrightnessValue;
                 [stepperBtnCell.cellStepper addTarget:self action:@selector(brightnessValueChangedEventHandler) forControlEvents:UIControlEventValueChanged];
                 [stepperBtnCell.cellBtn setTitle:@"复位" forState:UIControlStateNormal];
                 [stepperBtnCell.cellBtn setTitle:@"复位" forState:UIControlStateHighlighted];
@@ -406,7 +463,7 @@
                 stepperBtnCell.cellStepper.minimumValue = 0;
                 stepperBtnCell.cellStepper.maximumValue = 512;
                 stepperBtnCell.cellStepper.stepValue = 1;
-                stepperBtnCell.cellStepper.value = 256;
+                stepperBtnCell.cellStepper.value = nContrastValue;
                 [stepperBtnCell.cellStepper addTarget:self action:@selector(contrastValueChangedEventHandler) forControlEvents:UIControlEventValueChanged];
                 [stepperBtnCell.cellBtn setTitle:@"复位" forState:UIControlStateNormal];
                 [stepperBtnCell.cellBtn setTitle:@"复位" forState:UIControlStateHighlighted];
@@ -526,6 +583,7 @@
 {
     if (indexPath.section == 0)         // 单元选择
     {
+        [_selectionView.tableView reloadData];
         [self.navigationController pushViewController:_selectionView animated:YES];
     }
     else if (indexPath.section == 1)    // 控制

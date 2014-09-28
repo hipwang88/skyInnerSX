@@ -165,7 +165,6 @@
     mySettingUnit.title = @"屏幕控制";
     mySettingUnit.rowImage = [UIImage imageNamed:@"ProtocalSet.png"];
     mySettingUnit.myDelegate = self;
-    mySettingUnit.myDataSource = _appDelegate.theApp;
     [_settingMainVC.controllers addObject:mySettingUnit];
     // 初始化skySettingUnitVC单元选择视图
     mySettingUnit.selectionView = [[skyUnitSelectionVC alloc] initWithStyle:UITableViewStylePlain];
@@ -332,29 +331,160 @@
     [_spliceTVProtocol innerSXSetSpliceRow:nRow andColumn:nColumn];
 }
 
+#pragma mark - skySettingUnitVC Delegate
+// 显示编号
+- (void)showPanelNum
+{
+    [_spliceTVProtocol innerSXShowNumber];
+}
+
+// 隐藏编号
+- (void)hidePanelNum
+{
+    [_spliceTVProtocol innerSXHideNumber];
+}
+
+// 屏幕开机
+- (void)unitOn
+{
+    [_spliceTVProtocol innerSXScreenOn];
+}
+
+// 屏幕关机
+- (void)unitOff
+{
+    [_spliceTVProtocol innerSXScreenOff];
+}
+
+// 白平衡自动调整
+- (void)addjustWB
+{
+    [_spliceTVProtocol innerSXAdjustWB];
+}
+
+// 位置自动调整
+- (void)addjusetPosition
+{
+    [_spliceTVProtocol innerSXAdjustPosition];
+}
+
+// 对比度增加
+- (void)contrastIncrease
+{
+    [_spliceTVProtocol innerSXContrastIncrease];
+}
+
+// 对比度减少
+- (void)contrastDecrease
+{
+    [_spliceTVProtocol innerSXContrastDecrease];
+}
+
+// 对比度复位
+- (void)contrastRest
+{
+    [_spliceTVProtocol innerSXContrastReset];
+}
+
+// 亮度增加
+- (void)brightnessIncrease
+{
+    [_spliceTVProtocol innerSXBrightnessIncrease];
+}
+
+// 亮度减少
+- (void)brightnessDecrease
+{
+    [_spliceTVProtocol innerSXBrightnessDecrease];
+}
+
+// 亮度复位
+- (void)brightnessRest
+{
+    [_spliceTVProtocol innerSXBrightnessReset];
+}
+
+// 菜单按钮
+- (void)sendMenuClick
+{
+    [_spliceTVProtocol innerSXMenuClick];
+}
+
+// 上按钮
+- (void)sendUpClick
+{
+    [_spliceTVProtocol innerSXUpClick];
+}
+
+// 下按钮
+- (void)sendDownClick
+{
+    [_spliceTVProtocol innerSXDownClick];
+}
+
+// 左按钮
+- (void)sendLeftClick
+{
+    [_spliceTVProtocol innerSXLeftClick];
+}
+
+// 右按钮
+- (void)sendRightClick
+{
+    [_spliceTVProtocol innerSXRightClick];
+}
+
+// 屏显按钮
+- (void)sendPanelDisplayClick
+{
+    [_spliceTVProtocol innerSXPanelDisplayClick];
+}
+
+// 信号按钮
+- (void)sendSignalClick
+{
+    [_spliceTVProtocol innerSXSignalClick];
+}
+
+// 确认按钮
+- (void)sendConfirmClick
+{
+    [_spliceTVProtocol innerSXConfirmClick];
+}
+
+// 退出按钮
+- (void)sendQuitClick
+{
+    [_spliceTVProtocol innerSXQuitClick];
+}
+
 #pragma mark - skyUnitSelectionVC Delegate
 // 选择某个机芯单元
 - (void)selectOneUnitAtIndex:(int)nIndex
 {
-    NSLog([NSString stringWithFormat:@"Select Unit %d",nIndex],nil);
+    // 协议发送
+    [_spliceTVProtocol innerSXSelectOneUnit:nIndex];
 }
 
 // 取消选择某个机芯单元
 - (void)unSelectOneUnitAtIndex:(int)nIndex
 {
-    NSLog([NSString stringWithFormat:@"UnSelect Unit %d",nIndex],nil);
+    // 协议发送
+    [_spliceTVProtocol innerSXUnSelectOneUnit:nIndex];
 }
 
 // 选择全部机芯单元
 - (void)selectAllUnit
 {
-    
+    // 协议发送
+    [_spliceTVProtocol innerSXSelectAll];
 }
 
 // 取消全部选择的机芯单元
 - (void)unSelectAllUnit
 {
-    
+    // 协议发送
+    [_spliceTVProtocol innerSXSelectNone];
 }
 
 @end

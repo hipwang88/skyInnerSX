@@ -89,6 +89,25 @@
 - (void)innerSXModelNewWithHDMI;
 // 25.拼接规格设定
 - (void)innerSXSetSpliceRow:(int)nRow andColumn:(int)nColumn;
+// 26.菜单按键
+- (void)innerSXMenuClick;
+// 27.菜单上按键
+- (void)innerSXUpClick;
+// 28.菜单下按键
+- (void)innerSXDownClick;
+// 29.菜单左按键
+- (void)innerSXLeftClick;
+// 30.菜单右按键
+- (void)innerSXRightClick;
+// 31.菜单屏显按键
+- (void)innerSXPanelDisplayClick;
+// 32.菜单信号按键
+- (void)innerSXSignalClick;
+// 33.菜单确认按键
+- (void)innerSXConfirmClick;
+// 34.菜单退出按键
+- (void)innerSXQuitClick;
+
 /*************************************************/
 
 /////////////////// Ends //////////////////////////

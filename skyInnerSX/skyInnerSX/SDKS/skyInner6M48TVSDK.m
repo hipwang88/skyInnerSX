@@ -840,7 +840,186 @@
     
     // 发送信息
     LOG_MESSAGE([self sendStringWithLog:[NSString stringWithFormat:@"写入拼接规格 nRow=%d nColumn=%d",nRow,nColumn] andByteCount:8],nil);
+}
 
+// 26.菜单按键
+- (void)innerSXMenuClick
+{
+    // 协议命令
+    memset(m_nSendCmd, 0, 8);
+    m_nSendCmd[0] = 0x80;
+    m_nSendCmd[1] = 0x89;
+    m_nSendCmd[2] = 0x73;
+    m_nSendCmd[3] = 0x23;
+    m_nSendCmd[4] = 0x01;
+    m_nSendCmd[5] = 0xFF;
+    m_nSendCmd[6] = 0xFF;
+    m_nSendCmd[7] = 0xFF;
+    // 协议发送
+    [self sendCmd:8];
+    
+    // 发送信息
+    LOG_MESSAGE([self sendStringWithLog:@"菜单按钮按下" andByteCount:8],nil);
+}
+
+// 27.菜单上按键
+- (void)innerSXUpClick
+{
+    // 协议命令
+    memset(m_nSendCmd, 0, 8);
+    m_nSendCmd[0] = 0x80;
+    m_nSendCmd[1] = 0x89;
+    m_nSendCmd[2] = 0x63;
+    m_nSendCmd[3] = 0x33;
+    m_nSendCmd[4] = 0x01;
+    m_nSendCmd[5] = 0xFF;
+    m_nSendCmd[6] = 0xFF;
+    m_nSendCmd[7] = 0xFF;
+    // 协议发送
+    [self sendCmd:8];
+    
+    // 发送信息
+    LOG_MESSAGE([self sendStringWithLog:@"菜单上按下" andByteCount:8],nil);
+}
+
+// 28.菜单下按键
+- (void)innerSXDownClick
+{
+    // 协议命令
+    memset(m_nSendCmd, 0, 8);
+    m_nSendCmd[0] = 0x80;
+    m_nSendCmd[1] = 0x89;
+    m_nSendCmd[2] = 0x83;
+    m_nSendCmd[3] = 0x13;
+    m_nSendCmd[4] = 0x01;
+    m_nSendCmd[5] = 0xFF;
+    m_nSendCmd[6] = 0xFF;
+    m_nSendCmd[7] = 0xFF;
+    // 协议发送
+    [self sendCmd:8];
+    
+    // 发送信息
+    LOG_MESSAGE([self sendStringWithLog:@"菜单下按下" andByteCount:8],nil);
+}
+
+// 29.菜单左按键
+- (void)innerSXLeftClick
+{
+    // 协议命令
+    memset(m_nSendCmd, 0, 8);
+    m_nSendCmd[0] = 0x80;
+    m_nSendCmd[1] = 0x89;
+    m_nSendCmd[2] = 0x72;
+    m_nSendCmd[3] = 0x24;
+    m_nSendCmd[4] = 0x01;
+    m_nSendCmd[5] = 0xFF;
+    m_nSendCmd[6] = 0xFF;
+    m_nSendCmd[7] = 0xFF;
+    // 协议发送
+    [self sendCmd:8];
+    
+    // 发送信息
+    LOG_MESSAGE([self sendStringWithLog:@"菜单左按下" andByteCount:8],nil);
+}
+
+// 30.菜单右按键
+- (void)innerSXRightClick
+{
+    // 协议命令
+    memset(m_nSendCmd, 0, 8);
+    m_nSendCmd[0] = 0x80;
+    m_nSendCmd[1] = 0x89;
+    m_nSendCmd[2] = 0x74;
+    m_nSendCmd[3] = 0x22;
+    m_nSendCmd[4] = 0x01;
+    m_nSendCmd[5] = 0xFF;
+    m_nSendCmd[6] = 0xFF;
+    m_nSendCmd[7] = 0xFF;
+    // 协议发送
+    [self sendCmd:8];
+    
+    // 发送信息
+    LOG_MESSAGE([self sendStringWithLog:@"菜单右按下" andByteCount:8],nil);
+}
+
+// 31.菜单屏显按键
+- (void)innerSXPanelDisplayClick
+{
+    // 协议命令
+    memset(m_nSendCmd, 0, 8);
+    m_nSendCmd[0] = 0x80;
+    m_nSendCmd[1] = 0x89;
+    m_nSendCmd[2] = 0xA1;
+    m_nSendCmd[3] = 0xF5;
+    m_nSendCmd[4] = 0x01;
+    m_nSendCmd[5] = 0xFF;
+    m_nSendCmd[6] = 0xFF;
+    m_nSendCmd[7] = 0xFF;
+    // 协议发送
+    [self sendCmd:8];
+    
+    // 发送信息
+    LOG_MESSAGE([self sendStringWithLog:@"菜单屏显按下" andByteCount:8],nil);
+}
+
+// 32.菜单信号按键
+- (void)innerSXSignalClick
+{
+    // 协议命令
+    memset(m_nSendCmd, 0, 8);
+    m_nSendCmd[0] = 0x80;
+    m_nSendCmd[1] = 0x89;
+    m_nSendCmd[2] = 0x75;
+    m_nSendCmd[3] = 0x21;
+    m_nSendCmd[4] = 0x01;
+    m_nSendCmd[5] = 0xFF;
+    m_nSendCmd[6] = 0xFF;
+    m_nSendCmd[7] = 0xFF;
+    // 协议发送
+    [self sendCmd:8];
+    
+    // 发送信息
+    LOG_MESSAGE([self sendStringWithLog:@"菜单信号按下" andByteCount:8],nil);
+}
+
+// 33.菜单确认按键
+- (void)innerSXConfirmClick
+{
+    // 协议命令
+    memset(m_nSendCmd, 0, 8);
+    m_nSendCmd[0] = 0x80;
+    m_nSendCmd[1] = 0x89;
+    m_nSendCmd[2] = 0x96;
+    m_nSendCmd[3] = 0x33;
+    m_nSendCmd[4] = 0x01;
+    m_nSendCmd[5] = 0xFF;
+    m_nSendCmd[6] = 0xFF;
+    m_nSendCmd[7] = 0xFF;
+    // 协议发送
+    [self sendCmd:8];
+    
+    // 发送信息
+    LOG_MESSAGE([self sendStringWithLog:@"菜单确认按下" andByteCount:8],nil);
+}
+
+// 34.菜单退出按键
+- (void)innerSXQuitClick
+{
+    // 协议命令
+    memset(m_nSendCmd, 0, 8);
+    m_nSendCmd[0] = 0x80;
+    m_nSendCmd[1] = 0x89;
+    m_nSendCmd[2] = 0xB8;
+    m_nSendCmd[3] = 0x33;
+    m_nSendCmd[4] = 0x01;
+    m_nSendCmd[5] = 0xFF;
+    m_nSendCmd[6] = 0xFF;
+    m_nSendCmd[7] = 0xFF;
+    // 协议发送
+    [self sendCmd:8];
+    
+    // 发送信息
+    LOG_MESSAGE([self sendStringWithLog:@"菜单退出按下" andByteCount:8],nil);
 }
 
 @end

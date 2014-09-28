@@ -308,6 +308,9 @@
 // 设置当前行列数
 - (void)setCurrentScreenRow:(int)nRow andColumn:(int)nColumn
 {
+    // 清空单元选择
+    [_appUnitSelectionArray removeAllObjects];
+    // 更改规格
     _appScreenRows = nRow;
     _appScreenColumns = nColumn;
 }
