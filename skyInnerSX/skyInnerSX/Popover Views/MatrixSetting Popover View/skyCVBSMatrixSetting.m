@@ -100,15 +100,22 @@
     int nValue = (int)(cell.cellSilder.value + 0.5);
     cell.cellSilder.value = nValue;
     cell.labelValue.text = [NSString stringWithFormat:@"%d",nValue];
-    
-    // 代理调用
-    [_myDataSource setCurrentCVBSInputs:nValue];
 }
 
 // 矩阵确认设置事件函数
 - (void)confirmMatrixSetEventHandler
 {
-    NSLog(@"ConfirmMatrixSet");
+    if (_useCVBSSwitch.isOn)
+    {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
+        skySliderCell *cell = (skySliderCell *)[_myTableView cellForRowAtIndexPath:indexPath];
+        
+        [_myDataSource setCurrentCVBSInputs:(int)cell.cellSilder.value];
+    }
+    else
+    {
+        [_myDataSource setCurrentCVBSInputs:0];
+    }
 }
 
 // 增加输入设置Cell

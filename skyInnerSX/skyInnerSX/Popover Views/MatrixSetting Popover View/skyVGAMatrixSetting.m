@@ -112,15 +112,22 @@
     int nValue = (int)(cell.cellSilder.value + 0.5);
     cell.cellSilder.value = nValue;
     cell.labelValue.text = [NSString stringWithFormat:@"%d",nValue];
-    
-    // 代理调用
-    [_myDataSource setCurrentVGAInputs:nValue];
 }
 
 // 矩阵确认设置事件函数
 - (void)confirmMatrixSetEventHandler
 {
-    
+    if (_useVGASwitch.isOn)
+    {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
+        skySliderCell *cell = (skySliderCell *)[_myTableView cellForRowAtIndexPath:indexPath];
+        
+        [_myDataSource setCurrentVGAInputs:(int)cell.cellSilder.value];
+    }
+    else
+    {
+        [_myDataSource setCurrentVGAInputs:0];
+    }
 }
 
 // 增加输入设置Cell
