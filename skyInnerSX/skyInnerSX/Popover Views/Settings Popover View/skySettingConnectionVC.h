@@ -25,7 +25,7 @@
 @protocol skySettingConnectionVCDelegate <NSObject>
 
 // 连接控制器
-- (void)connectToController:(NSString *)ipAddress andPort:(NSInteger)nPort;
+- (void)connectToController:(NSString *)ipAddress andPort:(int)nPort;
 // 断开控制器
 - (void)disconnectController;
 

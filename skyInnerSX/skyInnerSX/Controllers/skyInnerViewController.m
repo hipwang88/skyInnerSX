@@ -219,7 +219,8 @@
 // 6.初始化协议适配器
 - (void)initializeProtocolAdaptor
 {
-    
+    // 内置拼接协议初始
+    _spliceTVProtocol = [[skyInner6M48TVSDK alloc] initOpenSCXProtocol];
 }
 
 #pragma mark - Private Methods(Event Handler)
@@ -304,15 +305,19 @@
 
 #pragma mark - skySettingConnectionVC Delegate
 // 连接控制器
-- (void)connectToController:(NSString *)ipAddress andPort:(NSInteger)nPort
+- (void)connectToController:(NSString *)ipAddress andPort:(int)nPort
 {
-    
+    if (![_spliceTVProtocol connectTCPService:ipAddress andPort:nPort])
+    {
+        [(skySettingConnectionVC*)[_settingMainVC.controllers objectAtIndex:0] controllerCanBeConnected:NO];
+    }
 }
 
 // 断开控制器
 - (void)disconnectController
 {
-    
+    // 断开网络连接
+    [_spliceTVProtocol disconnectWithTCPService];
 }
 
 #pragma mark - skySettingConfigVC Delegate
