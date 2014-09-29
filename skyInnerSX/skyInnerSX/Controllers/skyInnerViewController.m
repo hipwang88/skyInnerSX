@@ -751,7 +751,22 @@
 }
 
 // 获取数据代理
-- (id<skySignalViewControllerDataSource>)isxWinSignalDataSource
+- (id<skyCVBSMatrixSettingDataSource>)isxWinCVBSSignalDataSource
+{
+    return _appDelegate.theApp;
+}
+
+- (id<skyVGAMatrixSettingDataSource>)isxWinVGASignalDataSource
+{
+    return _appDelegate.theApp;
+}
+
+- (id<skyHDMIMatrixSettingDataSource>)isxWinHDMISignalDataSource
+{
+    return _appDelegate.theApp;
+}
+
+- (id<skyDVIMatrixSettingDataSource>)isxWinDVISignalDataSource
 {
     return _appDelegate.theApp;
 }

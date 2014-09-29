@@ -13,7 +13,10 @@
 #import "skySettingUnitVC.h"
 #import "skyUnderPaint.h"
 #import "skyISXWin.h"
-#import "skySignalViewController.h"
+#import "skyCVBSSignalView.h"
+#import "skyVGASignalView.h"
+#import "skyHDMISignalView.h"
+#import "skyDVISignalView.h"
 
 //
 // Screen Size
@@ -66,9 +69,9 @@
 //              skyUnitSelectionVCDataSource     --- 单元选择数据源
 //              skyUnderPaintDataSource          --- 主客户区底图数据源
 //              skyISXWinDataSource              --- 拼接窗口数据源
-//              skySignalViewControllerDataSource--- 窗口信号切换视图数据源
+//              sky**SignalViewDataSource        --- 窗口信号切换视图数据源
 //
-@interface skyAppStatus : NSObject<skySettingConnectionVCDataSource,skySettingConfigVCDataSource,skySettingSignalVCDataSource,skyUnitSelectionVCDataSource,skyUnderPaintDataSource,skyISXWinDataSource,skySignalViewControllerDataSource>
+@interface skyAppStatus : NSObject<skySettingConnectionVCDataSource,skySettingConfigVCDataSource,skySettingSignalVCDataSource,skyUnitSelectionVCDataSource,skyUnderPaintDataSource,skyISXWinDataSource,skyCVBSSignalViewDataSource,skyVGASignalViewDataSource,skyHDMISignalViewDataSource,skyDVISignalViewDataSource>
 
 /////////////////////////// Property ///////////////////////////////
 // 程序基本运行数据字典

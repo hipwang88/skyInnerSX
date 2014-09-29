@@ -10,89 +10,161 @@
 
 @interface skyISXWinPopoverVC ()
 
+@property (strong, nonatomic) NSMutableArray *tableData;
+@property (strong, nonatomic) NSMutableArray *array;
+
 @end
 
 @implementation skyISXWinPopoverVC
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+@synthesize cvbsSignalView = _cvbsSignalView;
+@synthesize vgaSignalView = _vgaSignalView;
+@synthesize hdmiSignalView = _hdmiSignalView;
+@synthesize dviSignalView = _dviSignalView;
+@synthesize myDelegate = _myDelegate;
+@synthesize tableData = _tableData;
+@synthesize array = _array;
+
+#pragma mark - skyISXWinPopoverVC basic methods
+
+- (id)initWithStyle:(UITableViewStyle)style
+{
+    self = [super initWithStyle:style];
+    if (self)
+    {
+        
+    }
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    return self;
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    // 菜单初始图标
+    self.title = @"窗口功能菜单";
+    _array = [[NSMutableArray alloc] init];
+    [_array addObject:[UIImage imageNamed:@"BigPic.png"]];
+    [_array addObject:[UIImage imageNamed:@"Unit.png"]];
+    [_array addObject:[UIImage imageNamed:@"cvbs_switch.png"]];
+    [_array addObject:[UIImage imageNamed:@"vga_switch.png"]];
+    [_array addObject:[UIImage imageNamed:@"hdmi_switch.png"]];
+    [_array addObject:[UIImage imageNamed:@"dvi_switch.png"]];
+    
+    // 菜单项初始
+    _tableData = [[NSMutableArray alloc] init];
+    [_tableData addObject:[NSString stringWithFormat:@"全屏"]];
+    [_tableData addObject:[NSString stringWithFormat:@"大画面分解"]];
+    [_tableData addObject:[NSString stringWithFormat:@"CVBS信号切换"]];
+    [_tableData addObject:[NSString stringWithFormat:@"VGA信号切换"]];
+    [_tableData addObject:[NSString stringWithFormat:@"HDMI信号切换"]];
+    [_tableData addObject:[NSString stringWithFormat:@"DVI信号切换"]];
+    
+    self.tableView.sectionHeaderHeight = 0;
+    self.tableView.sectionFooterHeight = 0;
+}
+
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    CGSize size = CGSizeMake(320.0f, 550.0f);
+    self.preferredContentSize = size;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [self forcePopoverSize];
+}
+
+- (void)forcePopoverSize
+{
+    CGSize currentSetSizeForPopover  = self.preferredContentSize;//self.contentSizeForViewInPopover;
+    CGSize fakeMomentarySize = CGSizeMake(currentSetSizeForPopover.width, currentSetSizeForPopover.height);
+    self.preferredContentSize = fakeMomentarySize;
+    self.preferredContentSize = currentSetSizeForPopover;
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    return [_tableData count];
 }
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"skySCXWinPopoverIdentifier";
     
-    // Configure the cell...
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (cell == nil)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    
+    cell.textLabel.text = [_tableData objectAtIndex:indexPath.row];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.imageView.image = [_array objectAtIndex:indexPath.row];
     
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return @"功能选项";
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+{
+    return [NSString stringWithFormat:@"全屏：让拼接墙全屏显示本窗口\n大画面分解：将大画面状态窗口分解成单画面\nCVBS信号切换：点击进入CVBS信号切换页面选择输入信号\nVGA信号切换：点击进入VGA信号切换页面选择输入信号\nHDMI信号切换：点击进入HDMI信号切换页面选择输入信号\nDVI信号切换：点击进入DVI信号切换页面选择输入信号"];
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+#pragma mark - Table view Delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (indexPath.row)
+    {
+        case 0: // 全屏
+            [_myDelegate enterFullScreen];
+            break;
+            
+        case 1: // 大画面分解
+            [_myDelegate splitBigScreen];
+            break;
+            
+        case 2: // CVBS信号切换
+            [self.navigationController pushViewController:_cvbsSignalView animated:YES];
+            break;
+            
+        case 3: // VGA信号切换
+            [self.navigationController pushViewController:_vgaSignalView animated:YES];
+            break;
+            
+        case 4: // HDMI信号切换
+            [self.navigationController pushViewController:_hdmiSignalView animated:YES];
+            break;
+            
+        case 5: // DVI 信号切换
+            [self.navigationController pushViewController:_dviSignalView animated:YES];
+            break;
+    }
+    
+    [tableView reloadData];
 }
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

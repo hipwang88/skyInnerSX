@@ -593,9 +593,21 @@ static CGFloat skyDistanceWithTwoPoints(CGPoint point1, CGPoint point2)
     [_myDataSource initISXWinDataSource:self];
     
     // 信号源切换界面初始化
-    _isxPop.signalView = [[skySignalViewController alloc] initWithStyle:UITableViewStylePlain];
-    _isxPop.signalView.myDataSource = [_myDelegate isxWinSignalDataSource];
-    _isxPop.signalView.myDelegate = self;
+    _isxPop.cvbsSignalView = [[skyCVBSSignalView alloc] initWithStyle:UITableViewStylePlain];
+    _isxPop.cvbsSignalView.myDataSource = [_myDelegate isxWinCVBSSignalDataSource];
+    _isxPop.cvbsSignalView.myDelegate = self;
+    
+    _isxPop.vgaSignalView = [[skyVGASignalView alloc] initWithStyle:UITableViewStylePlain];
+    _isxPop.vgaSignalView.myDataSource = [_myDelegate isxWinVGASignalDataSource];
+    _isxPop.vgaSignalView.myDelegate = self;
+    
+    _isxPop.hdmiSignalView = [[skyHDMISignalView alloc] initWithStyle:UITableViewStylePlain];
+    _isxPop.hdmiSignalView.myDataSource = [_myDelegate isxWinHDMISignalDataSource];
+    _isxPop.hdmiSignalView.myDelegate = self;
+    
+    _isxPop.dviSignalView = [[skyDVISignalView alloc] initWithStyle:UITableViewStylePlain];
+    _isxPop.dviSignalView.myDataSource = [_myDelegate isxWinDVISignalDataSource];
+    _isxPop.dviSignalView.myDelegate = self;
     
     // 更新窗口UI
     [self updateWindowUI];
@@ -840,10 +852,22 @@ static CGFloat skyDistanceWithTwoPoints(CGPoint point1, CGPoint point2)
     [_myDataSource loadISXWinModelDataSource:self AtIndex:nIndex];
     
     // 信号源切换界面初始化
-    _isxPop.signalView = [[skySignalViewController alloc] initWithStyle:UITableViewStylePlain];
-    _isxPop.signalView.myDataSource = [_myDelegate isxWinSignalDataSource];
-    _isxPop.signalView.myDelegate = self;
-    [_isxPop.signalView initialSignalTable];
+    _isxPop.cvbsSignalView = [[skyCVBSSignalView alloc] initWithStyle:UITableViewStylePlain];
+    _isxPop.cvbsSignalView.myDataSource = [_myDelegate isxWinCVBSSignalDataSource];
+    _isxPop.cvbsSignalView.myDelegate = self;
+    
+    _isxPop.vgaSignalView = [[skyVGASignalView alloc] initWithStyle:UITableViewStylePlain];
+    _isxPop.vgaSignalView.myDataSource = [_myDelegate isxWinVGASignalDataSource];
+    _isxPop.vgaSignalView.myDelegate = self;
+    
+    _isxPop.hdmiSignalView = [[skyHDMISignalView alloc] initWithStyle:UITableViewStylePlain];
+    _isxPop.hdmiSignalView.myDataSource = [_myDelegate isxWinHDMISignalDataSource];
+    _isxPop.hdmiSignalView.myDelegate = self;
+    
+    _isxPop.dviSignalView = [[skyDVISignalView alloc] initWithStyle:UITableViewStylePlain];
+    _isxPop.dviSignalView.myDataSource = [_myDelegate isxWinDVISignalDataSource];
+    _isxPop.dviSignalView.myDelegate = self;
+
     
     // 更新窗口UI
     [self updateWindowUI];
@@ -858,5 +882,41 @@ static CGFloat skyDistanceWithTwoPoints(CGPoint point1, CGPoint point2)
     }
     return YES;
 }
+
+#pragma mark - skyISXWinPopoverVC Delegate
+// 窗口进入全屏
+- (void)enterFullScreen
+{
+    if (!bBigPicture)
+    {
+        // 代理控制器处理全屏消息
+        [_myDelegate isxWinFullScreen:self];
+        
+        [_popView dismissPopoverAnimated:YES];
+    }
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"窗口全屏功能在大画面状态不能够使用" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+}
+
+// 大画面分解
+- (void)splitBigScreen
+{
+    if (bBigPicture)
+    {
+        [_popView dismissPopoverAnimated:YES];
+        
+        // 代理控制器处理大画面分解消息
+        [_myDelegate isxWinResolveScreen:self];
+    }
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"大画面分解只能在窗口是大画面状态下使用" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+}
+
 
 @end

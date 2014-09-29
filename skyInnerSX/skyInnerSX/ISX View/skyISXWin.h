@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "skyISXWinPopoverVC.h"
-#import "skySignalViewController.h"
+#import "skyCVBSSignalView.h"
+#import "skyVGASignalView.h"
+#import "skyHDMISignalView.h"
+#import "skyDVISignalView.h"
 #import "skyWinBoarder.h"
 
 // Delegate Protocol
@@ -29,7 +32,10 @@
 // 信号切换
 - (void)isxWin:(id)sender Signal:(int)nType SwitchTo:(int)nChannel;
 // 获取数据代理
-- (id<skySignalViewControllerDataSource>)isxWinSignalDataSource;
+- (id<skyCVBSSignalViewDataSource>)isxWinCVBSSignalDataSource;
+- (id<skyVGASignalViewDataSource>)isxWinVGASignalDataSource;
+- (id<skyHDMISignalViewDataSource>)isxWinHDMISignalDataSource;
+- (id<skyDVISignalViewDataSource>)isxWinDVISignalDataSource;
 
 @end
 
@@ -48,7 +54,7 @@
 @end
 
 // class skyISXWin --- 窗口类
-@interface skyISXWin : UIView<UIGestureRecognizerDelegate,skySignalViewControllerDelegate,skyISXWinPopoverVCDelegate>
+@interface skyISXWin : UIView<UIGestureRecognizerDelegate,skyCVBSSignalViewDelegate,skyVGASignalViewDelegate,skyHDMISignalViewDelegate,skyDVISignalViewDelegate,skyISXWinPopoverVCDelegate>
 {
     // 状态开关
     BOOL            bMovable;                                           // 窗口可移动
