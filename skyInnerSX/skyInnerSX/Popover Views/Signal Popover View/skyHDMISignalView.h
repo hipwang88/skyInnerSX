@@ -11,14 +11,18 @@
 // DataSource Protocol
 @protocol skyHDMISignalViewDataSource <NSObject>
 
-
+// 获取矩阵输入路数
+- (int)getHDMIMatrixInputs;
+// 获取矩阵别名
+- (NSString *)getHDMIMatrixAliasAtIndex:(int)nIndex;
 
 @end
 
 // Delegate Protocol
 @protocol  skyHDMISignalViewDelegate <NSObject>
 
-
+// 信号切换
+- (void)haveSignal:(int)nSourceType SwitchTo:(int)nSourcePath;
 
 @end
 

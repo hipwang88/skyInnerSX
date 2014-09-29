@@ -565,4 +565,18 @@
     return @"";
 }
 
+#pragma mark - skyHDMISignalView DataSource
+// 获取矩阵别名
+- (NSString *)getHDMIMatrixAliasAtIndex:(int)nIndex
+{
+    return @"";
+}
+
+#pragma mark - skyDVISignalView DataSource
+// 获取矩阵别名
+- (NSString *)getDVIMatrixAliasAtIndex:(int)nIndex
+{
+    return @"";
+}
+
 @end

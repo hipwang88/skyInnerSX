@@ -11,14 +11,18 @@
 // DataSource Protocol
 @protocol skyDVISignalViewDataSource <NSObject>
 
-
+// 获取矩阵输入路数
+- (int)getDVIMatrixInputs;
+// 获取矩阵别名
+- (NSString *)getDVIMatrixAliasAtIndex:(int)nIndex;
 
 @end
 
 // Delegate Protocol
 @protocol  skyDVISignalViewDelegate <NSObject>
 
-
+// 信号切换
+- (void)haveSignal:(int)nSourceType SwitchTo:(int)nSourcePath;
 
 @end
 
