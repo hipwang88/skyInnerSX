@@ -70,8 +70,9 @@
 //              skyUnderPaintDataSource          --- 主客户区底图数据源
 //              skyISXWinDataSource              --- 拼接窗口数据源
 //              sky**SignalViewDataSource        --- 窗口信号切换视图数据源
+//              skyISXWinPopoverVCDataSource     --- 拼接窗口弹出视图数据源
 //
-@interface skyAppStatus : NSObject<skySettingConnectionVCDataSource,skySettingConfigVCDataSource,skySettingSignalVCDataSource,skyUnitSelectionVCDataSource,skyUnderPaintDataSource,skyISXWinDataSource,skyCVBSSignalViewDataSource,skyVGASignalViewDataSource,skyHDMISignalViewDataSource,skyDVISignalViewDataSource>
+@interface skyAppStatus : NSObject<skySettingConnectionVCDataSource,skySettingConfigVCDataSource,skySettingSignalVCDataSource,skyUnitSelectionVCDataSource,skyUnderPaintDataSource,skyISXWinDataSource,skyCVBSSignalViewDataSource,skyVGASignalViewDataSource,skyHDMISignalViewDataSource,skyDVISignalViewDataSource,skyISXWinPopoverVCDataSource>
 
 /////////////////////////// Property ///////////////////////////////
 // 程序基本运行数据字典

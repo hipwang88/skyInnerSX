@@ -751,22 +751,27 @@
 }
 
 // 获取数据代理
-- (id<skyCVBSMatrixSettingDataSource>)isxWinCVBSSignalDataSource
+- (id<skyCVBSSignalViewDataSource>)isxWinCVBSSignalDataSource
 {
     return _appDelegate.theApp;
 }
 
-- (id<skyVGAMatrixSettingDataSource>)isxWinVGASignalDataSource
+- (id<skyVGASignalViewDataSource>)isxWinVGASignalDataSource
 {
     return _appDelegate.theApp;
 }
 
-- (id<skyHDMIMatrixSettingDataSource>)isxWinHDMISignalDataSource
+- (id<skyHDMISignalViewDataSource>)isxWinHDMISignalDataSource
 {
     return _appDelegate.theApp;
 }
 
-- (id<skyDVIMatrixSettingDataSource>)isxWinDVISignalDataSource
+- (id<skyDVISignalViewDataSource>)isxWinDVISignalDataSource
+{
+    return _appDelegate.theApp;
+}
+
+- (id<skyISXWinPopoverVCDataSource>)isxWinPopoverVCDataSource
 {
     return _appDelegate.theApp;
 }

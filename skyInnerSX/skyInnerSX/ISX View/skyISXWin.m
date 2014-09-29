@@ -103,7 +103,7 @@ static skyResizableAnchorPoint resizableAnchorPointLowerMiddle = {0.0, 0.0, 1.0,
         // 组件初始
         [self initComponents];
         // 弹出视图初始
-        [self initPopovers];
+        //[self initPopovers];
     }
     
     return self;
@@ -273,6 +273,8 @@ static skyResizableAnchorPoint resizableAnchorPointLowerMiddle = {0.0, 0.0, 1.0,
     // 功能选择主菜单
     _isxPop = [[skyISXWinPopoverVC alloc] initWithStyle:UITableViewStyleGrouped];
     _isxPop.myDelegate = self;
+    _isxPop.myDataSource = [_myDelegate isxWinPopoverVCDataSource];
+    
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:_isxPop];
     _popView = [[UIPopoverController alloc] initWithContentViewController:nav];
     _popView.popoverContentSize = CGSizeMake(320.0f, 450.0f);
@@ -588,6 +590,15 @@ static CGFloat skyDistanceWithTwoPoints(CGPoint point1, CGPoint point2)
 {
     // 设置初值
     nWinNumber = nwinNum;
+    
+    // 功能选择主菜单
+    _isxPop = [[skyISXWinPopoverVC alloc] initWithStyle:UITableViewStyleGrouped];
+    _isxPop.myDelegate = self;
+    _isxPop.myDataSource = [_myDelegate isxWinPopoverVCDataSource];
+    
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:_isxPop];
+    _popView = [[UIPopoverController alloc] initWithContentViewController:nav];
+    _popView.popoverContentSize = CGSizeMake(320.0f, 450.0f);
     
     // 窗口初始化
     [_myDataSource initISXWinDataSource:self];

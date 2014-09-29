@@ -12,6 +12,7 @@
 #import "skyHDMISignalView.h"
 #import "skyDVISignalView.h"
 
+// skyISXWinPopoverVCDelegate Protocol
 @protocol skyISXWinPopoverVCDelegate <NSObject>
 
 // 窗口进入全屏
@@ -21,6 +22,21 @@
 
 @end
 
+// skyISXWinPopoverVCDataSource Protocol
+@protocol skyISXWinPopoverVCDataSource <NSObject>
+
+// 获取CVBS矩阵输入
+- (int)getCVBSMatrixInputs;
+// 获取VGA矩阵输入
+- (int)getVGAMatrixInputs;
+// 获取HDMI矩阵输入
+- (int)getHDMIMatrixInputs;
+// 获取DVI矩阵输入
+- (int)getDVIMatrixInputs;
+
+@end
+
+
 @interface skyISXWinPopoverVC : UITableViewController
 
 ////////////////////// Property ///////////////////////////
@@ -29,6 +45,7 @@
 @property (strong, nonatomic) skyHDMISignalView *hdmiSignalView;
 @property (strong, nonatomic) skyDVISignalView *dviSignalView;
 @property (strong, nonatomic) id<skyISXWinPopoverVCDelegate> myDelegate;
+@property (strong, nonatomic) id<skyISXWinPopoverVCDataSource> myDataSource;
 
 ////////////////////// Methods ////////////////////////////
 

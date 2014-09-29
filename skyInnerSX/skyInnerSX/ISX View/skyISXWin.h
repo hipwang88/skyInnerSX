@@ -36,6 +36,7 @@
 - (id<skyVGASignalViewDataSource>)isxWinVGASignalDataSource;
 - (id<skyHDMISignalViewDataSource>)isxWinHDMISignalDataSource;
 - (id<skyDVISignalViewDataSource>)isxWinDVISignalDataSource;
+- (id<skyISXWinPopoverVCDataSource>)isxWinPopoverVCDataSource;
 
 @end
 

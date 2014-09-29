@@ -148,19 +148,51 @@
             break;
             
         case 2: // CVBS信号切换
-            [self.navigationController pushViewController:_cvbsSignalView animated:YES];
+            if ([_myDataSource getCVBSMatrixInputs] != 0)
+            {
+                [self.navigationController pushViewController:_cvbsSignalView animated:YES];
+            }
+            else
+            {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"CVBS矩阵未接入，请调整输入通道" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+                [alertView show];
+            }
             break;
             
         case 3: // VGA信号切换
-            [self.navigationController pushViewController:_vgaSignalView animated:YES];
+            if ([_myDataSource getVGAMatrixInputs] != 0)
+            {
+                [self.navigationController pushViewController:_vgaSignalView animated:YES];
+            }
+            else
+            {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"VGA矩阵未接入，请调整输入通道" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+                [alertView show];
+            }
             break;
             
         case 4: // HDMI信号切换
-            [self.navigationController pushViewController:_hdmiSignalView animated:YES];
+            if ([_myDataSource getHDMIMatrixInputs] != 0)
+            {
+                [self.navigationController pushViewController:_hdmiSignalView animated:YES];
+            }
+            else
+            {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"HDMI矩阵未接入，请调整输入通道" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+                [alertView show];
+            }
             break;
             
         case 5: // DVI 信号切换
-            [self.navigationController pushViewController:_dviSignalView animated:YES];
+            if ([_myDataSource getDVIMatrixInputs] != 0)
+            {
+                [self.navigationController pushViewController:_dviSignalView animated:YES];
+            }
+            else
+            {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"DVI矩阵未接入，请调整输入通道" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+                [alertView show];
+            }
             break;
     }
     
