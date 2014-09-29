@@ -551,4 +551,11 @@
     
 }
 
+#pragma mark - skyCVBSSignalView DataSource
+// 获取矩阵别名
+- (NSString *)getCVBSMatrixAliasAtIndex:(int)nIndex
+{
+    return @"";
+}
+
 @end

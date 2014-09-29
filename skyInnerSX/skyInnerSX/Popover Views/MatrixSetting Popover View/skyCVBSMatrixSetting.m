@@ -110,7 +110,7 @@
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
         skySliderCell *cell = (skySliderCell *)[_myTableView cellForRowAtIndexPath:indexPath];
         
-        [_myDataSource setCurrentCVBSInputs:(int)cell.cellSilder.value];
+        [_myDataSource setCurrentCVBSInputs:(int)(cell.cellSilder.value+0.5)];
     }
     else
     {

@@ -164,7 +164,7 @@
             break;
     }
     
-    [tableView reloadData];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end

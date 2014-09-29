@@ -11,14 +11,18 @@
 // DataSource Protocol
 @protocol skyCVBSSignalViewDataSource <NSObject>
 
-
+// 获取矩阵输入路数
+- (int)getCVBSMatrixInputs;
+// 获取矩阵别名
+- (NSString *)getCVBSMatrixAliasAtIndex:(int)nIndex;
 
 @end
 
 // Delegate Protocol
 @protocol  skyCVBSSignalViewDelegate <NSObject>
 
-
+// 信号切换
+- (void)haveSignal:(int)nSourceType SwitchTo:(int)nSourcePath;
 
 @end
 

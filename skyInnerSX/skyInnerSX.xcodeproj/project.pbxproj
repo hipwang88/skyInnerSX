@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		060947D819D93756007A12C2 /* skyCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = 060947D319D93756007A12C2 /* skyCell1.m */; };
+		060947D919D93756007A12C2 /* skyCell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 060947D419D93756007A12C2 /* skyCell1.xib */; };
+		060947DA19D93756007A12C2 /* skyCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 060947D619D93756007A12C2 /* skyCell2.m */; };
+		060947DB19D93756007A12C2 /* skyCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 060947D719D93756007A12C2 /* skyCell2.xib */; };
+		060947E519D93795007A12C2 /* signal_Card-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 060947DC19D93795007A12C2 /* signal_Card-Small.png */; };
+		060947E619D93795007A12C2 /* signal_CVBS-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 060947DD19D93795007A12C2 /* signal_CVBS-Small.png */; };
+		060947E719D93795007A12C2 /* signal_DVI-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 060947DE19D93795007A12C2 /* signal_DVI-Small.png */; };
+		060947E819D93795007A12C2 /* signal_HDMI-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 060947DF19D93795007A12C2 /* signal_HDMI-Small.png */; };
+		060947E919D93795007A12C2 /* signal_VGA-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 060947E019D93795007A12C2 /* signal_VGA-Small.png */; };
+		060947EA19D93795007A12C2 /* DownAccessory.png in Resources */ = {isa = PBXBuildFile; fileRef = 060947E119D93795007A12C2 /* DownAccessory.png */; };
+		060947EB19D93795007A12C2 /* DownAccessory@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 060947E219D93795007A12C2 /* DownAccessory@2x.png */; };
+		060947EC19D93795007A12C2 /* UpAccessory.png in Resources */ = {isa = PBXBuildFile; fileRef = 060947E319D93795007A12C2 /* UpAccessory.png */; };
+		060947ED19D93795007A12C2 /* UpAccessory@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 060947E419D93795007A12C2 /* UpAccessory@2x.png */; };
 		060C64D719D508B400E67106 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 060C64D619D508B400E67106 /* CFNetwork.framework */; };
 		060C64DA19D50BF700E67106 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 060C64D919D50BF700E67106 /* CoreGraphics.framework */; };
 		060C64DE19D54CC600E67106 /* skyUnderPaint.m in Sources */ = {isa = PBXBuildFile; fileRef = 060C64DD19D54CC600E67106 /* skyUnderPaint.m */; };
@@ -90,6 +103,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		060947D219D93756007A12C2 /* skyCell1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = skyCell1.h; path = Cells/skyCell1.h; sourceTree = "<group>"; };
+		060947D319D93756007A12C2 /* skyCell1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = skyCell1.m; path = Cells/skyCell1.m; sourceTree = "<group>"; };
+		060947D419D93756007A12C2 /* skyCell1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = skyCell1.xib; path = Cells/skyCell1.xib; sourceTree = "<group>"; };
+		060947D519D93756007A12C2 /* skyCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = skyCell2.h; path = Cells/skyCell2.h; sourceTree = "<group>"; };
+		060947D619D93756007A12C2 /* skyCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = skyCell2.m; path = Cells/skyCell2.m; sourceTree = "<group>"; };
+		060947D719D93756007A12C2 /* skyCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = skyCell2.xib; path = Cells/skyCell2.xib; sourceTree = "<group>"; };
+		060947DC19D93795007A12C2 /* signal_Card-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signal_Card-Small.png"; sourceTree = "<group>"; };
+		060947DD19D93795007A12C2 /* signal_CVBS-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signal_CVBS-Small.png"; sourceTree = "<group>"; };
+		060947DE19D93795007A12C2 /* signal_DVI-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signal_DVI-Small.png"; sourceTree = "<group>"; };
+		060947DF19D93795007A12C2 /* signal_HDMI-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signal_HDMI-Small.png"; sourceTree = "<group>"; };
+		060947E019D93795007A12C2 /* signal_VGA-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "signal_VGA-Small.png"; sourceTree = "<group>"; };
+		060947E119D93795007A12C2 /* DownAccessory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DownAccessory.png; sourceTree = "<group>"; };
+		060947E219D93795007A12C2 /* DownAccessory@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DownAccessory@2x.png"; sourceTree = "<group>"; };
+		060947E319D93795007A12C2 /* UpAccessory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UpAccessory.png; sourceTree = "<group>"; };
+		060947E419D93795007A12C2 /* UpAccessory@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UpAccessory@2x.png"; sourceTree = "<group>"; };
 		060C64D619D508B400E67106 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		060C64D919D50BF700E67106 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		060C64DB19D50CC300E67106 /* definitions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = definitions.h; path = "App Datas/definitions.h"; sourceTree = "<group>"; };
@@ -292,6 +320,15 @@
 		0661F56C19D1184400756D17 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				060947DC19D93795007A12C2 /* signal_Card-Small.png */,
+				060947DD19D93795007A12C2 /* signal_CVBS-Small.png */,
+				060947DE19D93795007A12C2 /* signal_DVI-Small.png */,
+				060947DF19D93795007A12C2 /* signal_HDMI-Small.png */,
+				060947E019D93795007A12C2 /* signal_VGA-Small.png */,
+				060947E119D93795007A12C2 /* DownAccessory.png */,
+				060947E219D93795007A12C2 /* DownAccessory@2x.png */,
+				060947E319D93795007A12C2 /* UpAccessory.png */,
+				060947E419D93795007A12C2 /* UpAccessory@2x.png */,
 				066B23D419D91606005C6A55 /* BigPic.png */,
 				066B23D519D91606005C6A55 /* Unit.png */,
 				066B23CC19D91077005C6A55 /* cvbs_switch.png */,
@@ -346,6 +383,12 @@
 		0661F57019D1186300756D17 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				060947D219D93756007A12C2 /* skyCell1.h */,
+				060947D319D93756007A12C2 /* skyCell1.m */,
+				060947D419D93756007A12C2 /* skyCell1.xib */,
+				060947D519D93756007A12C2 /* skyCell2.h */,
+				060947D619D93756007A12C2 /* skyCell2.m */,
+				060947D719D93756007A12C2 /* skyCell2.xib */,
 				06AF3EF819D191B0007D4E2E /* skyStepperCell.h */,
 				06AF3EF919D191B0007D4E2E /* skyStepperCell.m */,
 				06AF3EFA19D191B0007D4E2E /* skyStepperCell.xib */,
@@ -597,7 +640,11 @@
 				06AF3EFC19D191B0007D4E2E /* skyStepperCell.xib in Resources */,
 				0677F51219D3C2890051AC0C /* skyStepperBtnCell.xib in Resources */,
 				0661F55719D1181B00756D17 /* LaunchScreen.xib in Resources */,
+				060947EC19D93795007A12C2 /* UpAccessory.png in Resources */,
+				060947E519D93795007A12C2 /* signal_Card-Small.png in Resources */,
 				0661F5BC19D14E3000756D17 /* SignalSet.png in Resources */,
+				060947E819D93795007A12C2 /* signal_HDMI-Small.png in Resources */,
+				060947EA19D93795007A12C2 /* DownAccessory.png in Resources */,
 				060C64E319D5562100E67106 /* background.bmp in Resources */,
 				0677F51819D40EC60051AC0C /* skyUnitSelectionVC.xib in Resources */,
 				06A7150C19D25C51001DD984 /* skyVGAMatrixSetting.xib in Resources */,
@@ -608,17 +655,23 @@
 				060C64E519D5574400E67106 /* SMC_Logo.jpg in Resources */,
 				06A7151619D25C85001DD984 /* skyDVIMatrixSetting.xib in Resources */,
 				06A7151119D25C6E001DD984 /* skyHDMIMatrixSetting.xib in Resources */,
+				060947D919D93756007A12C2 /* skyCell1.xib in Resources */,
 				0661F57A19D118B000756D17 /* skyInnerViewController.xib in Resources */,
+				060947ED19D93795007A12C2 /* UpAccessory@2x.png in Resources */,
 				0661F58219D1261000756D17 /* toolbarDrawModeHide.png in Resources */,
 				0661F5BA19D14E3000756D17 /* ProtocalSet.png in Resources */,
 				06A7152119D26350001DD984 /* VGACardDown.png in Resources */,
 				06A7150719D25C35001DD984 /* skyCVBSMatrixSetting.xib in Resources */,
 				0661F5BE19D17AB500756D17 /* skySettingConnection.xib in Resources */,
+				060947E919D93795007A12C2 /* signal_VGA-Small.png in Resources */,
 				066B23D119D91077005C6A55 /* dvi_switch.png in Resources */,
+				060947EB19D93795007A12C2 /* DownAccessory@2x.png in Resources */,
+				060947E619D93795007A12C2 /* signal_CVBS-Small.png in Resources */,
 				0661F5B919D14E3000756D17 /* ConnSet.png in Resources */,
 				0677F50D19D3BB2E0051AC0C /* skySettingUnit.xib in Resources */,
 				06A7152019D26350001DD984 /* HDMICardDown.png in Resources */,
 				0661F55419D1181B00756D17 /* Images.xcassets in Resources */,
+				060947DB19D93756007A12C2 /* skyCell2.xib in Resources */,
 				066B23D719D91606005C6A55 /* Unit.png in Resources */,
 				06AF3EF719D1893D007D4E2E /* skySettingConfig.xib in Resources */,
 				0661F5BB19D14E3000756D17 /* SCXSet.png in Resources */,
@@ -626,6 +679,7 @@
 				06C4851419D7EE0600780BAC /* scxWin_Btn_Normal.png in Resources */,
 				0631A1D019D2980500439139 /* skySliderCell.xib in Resources */,
 				066B23D619D91606005C6A55 /* BigPic.png in Resources */,
+				060947E719D93795007A12C2 /* signal_DVI-Small.png in Resources */,
 				066B23D319D91077005C6A55 /* vga_switch.png in Resources */,
 				06A7150119D256E0001DD984 /* skySettingSignal.xib in Resources */,
 			);
@@ -658,6 +712,7 @@
 				0661F5B119D143A400756D17 /* skyISXWinPopoverVC.m in Sources */,
 				06A7151019D25C6E001DD984 /* skyHDMIMatrixSetting.m in Sources */,
 				0661F59919D141F100756D17 /* skySettingConfigVC.m in Sources */,
+				060947D819D93756007A12C2 /* skyCell1.m in Sources */,
 				06A7150B19D25C51001DD984 /* skyVGAMatrixSetting.m in Sources */,
 				0662F45B19D4EFFF006FADD7 /* skyProtocolAdapter.m in Sources */,
 				0661F5A319D1425600756D17 /* skySettingUnitVC.m in Sources */,
@@ -672,6 +727,7 @@
 				06C4851119D7B20700780BAC /* skyWinBoarder.m in Sources */,
 				060C64E119D54D0500E67106 /* skyISXWin.m in Sources */,
 				066B23C219D90290005C6A55 /* skyCVBSSignalView.m in Sources */,
+				060947DA19D93756007A12C2 /* skyCell2.m in Sources */,
 				0662F45819D4EFDB006FADD7 /* skyInner6M48TVSDK.m in Sources */,
 				06A7150619D25C35001DD984 /* skyCVBSMatrixSetting.m in Sources */,
 				0631A1CF19D2980500439139 /* skySliderCell.m in Sources */,
