@@ -11,8 +11,6 @@
 #import "skyCell1.h"
 #import "skyCell2.h"
 
-#define GROUP_NUMBER            16       // 16 个一组
-
 @interface skyCVBSSignalView ()
 
 //////////////////// Property ///////////////////////

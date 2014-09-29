@@ -558,4 +558,11 @@
     return @"";
 }
 
+#pragma mark - skyVGASignalView DataSource
+// 获取VGA矩阵输入通道别名
+- (NSString *)getVGAMatrixAliasAtIndex:(int)nIndex
+{
+    return @"";
+}
+
 @end

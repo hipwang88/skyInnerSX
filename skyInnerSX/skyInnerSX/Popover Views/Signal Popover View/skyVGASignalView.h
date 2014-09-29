@@ -11,14 +11,18 @@
 // DataSource Protocol
 @protocol skyVGASignalViewDataSource <NSObject>
 
-
+// 获取VGA矩阵输入路数
+- (int)getVGAMatrixInputs;
+// 获取VGA矩阵输入通道别名
+- (NSString *)getVGAMatrixAliasAtIndex:(int)nIndex;
 
 @end
 
 // Delegate Protocol
 @protocol  skyVGASignalViewDelegate <NSObject>
 
-
+// 信号切换
+- (void)haveSignal:(int)nSourceType SwitchTo:(int)nSourcePath;
 
 @end
 

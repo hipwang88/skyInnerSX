@@ -35,6 +35,9 @@ typedef struct skyPointAndResizableAnchorPoint
 #define SIGNAL_HDMI             2
 #define SIGNAL_DVI              3
 
+// 信号源组大小
+#define GROUP_NUMBER            16       // 16 个一组
+
 //
 // 命令延迟
 #define SKY_SEND_DELAY          200
