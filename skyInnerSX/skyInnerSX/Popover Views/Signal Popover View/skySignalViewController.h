@@ -25,4 +25,7 @@
 @property (strong, nonatomic) id<skySignalViewControllerDelegate> myDelegate;
 @property (strong, nonatomic) id<skySignalViewControllerDataSource> myDataSource;
 
+// 初始化
+- (void)initialSignalTable;
+
 @end

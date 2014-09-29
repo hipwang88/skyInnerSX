@@ -50,6 +50,12 @@
 - (void)modelButtonEventHandler:(id)paramSender;
 // 视图扩展按钮事件函数
 - (void)externButtonEventHandler:(id)paramSender;
+// 获取窗口左上角所在的索引
+- (int)getUnitIndexFromPointLU:(CGPoint)ptLU;
+// 获取窗口右下角所在的索引
+- (int)getUnitIndexFromPointRB:(CGPoint)ptRB;
+// 情景模式配置文件保存
+- (void)saveModelToFileAtIndex:(int)nIndex;
 
 /****************** 界面处理函数 ******************/
 // 界面重新布置
@@ -295,6 +301,44 @@
     NSLog(@"Extern");
 }
 
+// 获取窗口左上角所在的索引
+- (int)getUnitIndexFromPointLU:(CGPoint)ptLU
+{
+    int x,y,nIndex;
+    
+    x = (ptLU.x - startCanvas.x) / nWinWidth;
+    y = (ptLU.y - startCanvas.y) / nWinHeight;
+    
+    nIndex = y * nColumns + x;
+    
+    return nIndex;
+}
+
+// 获取窗口右下角所在的索引
+- (int)getUnitIndexFromPointRB:(CGPoint)ptRB
+{
+    int x,y,m,nIndex;
+    
+    m = (ptRB.x - startCanvas.x) / nWinWidth;
+    x = (int)(ptRB.x - startCanvas.x) % nWinWidth ? m : m - 1;
+    m = (ptRB.y - startCanvas.y) / nWinHeight;
+    y = (int)(ptRB.y - startCanvas.y) % nWinHeight ? m : m - 1;
+    
+    nIndex = y * nColumns + x;
+    
+    return nIndex;
+}
+
+// 情景模式配置文件保存
+- (void)saveModelToFileAtIndex:(int)nIndex
+{
+    // 保存窗口配置数据
+    for (skyISXWin *isxWin in _isxWinContainer)
+    {
+        [isxWin saveISXWinModelStatusAtIndex:nIndex];
+    }
+}
+
 // 界面重新布置
 - (void)reloadUI
 {
@@ -319,6 +363,10 @@
     /*********************** 客户区上视图移除 ***********************/
     // 移除主控区底图
     [_underPaint removeFromSuperview];
+    // 拼接窗口移除
+    for (skyISXWin *win in _isxWinContainer)
+        [win removeFromSuperview];
+    [_isxWinContainer removeAllObjects];
     
     /*********************** 主控区底图绘制 ************************/
     self.underPaint = [[skyUnderPaint alloc] initWithFrame:self.view.frame];
@@ -328,6 +376,33 @@
     startCanvas = [_underPaint getStartCanvasPoint];                    // 获取起始点位置
     
     /*********************** 客户区窗口绘制 ************************/
+    // 拼接窗口
+    _isxWinContainer = [[NSMutableArray alloc] init];
+    CGRect isxWinRect;
+    CGRect limitRect = CGRectMake(startCanvas.x, startCanvas.y, nColumns*nWinWidth, nRows*nWinHeight);
+    int nCount = nRows * nColumns;
+    for (int i = 0; i < nCount; i++)
+    {
+        // 计算大小位置
+        int x = i % nColumns;
+        int y = i / nColumns;
+        isxWinRect = CGRectMake(startCanvas.x+x*nWinWidth, startCanvas.y+y*nWinHeight, nWinWidth, nWinHeight);
+        
+        // 初始化漫游窗口
+        skyISXWin *isxWin = [[skyISXWin alloc] initWithFrame:isxWinRect withRow:nRows andColumn:nColumns];
+        isxWin.myDelegate = self;
+        isxWin.myDataSource = _appDelegate.theApp;
+        isxWin.startCanvas = startCanvas;           // 窗口活动区域起始点
+        isxWin.limitRect = limitRect;               // 窗口活动区域矩形
+        // 窗口值初始
+        [isxWin initializeISXWin:i+1];
+        [isxWin hideBoarderView];
+        
+        // 将漫游窗口加入容器数组
+        [self.isxWinContainer addObject:isxWin];
+        [self.view addSubview:isxWin];
+    }
+    currentISXWin = [_isxWinContainer objectAtIndex:0];
 }
 
 #pragma mark - skySettingConnectionVC Delegate
@@ -519,43 +594,160 @@
 // 开始进行缩放或者移动
 - (void)isxWinBeginEditing:(id)sender
 {
+    skyISXWin *isxWin = (skyISXWin *)sender;
     
+    [currentISXWin hideBoarderView];                // 将前一个窗口的外框隐藏
+    [currentISXWin reCaculateISXWinToFullScreen];   // 前一个窗口满屏处理
+    currentISXWin = isxWin;                         // 更新当前窗口
+    [currentISXWin showBoarderView];                // 将当前窗口外框显示
+    [self.view bringSubviewToFront:currentISXWin];
 }
 
 // 全局数组数值更新 -- 父控制器中一个维持大画面状态值的数组
 - (void)updateBigPicStatusWithStart:(CGPoint)ptStart andSize:(CGSize)szArea withWinNum:(int)nNum
 {
+    NSInteger nIndex,nStart;
     
+    for (int i = 0; i < szArea.height; i++)
+    {
+        nStart = (i+ptStart.y)*nColumns + ptStart.x;
+        for (int j = 0; j < szArea.width; j++)
+        {
+            nIndex = nStart + j;
+            [pArrayChess replaceObjectAtIndex:nIndex withObject:[NSNumber numberWithLong:nNum]];
+        }
+    }
 }
 
 // 判断窗口是否遇到大画面
 - (BOOL)isISXWinCanReachBigPicture:(CGRect)rectFrame
 {
-    return true;
+    skyISXWin *isxWin;
+    CGPoint ptLU,ptRB;
+    
+    CGPoint ptTopLeft = rectFrame.origin;
+    CGPoint ptBottomRight = CGPointMake(ptTopLeft.x+rectFrame.size.width, ptTopLeft.y+rectFrame.size.height);
+    
+    int nIndexLU = [self getUnitIndexFromPointLU:ptTopLeft];
+    int nIndexRB = [self getUnitIndexFromPointRB:ptBottomRight];
+    
+    ptLU.x = nIndexLU % nColumns;
+    ptLU.y = nIndexLU / nColumns;
+    ptRB.x = nIndexRB % nColumns;
+    ptRB.y = nIndexRB / nColumns;
+    
+    NSInteger nStart = nIndexLU;
+    NSInteger nIndex = 0;
+    int nWinIndex = 0;
+    
+    for (int i = 0; i <= ptRB.y - ptLU.y; i++)
+    {
+        for (int j = 0; j <= ptRB.x - ptLU.x; j++)
+        {
+            // 获取棋盘index
+            nIndex = nStart + j;
+            // 根据棋盘index获取落入此index上的窗口编号
+            nWinIndex = [[pArrayChess objectAtIndex:nIndex] intValue];
+            // 根据窗口编号在窗口容器中找到窗口对象
+            isxWin = (skyISXWin *)[_isxWinContainer objectAtIndex:nWinIndex-1];
+            
+            //  判断是否是大画面
+            if (isxWin.getISXWinBigPicture)
+            {
+                return YES;
+            }
+        }
+        nStart += nColumns;
+    }
+    
+    return NO;
 }
 
 // 窗口拼接
 - (void)isxWinSpliceScreen:(id)sender
 {
+    skyISXWin *isxWin = (skyISXWin *)sender;
     
+    int nStartPanel = isxWin.startPoint.y * nColumns + isxWin.startPoint.x;
+    // 协议发送
+    // 合成
+    [_spliceTVProtocol innerSXSpliceScreen:isxWin.winNumber StartAt:nStartPanel VCountNum:isxWin.winSize.height HCountNum:isxWin.winSize.width];
+    // 信号切换
+    [_spliceTVProtocol innerSXSwitchBigScreen:isxWin.winNumber toSrcType:isxWin.winSourceType atSrcPath:isxWin.winChannelNumber];
 }
 
 // 窗口满屏
 - (void)isxWinFullScreen:(id)sender
 {
+    skyISXWin *isxWin = (skyISXWin *)sender;
     
+    // 先让其他窗口单屏
+    for (skyISXWin *win in _isxWinContainer)
+    {
+        // 排除本窗口
+        if (win.winNumber != isxWin.winNumber)
+        {
+            // 让其余窗口是大画面的全部先单屏
+            if ([win getISXWinBigPicture])
+                [win setISXWinToSingleStatus];
+        }
+    }
+    
+    // 再处理全屏状态
+    [isxWin setISXWinToFullStatus];
+    // 窗口置顶
+    [self.view bringSubviewToFront:isxWin];
+    
+    int nStartPanel = isxWin.startPoint.y * nColumns + isxWin.startPoint.x;
+    // 协议发送
+    // 合成
+    [_spliceTVProtocol innerSXSpliceScreen:isxWin.winNumber StartAt:nStartPanel VCountNum:isxWin.winSize.height HCountNum:isxWin.winSize.width];
+    // 信号切换
+    [_spliceTVProtocol innerSXSwitchBigScreen:isxWin.winNumber toSrcType:isxWin.winSourceType atSrcPath:isxWin.winChannelNumber];
 }
 
 // 窗口大画面分解
 - (void)isxWinResolveScreen:(id)sender
 {
+    skyISXWin *isxWin = (skyISXWin *)sender;
     
+    // 处理被覆盖的棋盘值
+    int nIndex;
+    for (int j = 0; j < (int)isxWin.winSize.height; j++)
+    {
+        for (int i = 0; i < (int)isxWin.winSize.width; i++)
+        {
+            nIndex = (j+isxWin.startPoint.y)*nColumns + isxWin.startPoint.x + i;
+            [pArrayChess replaceObjectAtIndex:nIndex withObject:[NSNumber numberWithInt:nIndex+1]];
+        }
+    }
+    
+    int nStartPanel = isxWin.startPoint.y * nColumns + isxWin.startPoint.x;
+    // 协议发送
+    // 拆分
+    [_spliceTVProtocol innerSXSplitBigScreen:isxWin.winNumber StartAt:nStartPanel VCountNum:isxWin.winSize.height HCountNum:isxWin.winSize.width];
+    // 状态恢复
+    [_spliceTVProtocol innerSXResolveScreen:isxWin.winNumber StartAt:nStartPanel VCountNum:isxWin.winSize.height HCountNum:isxWin.winSize.width];
+    
+    // 单屏分解
+    [isxWin setISXWinToSingleStatus];
 }
 
 // 信号切换
 - (void)isxWin:(id)sender Signal:(int)nType SwitchTo:(int)nChannel
 {
+    skyISXWin *isxWin = (skyISXWin *)sender;
     
+    if (isxWin.getISXWinBigPicture)
+    {
+        // 大画面信号切换
+        [_spliceTVProtocol innerSXSingleScreen:isxWin.winNumber SwitchSrcType:isxWin.winSourceType toSrcPath:isxWin.winChannelNumber];
+    }
+    else
+    {
+        // 单屏信号切换
+        [_spliceTVProtocol innerSXBigScreen:isxWin.winNumber SwitchSrcType:isxWin.winSourceType toSrcPath:isxWin.winChannelNumber];
+    }
 }
 
 // 获取数据代理

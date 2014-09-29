@@ -115,11 +115,13 @@
 // 隐藏外框
 - (void)hideBoarderView;
 // 结束缩放后重新刷新窗口 --- 让窗口满屏
-- (void)reCaculateSCXWinToFullScreen;
+- (void)reCaculateISXWinToFullScreen;
 // 窗口单屏状态
 - (void)setISXWinToSingleStatus;
 // 窗口全屏状态
 - (void)setISXWinToFullStatus;
+// 窗口普通状态
+- (void)setISXWinToNormalStatus;
 // 保存当前窗口的情景模式
 - (void)saveISXWinModelStatusAtIndex:(int)nIndex;
 // 加载窗口情景模式

@@ -54,9 +54,9 @@ static skyResizableAnchorPoint resizableAnchorPointLowerMiddle = {0.0, 0.0, 1.0,
 // 信号类型与通道标签设置
 - (void)setSignal:(int)nType andChannel:(int)nChannel;
 // 移动视图
-- (void)moveSCXWinUsingTouchLocation:(CGPoint)touchPoint;
+- (void)moveISXWinUsingTouchLocation:(CGPoint)touchPoint;
 // 缩放视图
-- (void)resizeSCXWinUsingTouchLocation:(CGPoint)touchPoint;
+- (void)resizeISXWinUsingTouchLocation:(CGPoint)touchPoint;
 // 确定点击时手指在那个Anchor附近
 - (skyResizableAnchorPoint)anchorPointForTouchLocation:(CGPoint)touchPoint;
 // 判断是移动还是缩放
@@ -96,7 +96,7 @@ static skyResizableAnchorPoint resizableAnchorPointLowerMiddle = {0.0, 0.0, 1.0,
     if (self)
     {
         nRows = nRow;
-        nColumn = nColumns;
+        nColumns = nColumn;
         
         // 变量初始
         [self initDefaults];
@@ -281,19 +281,69 @@ static skyResizableAnchorPoint resizableAnchorPointLowerMiddle = {0.0, 0.0, 1.0,
 // 功能扩展按钮
 - (void)functionButtonHandle:(id)sender
 {
+    // 代理类调用 --- 窗口进入操作状态
+    [_myDelegate isxWinBeginEditing:self];
     
+    // 窗体菜单视图弹出
+    [_popView presentPopoverFromRect:_funcButton.frame inView:self permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
 // 手势事件函数
 - (void)handlePanGestures:(UIPanGestureRecognizer *)paramSender
 {
+    CGPoint touchPoint = [paramSender locationInView:self];
     
+    // 在可编辑状态
+    if (![_winBoarder isHidden])
+    {
+        // 判断状态
+        switch (paramSender.state)
+        {
+            case UIGestureRecognizerStateBegan:         // 刚开始进入 -- 开始判断是移动窗口还是缩放窗口
+                anchor = [self anchorPointForTouchLocation:touchPoint]; // 判断方位
+                touchBegin = touchPoint;                                // 记录开始点
+                if ([self isResizing])
+                {
+                    touchBegin = [paramSender locationInView:self.superview];
+                }
+                break;
+                
+            case UIGestureRecognizerStateChanged:       // 拖动中
+                if ([self isResizing])  // 缩放状态
+                {
+                    // 大画面情况下屏蔽缩放功能
+                    if (!bBigPicture)
+                    {
+                        touchPoint = [paramSender locationInView:self.superview];
+                        [self resizeISXWinUsingTouchLocation:touchPoint];
+                    }
+                }
+                else                    // 移动状态
+                {
+                    [self moveISXWinUsingTouchLocation:touchPoint];
+                }
+                break;
+                
+            case UIGestureRecognizerStateEnded:         // 结束拖动
+            case UIGestureRecognizerStateFailed:
+                // 直通满屏处理
+                [self reCaculateISXWinToFullScreen];
+                // 拼接协议发送
+                if (!isNotChange)
+                    [_myDelegate isxWinSpliceScreen:self];
+                break;
+                
+            default:
+                NSLog(@"Others");
+                break;
+        }
+    }
 }
 
 // 点击手势事件
 - (void)handleTapGestures:(UITapGestureRecognizer *)paramSender
 {
-    
+    [_myDelegate isxWinBeginEditing:self];
 }
 
 // 信号类型与通道标签设置
@@ -320,28 +370,137 @@ static skyResizableAnchorPoint resizableAnchorPointLowerMiddle = {0.0, 0.0, 1.0,
     }
 }
 
-// 移动视图
-- (void)moveSCXWinUsingTouchLocation:(CGPoint)touchPoint
+// 两点之间距离
+static CGFloat skyDistanceWithTwoPoints(CGPoint point1, CGPoint point2)
 {
+    CGFloat dx = point1.x - point2.x;
+    CGFloat dy = point1.y - point2.y;
+    return sqrt(dx*dx + dy*dy);
+}
+
+// 移动视图
+- (void)moveISXWinUsingTouchLocation:(CGPoint)touchPoint
+{
+    CGPoint newPoint = CGPointMake(self.center.x + touchPoint.x - touchBegin.x, self.center.y + touchPoint.y - touchBegin.y);
     
+    // 移动限制
+    if (bMovable)
+    {
+        CGFloat midPointX = CGRectGetMidX(self.bounds);
+        
+        if (newPoint.x > _limitRect.size.width+_limitRect.origin.x  - midPointX)
+            newPoint.x = _limitRect.size.width+_limitRect.origin.x - midPointX;
+        else if (newPoint.x < _limitRect.origin.x + midPointX)
+            newPoint.x = _limitRect.origin.x + midPointX;
+        
+        CGFloat midPointY = CGRectGetMidY(self.bounds);
+        
+        if (newPoint.y > _limitRect.size.height+_limitRect.origin.y - midPointY)
+            newPoint.y = _limitRect.size.height+_limitRect.origin.y - midPointY;
+        else if (newPoint.y < _limitRect.origin.y + midPointY)
+            newPoint.y = _limitRect.origin.y + midPointY;
+        
+        self.center = newPoint;
+    }
 }
 
 // 缩放视图
-- (void)resizeSCXWinUsingTouchLocation:(CGPoint)touchPoint
+- (void)resizeISXWinUsingTouchLocation:(CGPoint)touchPoint
 {
-    
+    // 限制缩放
+    if (bScalable)
+    {
+        // 处理视图移动细节
+        CGFloat deltaW = anchor.adjustW * (touchBegin.x - touchPoint.x);
+        CGFloat deltaX = anchor.adjustX * (-1.0 * deltaW);
+        CGFloat deltaH = anchor.adjustH * (touchPoint.y - touchBegin.y);
+        CGFloat deltaY = anchor.adjustY * (-1.0 * deltaH);
+        
+        // 计算出View的四个新值
+        CGFloat newX = self.frame.origin.x + deltaX;
+        CGFloat newY = self.frame.origin.y + deltaY;
+        CGFloat newWidth = self.frame.size.width + deltaW;
+        CGFloat newHeight = self.frame.size.height + deltaH;
+        
+        // 限制可拉伸最小值
+        if (newWidth < 3*nBasicWinWidth/4) {
+            newWidth = self.frame.size.width;
+            newX = self.frame.origin.x;
+        }
+        if (newHeight < 3*nBasicWinHeight/4) {
+            newHeight = self.frame.size.height;
+            newY = self.frame.origin.y;
+        }
+        
+        // 处理视图的移动
+        if (newX < self.limitRect.origin.x)
+        {
+            deltaW = self.frame.origin.x - self.limitRect.origin.x;
+            newWidth = self.frame.size.width + deltaW;
+            newX = self.limitRect.origin.x;
+        }
+        if (newX + newWidth > self.limitRect.origin.x + self.limitRect.size.width)
+        {
+            newWidth = self.limitRect.size.width + self.limitRect.origin.x - newX;
+        }
+        if (newY < self.limitRect.origin.y)
+        {
+            deltaH = self.frame.origin.y - self.limitRect.origin.y;
+            newHeight = self.frame.size.height + deltaH;
+            newY = self.limitRect.origin.y;
+        }
+        if (newY + newHeight > self.limitRect.origin.y + self.limitRect.size.height)
+        {
+            newHeight = self.limitRect.size.height+self.limitRect.origin.y - newY;
+        }
+        
+        // 大画面移入状态判断
+        CGRect rectFrame = CGRectMake(newX, newY, newWidth, newHeight);
+        if (![_myDelegate isISXWinCanReachBigPicture:rectFrame])
+        {
+            // 重新绘制视图
+            self.frame = CGRectMake(newX, newY, newWidth, newHeight);
+            touchBegin = touchPoint;
+        }
+    }
 }
 
 // 确定点击时手指在那个Anchor附近
 - (skyResizableAnchorPoint)anchorPointForTouchLocation:(CGPoint)touchPoint
 {
-    return resizableAnchorPointLowerLeft;
+    // 制作位置与锚点对
+    skyPointAndResizableAnchorPoint upperLeft = {CGPointMake(0.0, 0.0), resizableAnchorPointUpperLeft};
+    skyPointAndResizableAnchorPoint upperMiddle = {CGPointMake(self.bounds.size.width/2, 0.0), resizableAnchorPointUpperMiddle};
+    skyPointAndResizableAnchorPoint upperRight = {CGPointMake(self.bounds.size.width, 0.0), resizableAnchorPointUpperRight};
+    skyPointAndResizableAnchorPoint middleLeft = {CGPointMake(0, self.bounds.size.height/2), resizableAnchorPointMiddleLeft};
+    skyPointAndResizableAnchorPoint middleRight = {CGPointMake(self.bounds.size.width, self.bounds.size.height/2), resizableAnchorPointMiddleRight};
+    skyPointAndResizableAnchorPoint lowerLeft = {CGPointMake(0, self.bounds.size.height), resizableAnchorPointLowerLeft};
+    skyPointAndResizableAnchorPoint lowerMiddle = {CGPointMake(self.bounds.size.width/2, self.bounds.size.height), resizableAnchorPointLowerMiddle};
+    skyPointAndResizableAnchorPoint lowerRight = {CGPointMake(self.bounds.size.width, self.bounds.size.height), resizableAnchorPointLowerRight};
+    skyPointAndResizableAnchorPoint center = {CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2), resizableAnchorPointNone};
+    
+    // 计算点击位置与锚点最短距离点
+    skyPointAndResizableAnchorPoint points[9] = {upperLeft, upperMiddle, upperRight, middleLeft, middleRight, lowerLeft, lowerMiddle, lowerRight, center};
+    
+    CGFloat smallestDistance = MAXFLOAT;
+    skyPointAndResizableAnchorPoint closestPoint = center;
+    for (int i = 0; i < 9; i++)
+    {
+        CGFloat distance = skyDistanceWithTwoPoints(touchPoint, points[i].point);
+        if (distance < smallestDistance)
+        {
+            smallestDistance = distance;
+            closestPoint = points[i];
+        }
+    }
+    
+    return closestPoint.anchor;
 }
 
 // 判断是移动还是缩放
 - (BOOL)isResizing
 {
-    return true;
+    return (anchor.adjustX || anchor.adjustY || anchor.adjustW || anchor.adjustH);
 }
 
 // 获取大小数据
@@ -459,43 +618,90 @@ static skyResizableAnchorPoint resizableAnchorPointLowerMiddle = {0.0, 0.0, 1.0,
 // 切换矩阵
 - (void)switchSignal:(int)nType toChannel:(int)nChannel
 {
+    // 设置界面信号
+    [self setSignal:nType andChannel:nChannel];
     
+    // 代理调用
+    [_myDelegate isxWin:self Signal:nType SwitchTo:nChannel];
 }
 
 // 窗口大小改变
 - (void)splitWinStartX:(int)startX StartY:(int)startY HCount:(int)nHcount VCount:(int)nVCount
 {
+    _startPoint.x = startX;
+    _startPoint.y = startY;
+    _winSize.width = nHcount;
+    _winSize.height = nVCount;
     
+    CGRect frameRect;
+    frameRect.origin.x = _startCanvas.x + _startPoint.x * nBasicWinWidth;
+    frameRect.origin.y = _startCanvas.y + _startPoint.y * nBasicWinHeight;
+    frameRect.size.width = _winSize.width * nBasicWinWidth;
+    frameRect.size.height = _winSize.height * nBasicWinHeight;
+    [self setFrame:frameRect];
+    
+    // 判断大画面
+    if ((_winSize.width == 1) && (_winSize.height == 1))
+    {
+        bBigPicture = NO;
+    }
+    else
+    {
+        bBigPicture = YES;
+    }
+    
+    // 更新大画面状态数组
+    [_myDelegate updateBigPicStatusWithStart:_startPoint andSize:_winSize withWinNum:nWinNumber];
 }
 
 // CVBS新建
 - (void)newWithCVBS
 {
+    // 信号设置
+    [self setSignal:SIGNAL_CVBS andChannel:nWinNumber];
     
+    // 窗口回到单屏状态
+    [self setISXWinToNormalStatus];
+    [self splitWinStartX:(nWinNumber-1)%nColumns StartY:(nWinNumber-1)/nColumns HCount:1 VCount:1];
 }
 
 // VGA新建
 - (void)newWithVGA
 {
+    // 信号设置
+    [self setSignal:SIGNAL_VGA andChannel:nWinNumber];
     
+    // 窗口回到单屏状态
+    [self setISXWinToNormalStatus];
+    [self splitWinStartX:(nWinNumber-1)%nColumns StartY:(nWinNumber-1)/nColumns HCount:1 VCount:1];
 }
 
 // HDMI新建
 - (void)newWithHDMI
 {
+    // 信号设置
+    [self setSignal:SIGNAL_HDMI andChannel:nWinNumber];
     
+    // 窗口回到单屏状态
+    [self setISXWinToNormalStatus];
+    [self splitWinStartX:(nWinNumber-1)%nColumns StartY:(nWinNumber-1)/nColumns HCount:1 VCount:1];
 }
 
 // DVI新建
 - (void)newWithDVI
 {
+    // 信号设置
+    [self setSignal:SIGNAL_DVI andChannel:nWinNumber];
     
+    // 窗口回到单屏状态
+    [self setISXWinToNormalStatus];
+    [self splitWinStartX:(nWinNumber-1)%nColumns StartY:(nWinNumber-1)/nColumns HCount:1 VCount:1];
 }
 
 // 保存状态到文件
 - (void)saveISXWinToFile
 {
-    
+    [_myDataSource saveISXWinDataSource:self];
 }
 
 // 显示外框
@@ -519,33 +725,138 @@ static skyResizableAnchorPoint resizableAnchorPointLowerMiddle = {0.0, 0.0, 1.0,
 }
 
 // 结束缩放后重新刷新窗口 --- 让窗口满屏
-- (void)reCaculateSCXWinToFullScreen
+- (void)reCaculateISXWinToFullScreen
 {
+    int startX = 0, startY = 0, HCount = 0, VCount = 0;
     
+    // 根据八个方位计算棋盘值
+    switch (anchor.direction) {
+        case 0: // 正中
+            startX = _startPoint.x;
+            startY = _startPoint.y;
+            HCount = _winSize.width;
+            VCount = _winSize.height;
+            break;
+            
+        case 1: // 左上
+        case 2: // 上
+        case 8: // 左
+            // 棋盘值计算
+            startX = (int)((self.frame.origin.x-_startCanvas.x) / nBasicWinWidth);
+            startY = (int)((self.frame.origin.y-_startCanvas.y) / nBasicWinHeight);
+            HCount = (int)((self.frame.origin.x + self.frame.size.width - _startCanvas.x) / nBasicWinWidth + 0.9f) - startX;
+            VCount = (int)((self.frame.origin.y + self.frame.size.height - _startCanvas.y) / nBasicWinHeight +0.9f) - startY;
+            if (HCount == 0) HCount = 1;
+            if (VCount == 0) VCount = 1;
+            break;
+            
+        case 3: // 右上
+        case 4: // 右
+            startX = _startPoint.x;
+            startY = (int)((self.frame.origin.y-_startCanvas.y) / nBasicWinHeight);
+            HCount = (int)((self.frame.origin.x + self.frame.size.width - _startCanvas.x) / nBasicWinWidth + 0.9f) - startX;
+            VCount = (self.frame.origin.y + self.frame.size.height - _startCanvas.y) / nBasicWinHeight - startY;
+            break;
+            
+        case 5: // 右下
+        case 6: // 下
+            startX = _startPoint.x;
+            startY = _startPoint.y;
+            HCount = (int)(self.frame.size.width / nBasicWinWidth + 0.9f);
+            VCount = (int)(self.frame.size.height / nBasicWinHeight + 0.9f);
+            if (VCount == 0) VCount = 1;
+            if (HCount == 0) HCount = 1;
+            break;
+            
+        case 7: // 左下
+            startX = (int)((self.frame.origin.x-_startCanvas.x) / nBasicWinWidth);
+            startY = _startPoint.y;
+            HCount = (self.frame.origin.x + self.frame.size.width - _startCanvas.x) / nBasicWinWidth - startX;
+            VCount = (int)((self.frame.origin.y + self.frame.size.height - _startCanvas.y) / nBasicWinHeight + 0.9f) - startY;
+            if (VCount == 0) VCount = 1;
+            if (HCount == 0) HCount = 1;
+            break;
+    }
+    
+    // 判断是否改变位置或大小
+    if ((startX == (int)_startPoint.x) && (startY == (int)_startPoint.y)
+        && (HCount == (int)_winSize.width) && (VCount == (int)_winSize.height))
+        isNotChange = YES;
+    else
+        isNotChange = NO;
+    
+    // 大画面情况下屏蔽窗口更新
+    if (!bBigPicture)
+    {
+        // 更新窗口位置
+        [self splitWinStartX:startX StartY:startY HCount:HCount VCount:VCount];
+    }
+    
+    [self updateWindowUI];
 }
 
 // 窗口单屏状态
 - (void)setISXWinToSingleStatus
 {
+    CGPoint point = CGPointMake((nWinNumber-1) % nColumns, (nWinNumber-1) / nColumns);
+    CGSize size = CGSizeMake(1, 1);
     
+    // 设置窗口为普通模式
+    [self setISXWinToNormalStatus];
+    
+    // 设置单屏显示
+    [self splitWinStartX:point.x StartY:point.y HCount:size.width VCount:size.height];
 }
 
 // 窗口全屏状态
 - (void)setISXWinToFullStatus
 {
+    CGPoint point = CGPointMake(0, 0);
+    CGSize size = CGSizeMake(nColumns, nRows);
     
+    // 设置窗口满屏状态
+    [self splitWinStartX:point.x StartY:point.y HCount:size.width VCount:size.height];
+}
+
+// 窗口普通状态
+- (void)setISXWinToNormalStatus
+{
+    [_winNumberLabel setHidden:NO];
+    [_signalLabel setTextColor:[UIColor whiteColor]];
+    
+    [_isxPop.tableView reloadData];
 }
 
 // 保存当前窗口的情景模式
 - (void)saveISXWinModelStatusAtIndex:(int)nIndex
 {
-    
+    [_myDataSource saveISXWinModelDataSource:self AtIndex:nIndex];
 }
 
 // 加载窗口情景模式
 - (void)loadISXWinModelStatusAtIndex:(int)nIndex
 {
+    // 反序列化
+    [_myDataSource loadISXWinModelDataSource:self AtIndex:nIndex];
     
+    // 信号源切换界面初始化
+    _isxPop.signalView = [[skySignalViewController alloc] initWithStyle:UITableViewStylePlain];
+    _isxPop.signalView.myDataSource = [_myDelegate isxWinSignalDataSource];
+    _isxPop.signalView.myDelegate = self;
+    [_isxPop.signalView initialSignalTable];
+    
+    // 更新窗口UI
+    [self updateWindowUI];
+}
+
+#pragma mark - UIGestureRecognizer Delegate
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    if ([touch.view isKindOfClass:[UIButton class]])
+    {
+        return NO;
+    }
+    return YES;
 }
 
 @end
