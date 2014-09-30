@@ -400,6 +400,8 @@
         [pArrayChess insertObject:[NSNumber numberWithInt:i+1] atIndex:i];
     
     // 后台数据删除
+    [_appDelegate.theApp deleteISXWindowData];
+    [_appDelegate.theApp deleteAllModelData];
     
     /*********************** 客户区上视图移除 ***********************/
     // 移除主控区底图
@@ -779,7 +781,7 @@
 {
     skyISXWin *isxWin = (skyISXWin *)sender;
     
-    if (isxWin.getISXWinBigPicture)
+    if (!isxWin.getISXWinBigPicture)
     {
         // 大画面信号切换
         [_spliceTVProtocol innerSXSingleScreen:isxWin.winNumber SwitchSrcType:isxWin.winSourceType toSrcPath:isxWin.winChannelNumber];

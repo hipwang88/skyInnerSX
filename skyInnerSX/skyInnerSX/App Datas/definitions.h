@@ -40,7 +40,7 @@ typedef struct skyPointAndResizableAnchorPoint
 
 //
 // 命令延迟
-#define SKY_SEND_DELAY          300
+#define SKY_SEND_DELAY          500
 
 //
 // 调试输出

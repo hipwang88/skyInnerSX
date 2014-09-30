@@ -113,6 +113,11 @@
 - (void)saveModelImage:(UIImage *)image toIndex:(NSInteger)nIndex;
 // 情景保存图片删除
 - (void)deleteModelImageAtIndex:(NSInteger)nIndex;
+// 删除普通窗口数据文件
+- (void)deleteISXWindowData;
+// 删除情景模式记录
+- (void)deleteAllModelData;
+
 
 /////////////////////////// Ends ///////////////////////////////////
 

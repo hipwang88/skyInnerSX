@@ -129,6 +129,26 @@
     [_appModelSaveImageArray replaceObjectAtIndex:nIndex withObject:image];
 }
 
+// 删除普通窗口数据文件
+- (void)deleteISXWindowData
+{
+    // 一个叠加窗口一个保存文件 文件名：skySubWin_X X-编号
+    NSString *appDefaultsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *appStandardDir = [appDefaultsPath stringByAppendingPathComponent:@"AppStandard"];
+    
+    [[NSFileManager defaultManager] removeItemAtPath:appStandardDir error:nil];
+}
+
+// 删除情景模式记录
+- (void)deleteAllModelData
+{
+    for (int i = 0; i < 18; i++)
+    {
+        [self deleteModelImageAtIndex:i];
+    }
+}
+
+
 #pragma mark - Private Methods
 // 应用程序状态类初始化
 - (void)appStatusInit
