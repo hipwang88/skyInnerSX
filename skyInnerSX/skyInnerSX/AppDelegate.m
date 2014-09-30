@@ -42,6 +42,7 @@
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
     // 数据存储
     [_theApp appStatusSave];
+    [self.appViewController appStatusSave];
     // 网络接入后台
     [_appViewController.spliceTVProtocol serviceEnterBackground];
 }

@@ -119,6 +119,16 @@
 }
 
 #pragma mark - Public Methods
+// 状态保存
+- (void)appStatusSave
+{
+    for (skyISXWin *isxWin in _isxWinContainer)
+    {
+        [isxWin saveISXWinToFile];
+    }
+    
+    [_modelVC saveModelStatusToFile];
+}
 
 #pragma mark - Private Methods(Initializeres)
 // 1.初始化导航栏
@@ -233,6 +243,13 @@
         [self.view addSubview:isxWin];
     }
     currentISXWin = [_isxWinContainer objectAtIndex:0];
+    
+    // 大画面置顶
+    for (skyISXWin *isxWin in _isxWinContainer)
+    {
+        if ([isxWin getISXWinBigPicture])
+            [self.view bringSubviewToFront:isxWin];
+    }
 }
 
 // 4.初始化扩展功能视图
