@@ -8,6 +8,7 @@
 
 #import "skyInnerViewController.h"
 #import "AppDelegate.h"
+#import "skyExternViewController+skyExternViewCategory.h"
 
 @interface skyInnerViewController ()
 {
@@ -27,6 +28,9 @@
 
 // 应用程序委托对象
 @property (weak, nonatomic) AppDelegate *appDelegate;
+
+// 扩展视图状态
+@property (assign, nonatomic) BOOL externVisible;
 
 ////////////////////////// Methods //////////////////////////////
 /****************** 初始化处理 *******************/
@@ -79,9 +83,11 @@
 @synthesize modelButton = _modelButton;
 @synthesize externButton = _externButton;
 @synthesize appDelegate = _appDelegate;
+@synthesize externWin = _externWin;
 @synthesize underPaint = _underPaint;
 @synthesize isxWinContainer = _isxWinContainer;
 @synthesize spliceTVProtocol = _spliceTVProtocol;
+@synthesize externVisible = _externVisible;
 
 #pragma mark - ViewController Methods
 
@@ -232,7 +238,8 @@
 // 4.初始化扩展功能视图
 - (void)initializeExternView
 {
-    
+    _externWin = [[skyExternWin alloc] init];
+    _externWin.delegate = self;
 }
 
 // 5.初始化运行数据
@@ -300,7 +307,22 @@
 // 视图扩展按钮事件函数
 - (void)externButtonEventHandler:(id)paramSender
 {
-    NSLog(@"Extern");
+    [self.currentPopover dismissPopoverAnimated:YES];
+    
+    if (!self.externVisible)
+    {
+        self.topExternViewController = _externWin;
+        [self.externButton setStyle:UIBarButtonItemStylePlain];                             // 设置按下状态
+        [self.externButton setImage:[UIImage imageNamed:@"toolbarDrawModeHide.png"]];       // 设置背景图片
+        self.externVisible = YES;
+    }
+    else
+    {
+        [self.externWin hideExternWin];
+        [self.externButton setStyle:UIBarButtonItemStylePlain];                             // 设置普通状态
+        [self.externButton setImage:[UIImage imageNamed:@"toolbarDrawMode.png"]];           // 设置背景图片
+        self.externVisible = NO;
+    }
 }
 
 // 获取窗口左上角所在的索引
@@ -872,6 +894,63 @@
 {
     // 替换情景模式图片数组
     [_appDelegate.theApp deleteModelImageAtIndex:nIndex];
+}
+
+#pragma mark - skyExternWin Delegate
+// 模拟信号新建代理函数
+- (void)newSignalWithCVBS
+{
+    // 快速枚举容器
+    for (skyISXWin *isxWin in _isxWinContainer)
+    {
+        [isxWin newWithCVBS];
+        [isxWin updateWindowUI];
+    }
+    
+    // 协议发送
+    [_spliceTVProtocol innerSXModelNewWithCVBS];
+}
+
+// VGA信号新建代理函数
+- (void)newSignalWithVGA
+{
+    // 快速枚举容器
+    for (skyISXWin *isxWin in _isxWinContainer)
+    {
+        [isxWin newWithVGA];
+        [isxWin updateWindowUI];
+    }
+    
+    // 协议发送
+    [_spliceTVProtocol innerSXModelNewWithVGA];
+}
+
+// 高清信号新建代理函数
+- (void)newSignalWithHDMI
+{
+    // 快速枚举容器
+    for (skyISXWin *isxWin in _isxWinContainer)
+    {
+        [isxWin newWithHDMI];
+        [isxWin updateWindowUI];
+    }
+    
+    // 协议发送
+    [_spliceTVProtocol innerSXModelNewWithHDMI];
+}
+
+// DVI信号新建代理函数
+- (void)newSignalWithDVI
+{
+    // 快速枚举容器
+    for (skyISXWin *isxWin in _isxWinContainer)
+    {
+        [isxWin newWithDVI];
+        [isxWin updateWindowUI];
+    }
+    
+    // 协议发送
+    [_spliceTVProtocol innerSXModelNewWithHDMI];
 }
 
 @end

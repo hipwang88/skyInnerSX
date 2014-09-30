@@ -16,9 +16,11 @@
 #import "skyISXWin.h"
 #import "skyUnderPaint.h"
 #import "skyInner6M48TVSDK.h"
+#import "skyExternWin.h"
 
 // class skyInnerViewController
 // delegate:
+//          skyExternWinDelegate            --- 新建视图代理
 //          skySettingConnectionVCDelegate  --- 通信连接代理
 //          skySettingConfigVCDelegate      --- 规格设置代理
 //          skySettingUnitVCDelegate        --- 屏幕控制设置代理
@@ -26,7 +28,7 @@
 //          skyISXWinDelegate               --- 拼接窗口代理
 //          skyModelViewControllerDelegate  --- 情景模式代理
 //
-@interface skyInnerViewController : UIViewController<skySettingConnectionVCDelegate,skySettingConfigVCDelegate,skySettingUnitVCDelegate,skyUnitSelectionVCDelegate,skyISXWinDelegate,skyModelViewControllerDelegate>
+@interface skyInnerViewController : UIViewController<skyExternWinDelegate,skySettingConnectionVCDelegate,skySettingConfigVCDelegate,skySettingUnitVCDelegate,skyUnitSelectionVCDelegate,skyISXWinDelegate,skyModelViewControllerDelegate>
 {
     skyISXWin   *currentISXWin;         // 当前控制窗口
 }
@@ -41,6 +43,8 @@
 @property (strong, nonatomic) skySettingMainVC *settingMainVC;                  // 设置主视图控制器
 @property (strong, nonatomic) skyModelViewController *modelVC;                  // 情景模式主视图控制器
 
+// 扩展视图
+@property (strong, nonatomic) skyExternWin *externWin;
 // 拼接客户区底图
 @property (strong, nonatomic) skyUnderPaint *underPaint;
 // 拼接单元组
