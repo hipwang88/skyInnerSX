@@ -933,7 +933,9 @@ static CGFloat skyDistanceWithTwoPoints(CGPoint point1, CGPoint point2)
 // 信号切换
 - (void)haveSignal:(int)nSourceType SwitchTo:(int)nSourcePath
 {
+    [_popView dismissPopoverAnimated:YES];
     
+    [self switchSignal:nSourceType toChannel:nSourcePath];
 }
 
 
