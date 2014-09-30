@@ -178,7 +178,9 @@
     mySettingUnit.selectionView.myDataSource = _appDelegate.theApp;
     
     /****************** 情景模式弹出视图 **********************/
-    self.modelVC = [[skyModelViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    self.modelVC = [[skyModelViewController alloc] initWithStyle:UITableViewStylePlain];
+    self.modelVC.myDelegate = self;
+    self.modelVC.myDataSource = _appDelegate.theApp;
     self.modelsNavigation = [[UINavigationController alloc] initWithRootViewController:_modelVC];
     self.modelsPopover = [[UIPopoverController alloc] initWithContentViewController:_modelsNavigation];
     self.modelsPopover.popoverContentSize = CGSizeMake(320.0f, 680.0f);
@@ -774,6 +776,102 @@
 - (id<skyISXWinPopoverVCDataSource>)isxWinPopoverVCDataSource
 {
     return _appDelegate.theApp;
+}
+
+#pragma mark - skyModelViewController Delegate
+// 加载情景模式
+- (void)loadModelStatus:(int)nIndex
+{
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // 界面处理
+    // 先移除以前的窗口 移除普通窗口
+    for (skyISXWin *isxWin in _isxWinContainer)
+        [isxWin removeFromSuperview];
+    [_isxWinContainer removeAllObjects];            // 移除容器内数据
+    
+    // 添加模式内普通窗口
+    CGRect isxWinRect;
+    CGRect limitRect = CGRectMake(startCanvas.x, startCanvas.y, nColumns*nWinWidth, nRows*nWinHeight);
+    NSInteger count = nRows * nColumns;
+    for (int i = 0; i < count; i++)
+    {
+        // 计算大小位置
+        int x = i % nColumns;
+        int y = i / nColumns;
+        isxWinRect = CGRectMake(startCanvas.x+x*nWinWidth, startCanvas.y+y*nWinHeight, nWinWidth, nWinHeight);
+        
+        // 初始化漫游窗口
+        skyISXWin *isxWin = [[skyISXWin alloc] initWithFrame:isxWinRect withRow:nRows andColumn:nColumns];
+        isxWin.myDelegate = self;
+        isxWin.myDataSource = _appDelegate.theApp;
+        isxWin.startCanvas = startCanvas;
+        isxWin.limitRect = limitRect;
+        isxWin.winNumber = i+1;
+        // 窗口值初始
+        [isxWin loadISXWinModelStatusAtIndex:nIndex+1];
+        [isxWin hideBoarderView];
+        
+        // 将漫游窗口加入容器数组
+        [self.isxWinContainer addObject:isxWin];
+        [self.view addSubview:isxWin];
+    }
+    currentISXWin = [_isxWinContainer objectAtIndex:0];
+    
+    // 大画面置顶显示
+    for (skyISXWin *isxWin in _isxWinContainer)
+    {
+        if ([isxWin getISXWinBigPicture])
+            [self.view bringSubviewToFront:isxWin];
+    }
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    // 消除弹出窗口
+    [_modelsPopover dismissPopoverAnimated:YES];
+    
+    // 情景模式调用协议 --- 加载
+    // 1.拆分所有大画面
+    //[_spliceTVProtocol innerSXLoadModelSplit];
+    // 2.加载屏幕参数
+    [_spliceTVProtocol innerSXLoadModelParameter:nIndex+1];
+    // 3.加载信号参数
+    [_spliceTVProtocol innerSXLoadModel:nIndex+1];
+    
+}
+
+// 保存情景模式
+- (void)shootAppToImage:(int)nIndex
+{
+    // 情景模式保存协议发送
+    [_spliceTVProtocol innerSXModelSave:nIndex+1];
+    
+    
+    // 截取控制区域显示图像
+    UIGraphicsBeginImageContext(self.view.frame.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(context);
+    [self.view.layer renderInContext:context];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    // 保存模式图片到文件
+    NSString *appDefaultsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *appStandardDir = [appDefaultsPath stringByAppendingPathComponent:@"ModelSavedImages"];
+    [[NSFileManager defaultManager] createDirectoryAtPath:appStandardDir withIntermediateDirectories:YES attributes:nil error:nil];
+    NSString *appDefaultFileName = [appStandardDir stringByAppendingPathComponent:[NSString stringWithFormat:@"model_%d.png",nIndex+1]];
+    [UIImagePNGRepresentation(image) writeToFile:appDefaultFileName atomically:YES];
+    
+    // 替换情景模式图片数组
+    [_appDelegate.theApp saveModelImage:image toIndex:nIndex];
+    
+    // 情景模式配置文件保存
+    [self saveModelToFileAtIndex:nIndex+1];
+}
+
+// 删除情景模式
+- (void)removeModelImage:(int)nIndex
+{
+    // 替换情景模式图片数组
+    [_appDelegate.theApp deleteModelImageAtIndex:nIndex];
 }
 
 @end

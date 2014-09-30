@@ -106,6 +106,29 @@
     _appScreenHeight = nTempHeight * _appScreenRows * 2;
 }
 
+// 情景保存图片存储
+- (void)saveModelImage:(UIImage *)image toIndex:(NSInteger)nIndex
+{
+    NSString *modelKey = [NSString stringWithFormat:@"Model-%ld",nIndex+1];
+    // 将情景标志置换
+    [_appModelSaveDic setObject:@"1" forKey:modelKey];
+    
+    // 替换图片数组
+    [_appModelSaveImageArray replaceObjectAtIndex:nIndex withObject:image];
+}
+
+// 情景保存图片删除
+- (void)deleteModelImageAtIndex:(NSInteger)nIndex
+{
+    NSString *modelKey = [NSString stringWithFormat:@"Model-%ld",nIndex+1];
+    // 将情景标志置换
+    [_appModelSaveDic setObject:@"0" forKey:modelKey];
+    
+    UIImage *image = [UIImage imageNamed:@"notsaved.png"];
+    // 替换图片数组
+    [_appModelSaveImageArray replaceObjectAtIndex:nIndex withObject:image];
+}
+
 #pragma mark - Private Methods
 // 应用程序状态类初始化
 - (void)appStatusInit
@@ -228,7 +251,55 @@
 // 初始化情景模式数据
 - (void)initModelDatas
 {
+    NSString *appDefaultsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *appDefaultDir = [appDefaultsPath stringByAppendingPathComponent:@"AppStatus"];
+    NSString *appModelImageDir = [appDefaultsPath stringByAppendingPathComponent:@"ModelSavedImages"];
+    [[NSFileManager defaultManager] createDirectoryAtPath:appDefaultDir withIntermediateDirectories:YES attributes:nil error:nil];
+    [[NSFileManager defaultManager] createDirectoryAtPath:appModelImageDir withIntermediateDirectories:YES attributes:nil error:nil];
+    NSString *appDefaultFileName = [appDefaultDir stringByAppendingPathComponent:APPMODELSAVEFILE];
     
+    // 从文件中初始化字典
+    self.appModelSaveDic = [[NSMutableDictionary alloc] initWithContentsOfFile:appDefaultFileName];
+    // 初始化情景图片数组
+    self.appModelSaveImageArray = [[NSMutableArray alloc] init];
+    
+    // 如果没有此文件
+    if (!self.appModelSaveDic)
+    {
+        // 创建此字典
+        self.appModelSaveDic = [[NSMutableDictionary alloc] init];
+        
+        // 默认数值设定
+        for (int i = 1; i <= 18; i++)
+        {
+            NSString *modelKey = [NSString stringWithFormat:@"Model-%d",i];
+            int nValue = 0;
+            
+            // 写入字典
+            [_appModelSaveDic setObject:[NSString stringWithFormat:@"%d",nValue] forKey:modelKey];
+        }
+    }
+    
+    // 提取图片数组
+    for (int i = 1; i <= 18; i++)
+    {
+        NSString *modelKey = [NSString stringWithFormat:@"Model-%d",i];
+        NSInteger nValue = [[_appModelSaveDic objectForKey:modelKey] integerValue];
+        UIImage *image;
+        NSString *imagePath = [appModelImageDir stringByAppendingPathComponent:[NSString stringWithFormat:@"model_%d.png",i]];
+        
+        switch (nValue) {
+            case 0: // 情景未保存
+                image = [UIImage imageNamed:@"notsaved.png"];
+                [_appModelSaveImageArray addObject:image];
+                break;
+                
+            case 1: // 情景已经保存
+                image = [UIImage imageWithContentsOfFile:imagePath];
+                [_appModelSaveImageArray addObject:image];
+                break;
+        }
+    }
 }
 
 // 应用程序基本数据保存
@@ -542,13 +613,64 @@
 // 窗口的情景数据序列化到文件
 - (void)saveISXWinModelDataSource:(id)sender AtIndex:(NSInteger)nIndex
 {
+    skyISXWin *isxWin = (skyISXWin *)sender;
+    NSInteger nWinNum = isxWin.winNumber;
     
+    // 创建模式文件夹
+    NSString *modelPath = [NSString stringWithFormat:@"ModelDir_%ld",nIndex];
+    NSString *appDefaultsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *modelDirPath = [appDefaultsPath stringByAppendingPathComponent:modelPath];
+    [[NSFileManager defaultManager] createDirectoryAtPath:modelDirPath withIntermediateDirectories:YES attributes:nil error:nil];
+    NSString *savePath = [modelDirPath stringByAppendingPathComponent:[NSString stringWithFormat:@"skyISXWin_%ld",nWinNum]];
+    
+    // 保存窗口数据
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    // 窗口数据写入字典
+    [dict setObject:[NSString stringWithFormat:@"%f",isxWin.startPoint.x] forKey:kISXWINSTARTX];
+    [dict setObject:[NSString stringWithFormat:@"%f",isxWin.startPoint.y] forKey:kISXWINSTARTY];
+    [dict setObject:[NSString stringWithFormat:@"%f",isxWin.winSize.width] forKey:kISXWINSIZEW];
+    [dict setObject:[NSString stringWithFormat:@"%f",isxWin.winSize.height] forKey:kISXWINSIZEH];
+    [dict setObject:[NSString stringWithFormat:@"%d",[isxWin getISXWinMove] ? 1:0] forKey:kISXWINMOVE];
+    [dict setObject:[NSString stringWithFormat:@"%d",[isxWin getISXWinScale] ? 1:0] forKey:kISXWINSCALE];
+    [dict setObject:[NSString stringWithFormat:@"%d",[isxWin getISXWinBigPicture] ? 1:0] forKey:kISXWINBIGPIC];
+    [dict setObject:[NSString stringWithFormat:@"%d",isxWin.winSourceType] forKey:kISXWINSIGNALTYPE];
+    [dict setObject:[NSString stringWithFormat:@"%d",isxWin.winChannelNumber] forKey:kISXWINCHANNELNUM];
+    [dict setObject:[NSString stringWithFormat:@"%d",[isxWin getISXWinBasicWinWidth]] forKey:kISXWINBWIDTH];
+    [dict setObject:[NSString stringWithFormat:@"%d",[isxWin getISXWinBasicWinHeight]] forKey:kISXWINBHEIGHT];
+    [dict setObject:[NSString stringWithFormat:@"%d",[isxWin getISXWinCurrentWinWidth]] forKey:kISXWINCWIDTH];
+    [dict setObject:[NSString stringWithFormat:@"%d",[isxWin getISXWinCurrentWinHeight]] forKey:kISXWINCHEIGHT];
+    
+    // 将字典数据写入文件
+    [dict writeToFile:savePath atomically:YES];
 }
 
 // 反序列化窗口情景模式
 - (void)loadISXWinModelDataSource:(id)sender AtIndex:(NSInteger)nIndex
 {
+    skyISXWin *isxWin = (skyISXWin *)sender;
+    NSInteger nWinNum = isxWin.winNumber;
     
+    // 创建模式文件夹
+    NSString *modelPath = [NSString stringWithFormat:@"ModelDir_%ld",nIndex];
+    NSString *appDefaultsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *modelDirPath = [appDefaultsPath stringByAppendingPathComponent:modelPath];
+    [[NSFileManager defaultManager] createDirectoryAtPath:modelDirPath withIntermediateDirectories:YES attributes:nil error:nil];
+    NSString *savePath = [modelDirPath stringByAppendingPathComponent:[NSString stringWithFormat:@"skyISXWin_%ld",nWinNum]];
+    
+    // 字典
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:savePath];
+    
+    isxWin.startPoint = CGPointMake([[dict objectForKey:kISXWINSTARTX] floatValue], [[dict objectForKey:kISXWINSTARTY] floatValue]);
+    isxWin.winSize = CGSizeMake([[dict objectForKey:kISXWINSIZEW] floatValue], [[dict objectForKey:kISXWINSIZEH] floatValue]);
+    [isxWin setISXWinMove:[[dict objectForKey:kISXWINMOVE] intValue] == 1 ? YES : NO];
+    [isxWin setISXWinScale:[[dict objectForKey:kISXWINSCALE] intValue] == 1 ? YES : NO];
+    [isxWin setISXWinBigPicture:[[dict objectForKey:kISXWINBIGPIC] intValue] == 1 ? YES : NO];
+    isxWin.winSourceType = [[dict objectForKey:kISXWINSIGNALTYPE] intValue];
+    isxWin.winChannelNumber = [[dict objectForKey:kISXWINCHANNELNUM] intValue];
+    [isxWin setISXWinBasicWinWidth:[[dict objectForKey:kISXWINBWIDTH] intValue]];
+    [isxWin setISXWinBasicWinHeight:[[dict objectForKey:kISXWINBHEIGHT] intValue]];
+    [isxWin setISXWinCurrentWinWidth:[[dict objectForKey:kISXWINCWIDTH] intValue]];
+    [isxWin setISXWinCurrentWinHeight:[[dict objectForKey:kISXWINCHEIGHT] intValue]];
 }
 
 #pragma mark - skyCVBSSignalView DataSource
@@ -577,6 +699,35 @@
 - (NSString *)getDVIMatrixAliasAtIndex:(int)nIndex
 {
     return @"";
+}
+
+#pragma mark - skyModelViewController DataSource
+// 获取运行截图
+- (UIImage *)getModelImageAtIndex:(int)nIndex
+{
+    return [_appModelSaveImageArray objectAtIndex:nIndex];
+}
+
+// 保存情景模式状态
+- (void)saveModelDataSource
+{
+    // 存入文件索引
+    NSString *appDefaultsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *appStandardDir = [appDefaultsPath stringByAppendingPathComponent:@"AppStatus"];
+    [[NSFileManager defaultManager] createDirectoryAtPath:appStandardDir withIntermediateDirectories:YES attributes:nil error:nil];
+    NSString *appDefaultFileName = [appStandardDir stringByAppendingPathComponent:APPMODELSAVEFILE];
+    
+    [_appModelSaveDic writeToFile:appDefaultFileName atomically:YES];
+}
+
+// 确认情景模式是否可用
+- (BOOL)isModelCanBeUsedAtIndex:(int)nIndex
+{
+    NSString *modelKey = [NSString stringWithFormat:@"Model-%d",nIndex+1];
+    
+    NSInteger nValue = [[_appModelSaveDic objectForKey:modelKey] integerValue];
+    
+    return (nValue == 1) ? YES : NO;
 }
 
 @end

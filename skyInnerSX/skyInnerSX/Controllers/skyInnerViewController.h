@@ -24,8 +24,9 @@
 //          skySettingUnitVCDelegate        --- 屏幕控制设置代理
 //          skyUnitSelectionVCDelegate      --- 屏幕单元选择代理
 //          skyISXWinDelegate               --- 拼接窗口代理
+//          skyModelViewControllerDelegate  --- 情景模式代理
 //
-@interface skyInnerViewController : UIViewController<skySettingConnectionVCDelegate,skySettingConfigVCDelegate,skySettingUnitVCDelegate,skyUnitSelectionVCDelegate,skyISXWinDelegate>
+@interface skyInnerViewController : UIViewController<skySettingConnectionVCDelegate,skySettingConfigVCDelegate,skySettingUnitVCDelegate,skyUnitSelectionVCDelegate,skyISXWinDelegate,skyModelViewControllerDelegate>
 {
     skyISXWin   *currentISXWin;         // 当前控制窗口
 }

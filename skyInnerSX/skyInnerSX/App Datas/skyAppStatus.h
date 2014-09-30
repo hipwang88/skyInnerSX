@@ -17,6 +17,7 @@
 #import "skyVGASignalView.h"
 #import "skyHDMISignalView.h"
 #import "skyDVISignalView.h"
+#import "skyModelViewController.h"
 
 //
 // Screen Size
@@ -71,8 +72,9 @@
 //              skyISXWinDataSource              --- 拼接窗口数据源
 //              sky**SignalViewDataSource        --- 窗口信号切换视图数据源
 //              skyISXWinPopoverVCDataSource     --- 拼接窗口弹出视图数据源
+//              skyModelViewControllerDataSource --- 情景模式数据源 
 //
-@interface skyAppStatus : NSObject<skySettingConnectionVCDataSource,skySettingConfigVCDataSource,skySettingSignalVCDataSource,skyUnitSelectionVCDataSource,skyUnderPaintDataSource,skyISXWinDataSource,skyCVBSSignalViewDataSource,skyVGASignalViewDataSource,skyHDMISignalViewDataSource,skyDVISignalViewDataSource,skyISXWinPopoverVCDataSource>
+@interface skyAppStatus : NSObject<skySettingConnectionVCDataSource,skySettingConfigVCDataSource,skySettingSignalVCDataSource,skyUnitSelectionVCDataSource,skyUnderPaintDataSource,skyISXWinDataSource,skyCVBSSignalViewDataSource,skyVGASignalViewDataSource,skyHDMISignalViewDataSource,skyDVISignalViewDataSource,skyISXWinPopoverVCDataSource,skyModelViewControllerDataSource>
 
 /////////////////////////// Property ///////////////////////////////
 // 程序基本运行数据字典
@@ -107,6 +109,10 @@
 - (void)appStatusSave;
 // 计算控制区域
 - (void)calculateWorkingArea;
+// 情景保存图片存储
+- (void)saveModelImage:(UIImage *)image toIndex:(NSInteger)nIndex;
+// 情景保存图片删除
+- (void)deleteModelImageAtIndex:(NSInteger)nIndex;
 
 /////////////////////////// Ends ///////////////////////////////////
 
