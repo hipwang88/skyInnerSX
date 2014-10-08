@@ -23,12 +23,16 @@
 - (void)updateBigPicStatusWithStart:(CGPoint)ptStart andSize:(CGSize)szArea withWinNum:(int)nNum;
 // 判断窗口是否遇到大画面
 - (BOOL)isISXWinCanReachBigPicture:(CGRect)rectFrame;
-// 窗口拼接
-- (void)isxWinSpliceScreen:(id)sender;
-// 窗口满屏
+// 窗口拼接 -- 合成大画面
+- (void)isxWinSpliceBigScreen:(id)sender;
+// 窗口拼接 -- 切换大画面信号
+- (void)isxWinSpliceScreenSignalSwitch:(id)sender;
+// 窗口满屏 -- 状态处理
 - (void)isxWinFullScreen:(id)sender;
-// 窗口大画面分解
-- (void)isxWinResolveScreen:(id)sender;
+// 大画面分解 -- 拆分
+- (void)isxWinResolveBigScreen:(id)sender;
+// 大画面分解 -- 状态恢复
+- (void)isxWinResolveStatus:(id)sender;
 // 信号切换
 - (void)isxWin:(id)sender Signal:(int)nType SwitchTo:(int)nChannel;
 // 获取数据代理
@@ -48,9 +52,9 @@
 // 数据序列化到文件
 - (void)saveISXWinDataSource:(id)sender;
 // 窗口的情景数据序列化到文件
-- (void)saveISXWinModelDataSource:(id)sender AtIndex:(NSInteger)nIndex;
+- (void)saveISXWinModelDataSource:(id)sender AtIndex:(int)nIndex;
 // 反序列化窗口情景模式
-- (void)loadISXWinModelDataSource:(id)sender AtIndex:(NSInteger)nIndex;
+- (void)loadISXWinModelDataSource:(id)sender AtIndex:(int)nIndex;
 
 @end
 

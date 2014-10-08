@@ -32,6 +32,8 @@
 - (void)recevieCmd:(int)nLength;
 // 获取发送码字符串
 - (NSString *)sendStringWithLog:(NSString *)stringLog andByteCount:(int)nCount;
+// 获取回读字符串
+- (NSString *)recevieStringWithLog:(NSString *)stringLog andByteCount:(int)nCount;
 
 ///////////////////// Ends /////////////////////////////
 
@@ -90,6 +92,17 @@
     return stringResult;
 }
 
+// 获取回读字符串
+- (NSString *)recevieStringWithLog:(NSString *)stringLog andByteCount:(int)nCount
+{
+    NSString *stringResult;
+    NSData *recevieDatas = [[NSData alloc] initWithBytes:m_nReceiveCmd length:nCount];
+    
+    stringResult = [NSString stringWithFormat:@"6M48内置拼接 开放协议->>>[%@ : %@]",stringLog,recevieDatas];
+    
+    return stringResult;
+}
+
 #pragma mark - Public Methods
 // 初始化开放协议SDK
 - (id)initOpenSCXProtocol
@@ -100,6 +113,7 @@
     {
         // TCP Socket 对象初始
         _tcpSocket = [[AsyncSocket alloc] initWithDelegate:self];
+
         // 发送与接收数据初始化
         memset(m_nSendCmd, 0, 32);
         memset(m_nReceiveCmd, 0, 32);
@@ -538,7 +552,7 @@
 {
     // 协议命令
     memset(m_nSendCmd, 0, 8);
-    m_nSendCmd[0] = 0x80;
+    m_nSendCmd[0] = 0x81;
     switch (nType)
     {
         case SIGNAL_CVBS:
@@ -556,7 +570,7 @@
     }
     m_nSendCmd[2] = nPath;
     m_nSendCmd[3] = nWin;
-    m_nSendCmd[4] = 0xFF;
+    m_nSendCmd[4] = 0x01;
     m_nSendCmd[5] = 0xFF;
     m_nSendCmd[6] = 0xFF;
     m_nSendCmd[7] = 0xFF;
@@ -1023,9 +1037,19 @@
 }
 
 #pragma mark - AsyncSocket Delegate
+- (void)onSocket:(AsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port
+{
+    [_tcpSocket readDataWithTimeout:-1 tag:0];
+}
+
 - (void)onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
 {
-    [_tcpSocket readDataWithTimeout:100 tag:0];
+    Byte *receive = (Byte *)[data bytes];
+    for (int i = 0; i < [data length]; i++)
+        m_nReceiveCmd[i] = receive[i];
+    LOG_MESSAGE([self recevieStringWithLog:@"消息回读" andByteCount:(int)[data length]],nil);
+    
+    [_tcpSocket readDataWithTimeout:-1 tag:0];
 }
 
 @end

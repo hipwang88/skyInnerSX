@@ -22,6 +22,13 @@
 // 情景模式删除
 - (void)handleModelDeleteEvent:(id)sender;
 
+// 情景模式加载 -- 拆分大画面
+- (void)innerLoadModelSplitScreen:(NSString *)nIndex;
+// 情景模式加载 -- 加载屏幕参数
+- (void)innerLoadModelScreenStatus:(NSString *)nIndex;
+// 情景模式加载 -- 加载信号通道
+- (void)innerLoadModelSignalStatus:(NSString *)nIndex;
+
 ////////////////// Ends /////////////////////////
 
 @end
@@ -126,6 +133,24 @@
 
 }
 
+// 情景模式加载 -- 拆分大画面
+- (void)innerLoadModelSplitScreen:(NSString *)nIndex
+{
+    [_myDelegate loadModelSplit:[nIndex intValue]];
+}
+
+// 情景模式加载 -- 加载屏幕参数
+- (void)innerLoadModelScreenStatus:(NSString *)nIndex
+{
+    [_myDelegate loadModelScreenStatus:[nIndex intValue]];
+}
+
+// 情景模式加载 -- 加载信号通道
+- (void)innerLoadModelSignalStatus:(NSString *)nIndex
+{
+    [_myDelegate loadModelSignalStatus:[nIndex intValue]];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -175,7 +200,9 @@
     if ([_myDataSource isModelCanBeUsedAtIndex:nIndex])
     {
         // 调用情景模式
-        [_myDelegate loadModelStatus:nIndex];
+        [self performSelector:@selector(innerLoadModelSplitScreen:) withObject:[NSString stringWithFormat:@"%d",nIndex] afterDelay:0];
+        [self performSelector:@selector(innerLoadModelScreenStatus:) withObject:[NSString stringWithFormat:@"%d",nIndex] afterDelay:0.4];
+        [self performSelector:@selector(innerLoadModelSignalStatus:) withObject:[NSString stringWithFormat:@"%d",nIndex] afterDelay:0.8];
     }
     else
     {

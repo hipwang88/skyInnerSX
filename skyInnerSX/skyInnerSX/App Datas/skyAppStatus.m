@@ -630,17 +630,17 @@
 }
 
 // 窗口的情景数据序列化到文件
-- (void)saveISXWinModelDataSource:(id)sender AtIndex:(NSInteger)nIndex
+- (void)saveISXWinModelDataSource:(id)sender AtIndex:(int)nIndex
 {
     skyISXWin *isxWin = (skyISXWin *)sender;
-    NSInteger nWinNum = isxWin.winNumber;
+    int nWinNum = isxWin.winNumber;
     
     // 创建模式文件夹
-    NSString *modelPath = [NSString stringWithFormat:@"ModelDir_%ld",nIndex];
+    NSString *modelPath = [NSString stringWithFormat:@"ModelDir_%d",nIndex];
     NSString *appDefaultsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *modelDirPath = [appDefaultsPath stringByAppendingPathComponent:modelPath];
     [[NSFileManager defaultManager] createDirectoryAtPath:modelDirPath withIntermediateDirectories:YES attributes:nil error:nil];
-    NSString *savePath = [modelDirPath stringByAppendingPathComponent:[NSString stringWithFormat:@"skyISXWin_%ld",nWinNum]];
+    NSString *savePath = [modelDirPath stringByAppendingPathComponent:[NSString stringWithFormat:@"skyISXWin_%d",nWinNum]];
     
     // 保存窗口数据
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
@@ -664,17 +664,17 @@
 }
 
 // 反序列化窗口情景模式
-- (void)loadISXWinModelDataSource:(id)sender AtIndex:(NSInteger)nIndex
+- (void)loadISXWinModelDataSource:(id)sender AtIndex:(int)nIndex
 {
     skyISXWin *isxWin = (skyISXWin *)sender;
-    NSInteger nWinNum = isxWin.winNumber;
+    int nWinNum = isxWin.winNumber;
     
     // 创建模式文件夹
-    NSString *modelPath = [NSString stringWithFormat:@"ModelDir_%ld",nIndex];
+    NSString *modelPath = [NSString stringWithFormat:@"ModelDir_%d",nIndex];
     NSString *appDefaultsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *modelDirPath = [appDefaultsPath stringByAppendingPathComponent:modelPath];
     [[NSFileManager defaultManager] createDirectoryAtPath:modelDirPath withIntermediateDirectories:YES attributes:nil error:nil];
-    NSString *savePath = [modelDirPath stringByAppendingPathComponent:[NSString stringWithFormat:@"skyISXWin_%ld",nWinNum]];
+    NSString *savePath = [modelDirPath stringByAppendingPathComponent:[NSString stringWithFormat:@"skyISXWin_%d",nWinNum]];
     
     // 字典
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithContentsOfFile:savePath];

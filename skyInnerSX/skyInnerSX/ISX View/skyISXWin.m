@@ -64,6 +64,17 @@ static skyResizableAnchorPoint resizableAnchorPointLowerMiddle = {0.0, 0.0, 1.0,
 // 获取大小数据
 - (NSString *)getWindowSizeStr;
 
+// 画面拼接 -- 合成
+- (void)spliceBigScreen;
+// 画面拼接 -- 信号切换
+- (void)spliceSignalSwitch;
+// 画面满屏 -- 状态处理
+- (void)spliceFullScreenStatus;
+// 画面分解 -- 拆分
+- (void)splitScreen;
+// 画面分解 -- 状态恢复
+- (void)splitScreenStatus;
+
 ///////////////////// Ends ////////////////////////////
 
 @end
@@ -332,7 +343,13 @@ static skyResizableAnchorPoint resizableAnchorPointLowerMiddle = {0.0, 0.0, 1.0,
                 [self reCaculateISXWinToFullScreen];
                 // 拼接协议发送
                 if (!isNotChange)
-                    [_myDelegate isxWinSpliceScreen:self];
+                {
+                    // 延迟处理
+                    // 合成大画面
+                    [self performSelector:@selector(spliceBigScreen) withObject:nil afterDelay:0];
+                    // 信号切换
+                    [self performSelector:@selector(spliceSignalSwitch) withObject:nil afterDelay:0.3];
+                }
                 break;
                 
             default:
@@ -509,6 +526,36 @@ static CGFloat skyDistanceWithTwoPoints(CGPoint point1, CGPoint point2)
 - (NSString *)getWindowSizeStr
 {
     return nil;
+}
+
+// 画面拼接 -- 合成
+- (void)spliceBigScreen
+{
+    [_myDelegate isxWinSpliceBigScreen:self];
+}
+
+// 画面拼接 -- 信号切换
+- (void)spliceSignalSwitch
+{
+    [_myDelegate isxWinSpliceScreenSignalSwitch:self];
+}
+
+// 画面满屏 -- 状态处理
+- (void)spliceFullScreenStatus
+{
+    [_myDelegate isxWinFullScreen:self];
+}
+
+// 画面分解 -- 拆分
+- (void)splitScreen
+{
+    [_myDelegate isxWinResolveBigScreen:self];
+}
+
+// 画面分解 -- 状态恢复
+- (void)splitScreenStatus
+{
+    [_myDelegate isxWinResolveStatus:self];
 }
 
 #pragma mark - skyISXWin Setter & Getter Methods
@@ -901,7 +948,9 @@ static CGFloat skyDistanceWithTwoPoints(CGPoint point1, CGPoint point2)
     if (!bBigPicture)
     {
         // 代理控制器处理全屏消息
-        [_myDelegate isxWinFullScreen:self];
+        [self performSelector:@selector(spliceFullScreenStatus) withObject:nil afterDelay:0];
+        [self performSelector:@selector(spliceBigScreen) withObject:nil afterDelay:0.3];
+        [self performSelector:@selector(spliceSignalSwitch) withObject:nil afterDelay:0.6];
         
         [_popView dismissPopoverAnimated:YES];
     }
@@ -920,7 +969,11 @@ static CGFloat skyDistanceWithTwoPoints(CGPoint point1, CGPoint point2)
         [_popView dismissPopoverAnimated:YES];
         
         // 代理控制器处理大画面分解消息
-        [_myDelegate isxWinResolveScreen:self];
+        [self performSelector:@selector(splitScreen) withObject:nil afterDelay:0];
+        [self performSelector:@selector(splitScreenStatus) withObject:nil afterDelay:0.3];
+        
+        // 单屏处理
+        [self setISXWinToSingleStatus];
     }
     else
     {

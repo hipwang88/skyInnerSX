@@ -712,23 +712,24 @@
     return NO;
 }
 
-// 窗口拼接
-- (void)isxWinSpliceScreen:(id)sender
+// 窗口拼接 -- 合成大画面
+- (void)isxWinSpliceBigScreen:(id)sender
 {
     skyISXWin *isxWin = (skyISXWin *)sender;
     
     int nStartPanel = isxWin.startPoint.y * nColumns + isxWin.startPoint.x;
     
-    // 同步发送
-    _syncBlock = [NSBlockOperation blockOperationWithBlock:^{
-        // 协议发送
-        // 合成
-        [_spliceTVProtocol innerSXSpliceScreen:isxWin.winNumber StartAt:nStartPanel VCountNum:isxWin.winSize.height HCountNum:isxWin.winSize.width];
-        // 信号切换
-        [_spliceTVProtocol innerSXSwitchBigScreen:isxWin.winNumber toSrcType:isxWin.winSourceType atSrcPath:isxWin.winChannelNumber];
-    }];
-    [_syncBlock start];
+    [_spliceTVProtocol innerSXSpliceScreen:isxWin.winNumber StartAt:nStartPanel VCountNum:isxWin.winSize.height HCountNum:isxWin.winSize.width];
 }
+
+// 窗口拼接 -- 切换大画面信号
+- (void)isxWinSpliceScreenSignalSwitch:(id)sender
+{
+    skyISXWin *isxWin = (skyISXWin *)sender;
+    
+    [_spliceTVProtocol innerSXSwitchBigScreen:isxWin.winNumber toSrcType:isxWin.winSourceType atSrcPath:isxWin.winChannelNumber];
+}
+
 
 // 窗口满屏
 - (void)isxWinFullScreen:(id)sender
@@ -751,22 +752,10 @@
     [isxWin setISXWinToFullStatus];
     // 窗口置顶
     [self.view bringSubviewToFront:isxWin];
-    
-    int nStartPanel = isxWin.startPoint.y * nColumns + isxWin.startPoint.x;
-    
-    // 同步发送
-    _syncBlock = [NSBlockOperation blockOperationWithBlock:^{
-        // 协议发送
-        // 合成
-        [_spliceTVProtocol innerSXSpliceScreen:isxWin.winNumber StartAt:nStartPanel VCountNum:isxWin.winSize.height HCountNum:isxWin.winSize.width];
-        // 信号切换
-        [_spliceTVProtocol innerSXSwitchBigScreen:isxWin.winNumber toSrcType:isxWin.winSourceType atSrcPath:isxWin.winChannelNumber];
-    }];
-    [_syncBlock start];
 }
 
-// 窗口大画面分解
-- (void)isxWinResolveScreen:(id)sender
+// 大画面分解 -- 拆分
+- (void)isxWinResolveBigScreen:(id)sender
 {
     skyISXWin *isxWin = (skyISXWin *)sender;
     
@@ -783,18 +772,17 @@
     
     int nStartPanel = isxWin.startPoint.y * nColumns + isxWin.startPoint.x;
     
-    // 同步发送
-    _syncBlock = [NSBlockOperation blockOperationWithBlock:^{
-        // 协议发送
-        // 拆分
-        [_spliceTVProtocol innerSXSplitBigScreen:isxWin.winNumber StartAt:nStartPanel VCountNum:isxWin.winSize.height HCountNum:isxWin.winSize.width];
-        // 状态恢复
-        [_spliceTVProtocol innerSXResolveScreen:isxWin.winNumber StartAt:nStartPanel VCountNum:isxWin.winSize.height HCountNum:isxWin.winSize.width];
-    }];
-    [_syncBlock start];
+    // 拆分协议
+    [_spliceTVProtocol innerSXSplitBigScreen:isxWin.winNumber StartAt:nStartPanel VCountNum:isxWin.winSize.height HCountNum:isxWin.winSize.width];
+}
+
+// 大画面分解 -- 状态恢复
+- (void)isxWinResolveStatus:(id)sender
+{
+    skyISXWin *isxWin = (skyISXWin *)sender;
+    int nStartPanel = isxWin.startPoint.y * nColumns + isxWin.startPoint.x;
     
-    // 单屏分解
-    [isxWin setISXWinToSingleStatus];
+    [_spliceTVProtocol innerSXResolveScreen:isxWin.winNumber StartAt:nStartPanel VCountNum:isxWin.winSize.height HCountNum:isxWin.winSize.width];
 }
 
 // 信号切换
@@ -841,8 +829,9 @@
 }
 
 #pragma mark - skyModelViewController Delegate
-// 加载情景模式
-- (void)loadModelStatus:(int)nIndex
+
+// 加载情景模式 -- 拆分大画面
+- (void)loadModelSplit:(int)nIndex
 {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // 界面处理
@@ -886,24 +875,25 @@
             [self.view bringSubviewToFront:isxWin];
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
     // 消除弹出窗口
     [_modelsPopover dismissPopoverAnimated:YES];
-    
-    // 同步发送
-    _syncBlock = [NSBlockOperation blockOperationWithBlock:^{
-        // 情景模式调用协议 --- 加载
-        // 1.拆分所有大画面
-        //[_spliceTVProtocol innerSXLoadModelSplit];
-        usleep(300);
-        // 2.加载屏幕参数
-        [_spliceTVProtocol innerSXLoadModelParameter:nIndex+1];
-        usleep(300);
-        // 3.加载信号参数
-        [_spliceTVProtocol innerSXLoadModel:nIndex+1];
-        usleep(300);
-    }];
-    [_syncBlock start];
+
+    // 1.拆分所有大画面
+    [_spliceTVProtocol innerSXLoadModelSplit];
+}
+
+// 加载情景模式 -- 加载屏幕状态
+- (void)loadModelScreenStatus:(int)nIndex
+{
+    // 2.加载屏幕参数
+    [_spliceTVProtocol innerSXLoadModelParameter:nIndex+1];
+}
+
+// 加载情景模式 -- 加载信号状态
+- (void)loadModelSignalStatus:(int)nIndex
+{
+    // 3.加载信号参数
+    [_spliceTVProtocol innerSXLoadModel:nIndex+1];
 }
 
 // 保存情景模式

@@ -23,8 +23,12 @@
 // Delegate Protocol
 @protocol skyModelViewControllerDelegate <NSObject>
 
-// 加载情景模式
-- (void)loadModelStatus:(int)nIndex;
+// 加载情景模式 -- 拆分大画面
+- (void)loadModelSplit:(int)nIndex;
+// 加载情景模式 -- 加载屏幕状态
+- (void)loadModelScreenStatus:(int)nIndex;
+// 加载情景模式 -- 加载信号状态
+- (void)loadModelSignalStatus:(int)nIndex;
 // 保存情景模式
 - (void)shootAppToImage:(int)nIndex;
 // 删除情景模式
