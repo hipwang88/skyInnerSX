@@ -32,6 +32,10 @@
 // 扩展视图状态
 @property (assign, nonatomic) BOOL externVisible;
 
+// 同步对象
+@property (strong, nonatomic) NSBlockOperation *syncBlock;
+@property (strong, nonatomic) NSInvocationOperation *syncInvocation;
+
 ////////////////////////// Methods //////////////////////////////
 /****************** 初始化处理 *******************/
 // 1.初始化导航栏
@@ -88,6 +92,7 @@
 @synthesize isxWinContainer = _isxWinContainer;
 @synthesize spliceTVProtocol = _spliceTVProtocol;
 @synthesize externVisible = _externVisible;
+@synthesize syncBlock = _syncBlock;
 
 #pragma mark - ViewController Methods
 
@@ -713,11 +718,16 @@
     skyISXWin *isxWin = (skyISXWin *)sender;
     
     int nStartPanel = isxWin.startPoint.y * nColumns + isxWin.startPoint.x;
-    // 协议发送
-    // 合成
-    [_spliceTVProtocol innerSXSpliceScreen:isxWin.winNumber StartAt:nStartPanel VCountNum:isxWin.winSize.height HCountNum:isxWin.winSize.width];
-    // 信号切换
-    [_spliceTVProtocol innerSXSwitchBigScreen:isxWin.winNumber toSrcType:isxWin.winSourceType atSrcPath:isxWin.winChannelNumber];
+    
+    // 同步发送
+    _syncBlock = [NSBlockOperation blockOperationWithBlock:^{
+        // 协议发送
+        // 合成
+        [_spliceTVProtocol innerSXSpliceScreen:isxWin.winNumber StartAt:nStartPanel VCountNum:isxWin.winSize.height HCountNum:isxWin.winSize.width];
+        // 信号切换
+        [_spliceTVProtocol innerSXSwitchBigScreen:isxWin.winNumber toSrcType:isxWin.winSourceType atSrcPath:isxWin.winChannelNumber];
+    }];
+    [_syncBlock start];
 }
 
 // 窗口满屏
@@ -743,11 +753,16 @@
     [self.view bringSubviewToFront:isxWin];
     
     int nStartPanel = isxWin.startPoint.y * nColumns + isxWin.startPoint.x;
-    // 协议发送
-    // 合成
-    [_spliceTVProtocol innerSXSpliceScreen:isxWin.winNumber StartAt:nStartPanel VCountNum:isxWin.winSize.height HCountNum:isxWin.winSize.width];
-    // 信号切换
-    [_spliceTVProtocol innerSXSwitchBigScreen:isxWin.winNumber toSrcType:isxWin.winSourceType atSrcPath:isxWin.winChannelNumber];
+    
+    // 同步发送
+    _syncBlock = [NSBlockOperation blockOperationWithBlock:^{
+        // 协议发送
+        // 合成
+        [_spliceTVProtocol innerSXSpliceScreen:isxWin.winNumber StartAt:nStartPanel VCountNum:isxWin.winSize.height HCountNum:isxWin.winSize.width];
+        // 信号切换
+        [_spliceTVProtocol innerSXSwitchBigScreen:isxWin.winNumber toSrcType:isxWin.winSourceType atSrcPath:isxWin.winChannelNumber];
+    }];
+    [_syncBlock start];
 }
 
 // 窗口大画面分解
@@ -767,11 +782,16 @@
     }
     
     int nStartPanel = isxWin.startPoint.y * nColumns + isxWin.startPoint.x;
-    // 协议发送
-    // 拆分
-    [_spliceTVProtocol innerSXSplitBigScreen:isxWin.winNumber StartAt:nStartPanel VCountNum:isxWin.winSize.height HCountNum:isxWin.winSize.width];
-    // 状态恢复
-    [_spliceTVProtocol innerSXResolveScreen:isxWin.winNumber StartAt:nStartPanel VCountNum:isxWin.winSize.height HCountNum:isxWin.winSize.width];
+    
+    // 同步发送
+    _syncBlock = [NSBlockOperation blockOperationWithBlock:^{
+        // 协议发送
+        // 拆分
+        [_spliceTVProtocol innerSXSplitBigScreen:isxWin.winNumber StartAt:nStartPanel VCountNum:isxWin.winSize.height HCountNum:isxWin.winSize.width];
+        // 状态恢复
+        [_spliceTVProtocol innerSXResolveScreen:isxWin.winNumber StartAt:nStartPanel VCountNum:isxWin.winSize.height HCountNum:isxWin.winSize.width];
+    }];
+    [_syncBlock start];
     
     // 单屏分解
     [isxWin setISXWinToSingleStatus];
@@ -870,14 +890,20 @@
     // 消除弹出窗口
     [_modelsPopover dismissPopoverAnimated:YES];
     
-    // 情景模式调用协议 --- 加载
-    // 1.拆分所有大画面
-    //[_spliceTVProtocol innerSXLoadModelSplit];
-    // 2.加载屏幕参数
-    [_spliceTVProtocol innerSXLoadModelParameter:nIndex+1];
-    // 3.加载信号参数
-    [_spliceTVProtocol innerSXLoadModel:nIndex+1];
-    
+    // 同步发送
+    _syncBlock = [NSBlockOperation blockOperationWithBlock:^{
+        // 情景模式调用协议 --- 加载
+        // 1.拆分所有大画面
+        //[_spliceTVProtocol innerSXLoadModelSplit];
+        usleep(300);
+        // 2.加载屏幕参数
+        [_spliceTVProtocol innerSXLoadModelParameter:nIndex+1];
+        usleep(300);
+        // 3.加载信号参数
+        [_spliceTVProtocol innerSXLoadModel:nIndex+1];
+        usleep(300);
+    }];
+    [_syncBlock start];
 }
 
 // 保存情景模式

@@ -110,9 +110,9 @@
 // 计算控制区域
 - (void)calculateWorkingArea;
 // 情景保存图片存储
-- (void)saveModelImage:(UIImage *)image toIndex:(NSInteger)nIndex;
+- (void)saveModelImage:(UIImage *)image toIndex:(int)nIndex;
 // 情景保存图片删除
-- (void)deleteModelImageAtIndex:(NSInteger)nIndex;
+- (void)deleteModelImageAtIndex:(int)nIndex;
 // 删除普通窗口数据文件
 - (void)deleteISXWindowData;
 // 删除情景模式记录

@@ -1023,20 +1023,9 @@
 }
 
 #pragma mark - AsyncSocket Delegate
-- (void)onSocket:(AsyncSocket *)sock didWriteDataWithTag:(long)tag
-{
-    usleep(300);
-    NSLog(@"Write");
-}
-
-- (void)onSocket:(AsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port
-{
-    NSLog(@"Connect");
-}
-
 - (void)onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
 {
-    NSLog(@"Read");
+    [_tcpSocket readDataWithTimeout:100 tag:0];
 }
 
 @end

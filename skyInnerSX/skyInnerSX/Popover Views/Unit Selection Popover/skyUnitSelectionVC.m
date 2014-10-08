@@ -146,11 +146,11 @@
     }
     
     // 设置单元选择Cell
-    cell.textLabel.text = [NSString stringWithFormat:@"%ld",indexPath.row+1];
+    cell.textLabel.text = [NSString stringWithFormat:@"%d",(int)indexPath.row+1];
     cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16];
 
     // 判断选中情况
-    if ([_selectionArray containsObject:[NSString stringWithFormat:@"%ld",indexPath.row+1]])
+    if ([_selectionArray containsObject:[NSString stringWithFormat:@"%d",(int)indexPath.row+1]])
     {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
@@ -166,7 +166,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int nIndex = (int)indexPath.row+1;
-    NSString *obj = [NSString stringWithFormat:@"%ld",indexPath.row+1];
+    NSString *obj = [NSString stringWithFormat:@"%d",(int)indexPath.row+1];
     
     if ([_selectionArray containsObject:obj])
     {

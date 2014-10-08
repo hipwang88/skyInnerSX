@@ -107,9 +107,9 @@
 }
 
 // 情景保存图片存储
-- (void)saveModelImage:(UIImage *)image toIndex:(NSInteger)nIndex
+- (void)saveModelImage:(UIImage *)image toIndex:(int)nIndex
 {
-    NSString *modelKey = [NSString stringWithFormat:@"Model-%ld",nIndex+1];
+    NSString *modelKey = [NSString stringWithFormat:@"Model-%d",nIndex+1];
     // 将情景标志置换
     [_appModelSaveDic setObject:@"1" forKey:modelKey];
     
@@ -118,9 +118,9 @@
 }
 
 // 情景保存图片删除
-- (void)deleteModelImageAtIndex:(NSInteger)nIndex
+- (void)deleteModelImageAtIndex:(int)nIndex
 {
-    NSString *modelKey = [NSString stringWithFormat:@"Model-%ld",nIndex+1];
+    NSString *modelKey = [NSString stringWithFormat:@"Model-%d",nIndex+1];
     // 将情景标志置换
     [_appModelSaveDic setObject:@"0" forKey:modelKey];
     

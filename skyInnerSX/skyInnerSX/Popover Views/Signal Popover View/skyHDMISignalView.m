@@ -52,6 +52,7 @@
     [super viewDidLoad];
     
     self.title = @"HDMI信号切换";
+    _isOpen = NO;
 }
 
 - (void)didReceiveMemoryWarning
@@ -90,7 +91,6 @@
 // 数据初始化
 - (void)initializeDefaults
 {
-    _isOpen = NO;
     _hdmiInputs = [_myDataSource getHDMIMatrixInputs];
     
     self.tableView.sectionFooterHeight = 0;
@@ -288,7 +288,7 @@
         }
         else
         {
-            int nPath = (int)(indexPath.section*GROUP_NUMBER + indexPath.row + 1);
+            int nPath = (int)(indexPath.section*GROUP_NUMBER + indexPath.row);
             // 代理调用进行切换
             [_myDelegate haveSignal:SIGNAL_HDMI SwitchTo:nPath];
         }
