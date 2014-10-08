@@ -79,7 +79,7 @@
     int nTempWidth,nTempHeight,nTotalWidth,nTotalHeight,nRatioX,nRatioY,nInt;
     
     nTotalWidth = 1150;
-    nTotalHeight = 600;
+    nTotalHeight = 580;
     nRatioX = 4;
     nRatioY = 3;
     nTempWidth = nTempHeight = 0;
@@ -147,7 +147,6 @@
         [self deleteModelImageAtIndex:i];
     }
 }
-
 
 #pragma mark - Private Methods
 // 应用程序状态类初始化

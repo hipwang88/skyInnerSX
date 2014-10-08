@@ -10,7 +10,7 @@
 #import "AsyncSocket.h"
 
 // Private
-@interface skyInner6M48TVSDK()
+@interface skyInner6M48TVSDK()<AsyncSocketDelegate>
 {
     Byte m_nSendCmd[32];                    // 发送数组
     Byte m_nReceiveCmd[32];                 // 接收数组
@@ -1020,6 +1020,23 @@
     
     // 发送信息
     LOG_MESSAGE([self sendStringWithLog:@"菜单退出按下" andByteCount:8],nil);
+}
+
+#pragma mark - AsyncSocket Delegate
+- (void)onSocket:(AsyncSocket *)sock didWriteDataWithTag:(long)tag
+{
+    usleep(300);
+    NSLog(@"Write");
+}
+
+- (void)onSocket:(AsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port
+{
+    NSLog(@"Connect");
+}
+
+- (void)onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
+{
+    NSLog(@"Read");
 }
 
 @end

@@ -263,7 +263,7 @@
 - (void)initializeAppDatas
 {
     int total;
-    //self.externVisible = NO;
+    self.externVisible = NO;
     nWinWidth = _appDelegate.theApp.appUnitWidth * 2;
     nWinHeight = _appDelegate.theApp.appUnitHeight * 2;
     nRows = _appDelegate.theApp.appScreenRows;
@@ -387,7 +387,8 @@
     [_appDelegate.theApp calculateWorkingArea];
     
     NSInteger total;
-    //self.externVisible = NO;
+    self.externVisible = NO;
+    [self.externButton setImage:[UIImage imageNamed:@"toolbarDrawMode.png"]];
     nWinWidth = _appDelegate.theApp.appUnitWidth * 2;
     nWinHeight = _appDelegate.theApp.appUnitHeight * 2;
     nRows = _appDelegate.theApp.appScreenRows;
