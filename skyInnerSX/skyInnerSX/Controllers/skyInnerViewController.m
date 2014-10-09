@@ -986,7 +986,7 @@
     }
     
     // 协议发送
-    [_spliceTVProtocol innerSXModelNewWithHDMI];
+    [_spliceTVProtocol innerSXModelNewWithDVI];
 }
 
 @end

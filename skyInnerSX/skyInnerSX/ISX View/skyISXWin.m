@@ -969,11 +969,9 @@ static CGFloat skyDistanceWithTwoPoints(CGPoint point1, CGPoint point2)
         [_popView dismissPopoverAnimated:YES];
         
         // 代理控制器处理大画面分解消息
-        [self performSelector:@selector(splitScreen) withObject:nil afterDelay:0];
-        [self performSelector:@selector(splitScreenStatus) withObject:nil afterDelay:0.3];
-        
-        // 单屏处理
-        [self setISXWinToSingleStatus];
+        [self performSelector:@selector(splitScreen) withObject:nil afterDelay:0];                  // 拆分大画面
+        [self performSelector:@selector(splitScreenStatus) withObject:nil afterDelay:0.3];          // 恢复单元通道
+        [self performSelector:@selector(setISXWinToSingleStatus) withObject:nil afterDelay:0.4];    // 状态单屏
     }
     else
     {

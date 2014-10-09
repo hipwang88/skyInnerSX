@@ -564,8 +564,11 @@
             break;
             
         case SIGNAL_HDMI:
-        case SIGNAL_DVI:
             m_nSendCmd[1] = 0x33;
+            break;
+            
+        case SIGNAL_DVI:
+            m_nSendCmd[1] = 0x35;
             break;
     }
     m_nSendCmd[2] = nPath;
@@ -658,8 +661,11 @@
             break;
             
         case SIGNAL_HDMI:
-        case SIGNAL_DVI:
             m_nSendCmd[1] = 0x33;
+            break;
+            
+        case SIGNAL_DVI:
+            m_nSendCmd[1] = 0x35;
             break;
     }
     m_nSendCmd[2] = nPath;
@@ -692,8 +698,11 @@
             break;
             
         case SIGNAL_HDMI:
-        case SIGNAL_DVI:
             m_nSendCmd[1] = 0x33;
+            break;
+            
+        case SIGNAL_DVI:
+            m_nSendCmd[1] = 0x35;
             break;
     }
     m_nSendCmd[2] = nPath;
@@ -834,6 +843,26 @@
     
     // 发送信息
     LOG_MESSAGE([self sendStringWithLog:@"HDMI情景新建" andByteCount:8],nil);
+}
+
+// 24.情景模式新建 -- DVI新建
+- (void)innerSXModelNewWithDVI
+{
+    // 协议命令
+    memset(m_nSendCmd, 0, 8);
+    m_nSendCmd[0] = 0x85;
+    m_nSendCmd[1] = 0x03;
+    m_nSendCmd[2] = 0x35;
+    m_nSendCmd[3] = 0xFF;
+    m_nSendCmd[4] = 0xFF;
+    m_nSendCmd[5] = 0xFF;
+    m_nSendCmd[6] = 0xFF;
+    m_nSendCmd[7] = 0xFF;
+    // 协议发送
+    [self sendCmd:8];
+    
+    // 发送信息
+    LOG_MESSAGE([self sendStringWithLog:@"DVI情景新建" andByteCount:8],nil);
 }
 
 // 25.拼接规格设定
@@ -1047,7 +1076,14 @@
     Byte *receive = (Byte *)[data bytes];
     for (int i = 0; i < [data length]; i++)
         m_nReceiveCmd[i] = receive[i];
+    
+    // 回读消息处理
+//#define SHOWREADDATA
+#ifdef SHOWREADDATA
     LOG_MESSAGE([self recevieStringWithLog:@"消息回读" andByteCount:(int)[data length]],nil);
+#else
+    LOG_MESSAGE(@"消息回读",nil);
+#endif
     
     [_tcpSocket readDataWithTimeout:-1 tag:0];
 }

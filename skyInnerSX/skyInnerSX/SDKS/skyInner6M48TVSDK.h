@@ -87,6 +87,8 @@
 - (void)innerSXModelNewWithVGA;
 // 24.情景模式新建 -- HDMI新建
 - (void)innerSXModelNewWithHDMI;
+// 24.情景模式新建 -- DVI新建
+- (void)innerSXModelNewWithDVI;
 // 25.拼接规格设定
 - (void)innerSXSetSpliceRow:(int)nRow andColumn:(int)nColumn;
 // 26.菜单按键
