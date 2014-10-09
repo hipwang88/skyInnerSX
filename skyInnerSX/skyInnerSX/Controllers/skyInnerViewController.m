@@ -859,6 +859,7 @@
         isxWin.limitRect = limitRect;
         isxWin.winNumber = i+1;
         // 窗口值初始
+        [isxWin initializeISXWin:i+1];
         [isxWin loadISXWinModelStatusAtIndex:nIndex+1];
         [isxWin hideBoarderView];
         
