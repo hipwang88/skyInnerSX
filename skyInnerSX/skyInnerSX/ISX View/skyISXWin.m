@@ -114,7 +114,7 @@ static skyResizableAnchorPoint resizableAnchorPointLowerMiddle = {0.0, 0.0, 1.0,
         // 组件初始
         [self initComponents];
         // 弹出视图初始
-        //[self initPopovers];
+        [self initPopovers];
     }
     
     return self;
