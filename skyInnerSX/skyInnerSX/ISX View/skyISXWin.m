@@ -348,7 +348,7 @@ static skyResizableAnchorPoint resizableAnchorPointLowerMiddle = {0.0, 0.0, 1.0,
                     // 合成大画面
                     [self performSelector:@selector(spliceBigScreen) withObject:nil afterDelay:0];
                     // 信号切换
-                    [self performSelector:@selector(spliceSignalSwitch) withObject:nil afterDelay:0.3];
+                    [self performSelector:@selector(spliceSignalSwitch) withObject:nil afterDelay:0.4];
                 }
                 break;
                 
@@ -949,8 +949,8 @@ static CGFloat skyDistanceWithTwoPoints(CGPoint point1, CGPoint point2)
     {
         // 代理控制器处理全屏消息
         [self performSelector:@selector(spliceFullScreenStatus) withObject:nil afterDelay:0];
-        [self performSelector:@selector(spliceBigScreen) withObject:nil afterDelay:0.3];
-        [self performSelector:@selector(spliceSignalSwitch) withObject:nil afterDelay:0.6];
+        [self performSelector:@selector(spliceBigScreen) withObject:nil afterDelay:0.4];
+        [self performSelector:@selector(spliceSignalSwitch) withObject:nil afterDelay:0.8];
         
         [_popView dismissPopoverAnimated:YES];
     }
@@ -970,8 +970,8 @@ static CGFloat skyDistanceWithTwoPoints(CGPoint point1, CGPoint point2)
         
         // 代理控制器处理大画面分解消息
         [self performSelector:@selector(splitScreen) withObject:nil afterDelay:0];                  // 拆分大画面
-        [self performSelector:@selector(splitScreenStatus) withObject:nil afterDelay:0.3];          // 恢复单元通道
-        [self performSelector:@selector(setISXWinToSingleStatus) withObject:nil afterDelay:0.4];    // 状态单屏
+        [self performSelector:@selector(splitScreenStatus) withObject:nil afterDelay:0.4];          // 恢复单元通道
+        [self performSelector:@selector(setISXWinToSingleStatus) withObject:nil afterDelay:0.8];    // 状态单屏
     }
     else
     {

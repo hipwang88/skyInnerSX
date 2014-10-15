@@ -322,7 +322,7 @@
         // 没显示则关闭其他视图后弹出显示
         [_currentPopover dismissPopoverAnimated:YES];
         [_modelsPopover presentPopoverFromBarButtonItem:_modelButton permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-        _currentPopover = _settingsPopover;
+        _currentPopover = _modelsPopover;
     }
 }
 
