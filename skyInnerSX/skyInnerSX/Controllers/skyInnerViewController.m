@@ -140,16 +140,17 @@
 - (void)initializeNavigationItem
 {
     // 导航栏左侧设置按钮加入
-    self.settingButton = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStylePlain target:self action:@selector(settingButtonEventHandler:)];
+    self.settingButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"setting", nil) style:UIBarButtonItemStylePlain target:self action:@selector(settingButtonEventHandler:)];
     [self.navigationItem setLeftBarButtonItems:[NSArray arrayWithObjects:_settingButton, nil]];
     
     // 导航栏右侧情景模式、扩展视图按钮加入
-    self.modelButton = [[UIBarButtonItem alloc] initWithTitle:@"情景模式" style:UIBarButtonItemStylePlain target:self action:@selector(modelButtonEventHandler:)];
+    self.modelButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Model", nil) style:UIBarButtonItemStylePlain target:self action:@selector(modelButtonEventHandler:)];
     self.externButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"toolbarDrawMode"] style:UIBarButtonItemStylePlain target:self action:@selector(externButtonEventHandler:)];
     [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:_externButton,_modelButton, nil]];
     
     // 应用程序名称、导航栏颜色设定
-    self.title = @"创维群欣内置拼接控制系统";
+    //self.title = @"创维群欣内置拼接控制系统";
+    self.title = NSLocalizedString(@"SystemTitle", nil);
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0.0f/255.0f green:143.0f/255.0f blue:88.0f/255.0f alpha:1];
 }
 
@@ -166,7 +167,8 @@
     
     // 1.add skySettingConnectionVC
     skySettingConnectionVC *mySettingConnection = [[skySettingConnectionVC alloc] initWithNibName:@"skySettingConnection" bundle:nil];
-    mySettingConnection.title = @"通讯连接设置";
+    //mySettingConnection.title = @"通讯连接设置";
+    mySettingConnection.title = NSLocalizedString(@"ConnectionSet", nil);
     mySettingConnection.rowImage = [UIImage imageNamed:@"ConnSet.png"];
     mySettingConnection.myDelegate = self;
     mySettingConnection.myDataSource = _appDelegate.theApp;
@@ -174,7 +176,8 @@
     
     // 2.add skySettingConfigVC
     skySettingConfigVC *mySettingConfig = [[skySettingConfigVC alloc] initWithNibName:@"skySettingConfig" bundle:nil];
-    mySettingConfig.title = @"规格参数设置";
+    //mySettingConfig.title = @"规格参数设置";
+    mySettingConfig.title = NSLocalizedString(@"SpecSet", nil);
     mySettingConfig.rowImage = [UIImage imageNamed:@"SCXSet.png"];
     mySettingConfig.myDelegate = self;
     mySettingConfig.myDataSource = _appDelegate.theApp;
@@ -182,14 +185,16 @@
     
     // 3.add skySettingSignalVC
     skySettingSignalVC *mySettingSignal = [[skySettingSignalVC alloc] initWithNibName:@"skySettingSignal" bundle:nil];
-    mySettingSignal.title = @"信号设置";
+    //mySettingSignal.title = @"信号设置";
+    mySettingSignal.title = NSLocalizedString(@"MatrixSet", nil);
     mySettingSignal.rowImage = [UIImage imageNamed:@"SignalSet.png"];
     mySettingSignal.myDataSource = _appDelegate.theApp;
     [_settingMainVC.controllers addObject:mySettingSignal];
     
     // 4.add skySettingUnitVC
     skySettingUnitVC *mySettingUnit = [[skySettingUnitVC alloc] initWithNibName:@"skySettingUnit" bundle:nil];
-    mySettingUnit.title = @"屏幕控制";
+    //mySettingUnit.title = @"屏幕控制";
+    mySettingUnit.title = NSLocalizedString(@"UnitControl", nil);
     mySettingUnit.rowImage = [UIImage imageNamed:@"ProtocalSet.png"];
     mySettingUnit.myDelegate = self;
     [_settingMainVC.controllers addObject:mySettingUnit];

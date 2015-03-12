@@ -23,7 +23,8 @@
     self = [super initWithStyle:style];
     if (self)
     {
-        self.title = @"系统设置";
+        //self.title = @"系统设置";
+        self.title = NSLocalizedString(@"Settings", nil);
         _controllers = [[NSMutableArray alloc] init];
     }
     return self;
@@ -104,7 +105,8 @@
 {
     NSString *result = nil;
     
-    result = @"拼接系统设置";
+    //result = @"拼接系统设置";
+    result = NSLocalizedString(@"SysSettings", nil);
     
     return result;
 }
@@ -113,7 +115,8 @@
 {
     NSString *result = nil;
     
-    result = @"点击选中以上功能：控制连接、规格参数调整、信号管理、屏幕控制";
+    //result = @"点击选中以上功能：控制连接、规格参数调整、信号管理、屏幕控制";
+    result = NSLocalizedString(@"SettingsInfo", nil);
     
     return result;
 }

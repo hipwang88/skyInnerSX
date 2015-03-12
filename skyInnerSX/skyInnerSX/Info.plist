@@ -4,6 +4,11 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>en</string>
+		<string>zh_CN</string>
+	</array>
 	<key>CFBundleDisplayName</key>
 	<string>创维内置拼接</string>
 	<key>CFBundleExecutable</key>
@@ -21,8 +26,10 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>141015</string>
+	<string>150312</string>
 	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>LSHasLocalizedDisplayName</key>
 	<true/>
 	<key>UIMainStoryboardFile</key>
 	<string></string>

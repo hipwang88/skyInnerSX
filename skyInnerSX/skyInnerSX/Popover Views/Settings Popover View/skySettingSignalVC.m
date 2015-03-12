@@ -54,28 +54,32 @@
 {
     // add CVBS matrix View Controller
     skyCVBSMatrixSetting *cvbsMatrixVC = [[skyCVBSMatrixSetting alloc] initWithNibName:@"skyCVBSMatrixSetting" bundle:nil];
-    cvbsMatrixVC.title = @"CVBS矩阵设置";
+    //cvbsMatrixVC.title = @"CVBS矩阵设置";
+    cvbsMatrixVC.title = NSLocalizedString(@"MatrixSet_CVBS", nil);
     cvbsMatrixVC.rowImage = [UIImage imageNamed:@"CVBSCardDown.png"];
     cvbsMatrixVC.myDataSource = self;
     [_matrixs addObject:cvbsMatrixVC];
     
     // add VGA matrix View Controller
     skyVGAMatrixSetting *vgaMatrixVC = [[skyVGAMatrixSetting alloc] initWithNibName:@"skyVGAMatrixSetting" bundle:nil];
-    vgaMatrixVC.title = @"VGA矩阵设置";
+    //vgaMatrixVC.title = @"VGA矩阵设置";
+    vgaMatrixVC.title = NSLocalizedString(@"MatrixSet_VGA", nil);
     vgaMatrixVC.rowImage = [UIImage imageNamed:@"VGACardDown.png"];
     vgaMatrixVC.myDataSource = self;
     [_matrixs addObject:vgaMatrixVC];
     
     // add HDMI matrix View Controller
     skyHDMIMatrixSetting *hdmiMatrixVC = [[skyHDMIMatrixSetting alloc] initWithNibName:@"skyHDMIMatrixSetting" bundle:nil];
-    hdmiMatrixVC.title = @"HDMI矩阵设置";
+    //hdmiMatrixVC.title = @"HDMI矩阵设置";
+    hdmiMatrixVC.title = NSLocalizedString(@"MatrixSet_HDMI", nil);
     hdmiMatrixVC.rowImage = [UIImage imageNamed:@"HDMICardDown.png"];
     hdmiMatrixVC.myDataSource = self;
     [_matrixs addObject:hdmiMatrixVC];
     
     // add DVI matrix View Controller
     skyDVIMatrixSetting *dviMatrixVC = [[skyDVIMatrixSetting alloc] initWithNibName:@"skyDVIMatrixSetting" bundle:nil];
-    dviMatrixVC.title = @"DVI矩阵设置";
+    //dviMatrixVC.title = @"DVI矩阵设置";
+    dviMatrixVC.title = NSLocalizedString(@"MatrixSet_DVI", nil);
     dviMatrixVC.rowImage = [UIImage imageNamed:@"DVICardDown.png"];
     dviMatrixVC.myDataSource = self;
     [_matrixs addObject:dviMatrixVC];
@@ -126,7 +130,8 @@
     
     if (section == 0)
     {
-        result = @"选择设置相关矩阵";
+        //result = @"选择设置相关矩阵";
+        result = NSLocalizedString(@"MatrixSet_Title", nil);
     }
     
     return result;

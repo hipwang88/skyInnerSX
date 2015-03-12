@@ -162,7 +162,8 @@
         switch (indexPath.row)
         {
             case 0:
-                cell.lableTitle.text = @"屏幕行数:";
+                //cell.lableTitle.text = @"屏幕行数:";
+                cell.lableTitle.text = NSLocalizedString(@"SpecSet_Row", nil);
                 cell.lableValue.text = [NSString stringWithFormat:@"%d",[_myDataSource getCurrentScreenRow]];
                 cell.valueStepper.minimumValue = 1;
                 cell.valueStepper.maximumValue = 15;
@@ -175,7 +176,8 @@
                 break;
                 
             case 1:
-                cell.lableTitle.text = @"屏幕列数:";
+                //cell.lableTitle.text = @"屏幕列数:";
+                cell.lableTitle.text = NSLocalizedString(@"SpecSet_Column", nil);
                 cell.lableValue.text = [NSString stringWithFormat:@"%d",[_myDataSource getCurrentScreenColumn]];
                 cell.valueStepper.minimumValue = 1;
                 cell.valueStepper.maximumValue = 15;
@@ -213,7 +215,8 @@
         }
         
         // 设置确认cell
-        cell.textLabel.text = @"确认控制器设置";
+        //cell.textLabel.text = @"确认控制器设置";
+        cell.textLabel.text = NSLocalizedString(@"SpecSet_Confirm", nil);
         cell.textLabel.textColor = [UIColor colorWithRed:0.9 green:0.1 blue:0.0 alpha:1.0];
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
         
@@ -227,7 +230,8 @@
     
     if (section == 0)
     {
-        result = @"调整屏幕拼接规格";
+        //result = @"调整屏幕拼接规格";
+        result = NSLocalizedString(@"SpecSet_Title", nil);
     }
     
     return result;
@@ -239,7 +243,8 @@
     
     if (section == 0)
     {
-        result = @"点击双选按钮进行值的加减";
+        //result = @"点击双选按钮进行值的加减";
+        result = NSLocalizedString(@"SpecSet_Info", nil);
     }
     
     return result;

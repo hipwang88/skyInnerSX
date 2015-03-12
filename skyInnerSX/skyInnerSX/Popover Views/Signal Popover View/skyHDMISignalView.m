@@ -51,7 +51,8 @@
 {
     [super viewDidLoad];
     
-    self.title = @"HDMI信号切换";
+    //self.title = @"HDMI信号切换";
+    self.title = [NSString stringWithFormat:@"%@ HDMI",NSLocalizedString(@"WinMenu_SwitchSignal", nil)];
     _isOpen = NO;
 }
 
@@ -241,7 +242,7 @@
             if (indexPath.section == _hdmiInputs / GROUP_NUMBER)
                 nEnd = _hdmiInputs;
             
-            cell.titleLabel.text = [NSString stringWithFormat:@"HDMI信号  %d ~ %d",nBegin,nEnd];
+            cell.titleLabel.text = [NSString stringWithFormat:@"HDMI  %d ~ %d",nBegin,nEnd];
             cell.imageView.image = [UIImage imageNamed:@"signal_Card-Small.png"];
             [cell changeArrowWithUp:([self.selectIndex isEqual:indexPath] ? YES : NO)];
             

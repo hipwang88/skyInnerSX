@@ -1,0 +1,107 @@
+/* 
+  Localizable.strings
+  skyInnerSX
+
+  Created by skyworth on 15/3/12.
+  Copyright (c) 2015年 wziiy. All rights reserved.
+*/
+
+// 导航栏
+"setting" = "Settings";
+"SystemTitle" = "Skyworth Qunxin Splicing Control System";
+"Model" = "ModeProfile";
+
+// 系统设置
+"Settings" = "Settings";
+"SysSettings" = "System Settings";
+"ConnectionSet" = "Connection";
+"SpecSet" = "Specifications";
+"MatrixSet" = "Matrix";
+"UnitControl" = "Unit Controller";
+"SettingsInfo" = "Click to select Function";
+
+// 通信连接设置
+"ConnectSet_Title" = "HUB485";
+"ConnectSet_IP" = "IP";
+"ConnectSet_Port" = "Port";
+"ConnectSet_Info" = "Input the HUB485 IP and Port";
+"ConnectSet_GetCon" = "confirm";
+
+// 规格参数设置
+"SpecSet_Title" = "Change the specifications";
+"SpecSet_Row" = "Row";
+"SpecSet_Column" = "Column";
+"SpecSet_Info" = "Click the button to change";
+"SpecSet_Confirm" = "confirm";
+
+// 信号设置
+"MatrixSet_Title" = "Matrix list";
+"MatrixSet_CVBS" = "CVBS matrix";
+"MatrixSet_VGA" = "VGA matrix";
+"MatrixSet_HDMI" = "HDMI matrix";
+"MatrixSet_DVI" = "DVI matrix";
+"MatrixSet_Info" = "Use slider button to enabel matrix";
+"MatrixSet_UseMatrix" = "Enable matirx";
+"MatrixSet_Input" = "matrix input ";
+"MatirxSet_InputInfo" = "The range of matrix input is 1~256";
+"MatrixSet_Confirm" = "confirm";
+
+// 屏幕控制
+"UnitControl_Unit_Title" = "Select the Unit what you want control";
+"UnitControl_Unit" = "Setlect Unit";
+"UnitControl_Unit_Select" = "Unit List";
+"UnitControl_Unit_All" = "All";
+"UnitControl_Unit_None" = "None";
+"UnitControl_ConUnit" = "Control";
+"UnitControl_ShowID" = "show ID";
+"UnitControl_HideID" = "hide ID";
+"UnitControl_Power" = "power On";
+"UnitControl_Shutdown" = "power Off";
+"UnitControl_Position" = "auto adjust position";
+"UnitControl_Balance" = "auto adjust white balance";
+"UnitControl_Adjust" = "adjust brightness or contrast";
+"UnitControl_Brightness" = "brightness";
+"UnitControl_Contrast" = "contrast";
+"UnitControl_Reset" = "reset";
+"UnitControl_VirtualTitle" = "use virtual keyboard";
+"UnitControl_Virtual" = "keyboard";
+"UnitControl_VirtualButton" = "keyboard";
+"UnitControl_UP" = "up";
+"UnitControl_Down" = "down";
+"UnitControl_Left" = "left";
+"UnitControl_Right" = "right";
+"UnitControl_Exit" = "exit";
+"UnitControl_Signal" = "signal";
+"UnitControl_Dis" = "screen dis";
+"UnitControl_Confirm" = "confirm";
+
+// 扩展视图
+"ExFunctionView" = "Ex-Functions View, Select fucntions what you want!";
+"ExFunctionInfo_CVBS" = "New with CVBS signal：All unit in cvbs signal";
+"ExFunctionInfo_VGA" = "New with VGA signal：All unit in vga signal";
+"ExFunctionInfo_HDMI" = "New with HDMI signal：All unit in hdmi signal";
+"ExFunctionInfo_DVI" = "New with DVI signal：All unit in dvi signal";
+
+// 窗口功能菜单
+"WinMenu" = "menu";
+"WinMenu_Title" = "functions";
+"WinMenu_Full" = "full";
+"WinMenu_Resolve" = "resolve";
+"WinMenu_SwitchSignal" = "switch to ";
+"WinMenu_Info" = "full:Let the window full screen splicing wall\nresolve:The big picture window state decomposed into a single picture\nCVBS switch:Into CVBS input list\nVGA switch:Into VGA input list\nHDMI switch:Into HDMI input list\nDVI switch:Into DVI input list";
+
+// 提示
+"SysInfo" = "Info";
+"SysInfo_full" = "full cannot use in a big window";
+"SysInfo_resolve" = "resolve only in the window is full";
+"SysInfo_OK" = "ok";
+"SysInfo_noCVBSmatrix" = "NO CVBS matirx";
+"SysInfo_noVGAmatrix" = "NO VGA matrix";
+"SysInfo_noHDMImatrix" = "NO HDMI matrix";
+"SysInfo_noDVImatrix" = "NO DVI matrix";
+
+// 情景模式
+"ModeProfile" = "model profile";
+"ModeProfile_save" = "save model";
+"ModeProfile_delete" = "delete model";
+"ModeProfile_NoMode" = "No model";

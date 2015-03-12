@@ -1,0 +1,108 @@
+/* 
+  Localizable.strings
+  skyInnerSX
+
+  Created by skyworth on 15/3/12.
+  Copyright (c) 2015年 wziiy. All rights reserved.
+*/
+
+// 导航栏
+"setting" = "设置";
+"SystemTitle" = "创维群欣内置拼接控制系统";
+"Model" = "情景模式";
+
+// 系统设置
+"Settings" = "系统设置";
+"SysSettings" = "拼接系统设置";
+"ConnectionSet" = "通信连接设置";
+"SpecSet" = "规格参数设置";
+"MatrixSet" = "信号设置";
+"UnitControl" = "屏幕控制";
+"SettingsInfo" = "点击选中以上功能：控制连接、规格参数调整、信号管理、屏幕控制";
+
+// 通信连接设置
+"ConnectSet_Title" = "命令盒通信设置";
+"ConnectSet_IP" = "服务器IP";
+"ConnectSet_Port" = "服务器端口";
+"ConnectSet_Info" = "输入控制器IP地址、端口号";
+"ConnectSet_GetCon" = "连接控制器";
+
+// 规格参数设置
+"SpecSet_Title" = "调整屏幕拼接规格";
+"SpecSet_Row" = "屏幕行数:";
+"SpecSet_Column" = "屏幕列数:";
+"SpecSet_Info" = "单击双选按钮进行值的加减";
+"SpecSet_Confirm" = "确认控制器设置";
+
+// 信号设置
+"MatrixSet_Title" = "选则设置相关矩阵";
+"MatrixSet_CVBS" = "CVBS矩阵设置";
+"MatrixSet_VGA" = "VGA矩阵设置";
+"MatrixSet_HDMI" = "HDMI矩阵设置";
+"MatrixSet_DVI" = "DVI矩阵设置";
+"MatrixSet_Info" = "滑块控制矩阵启用";
+"MatrixSet_UseMatrix" = "启用矩阵";
+"MatrixSet_Input" = "矩阵输入路数";
+"MatirxSet_InputInfo" = "矩阵输入路数范围[1,256]";
+"MatrixSet_Confirm" = "确认矩阵设置";
+
+// 屏幕控制
+"UnitControl_Unit_Title" = "显示单元选则";
+"UnitControl_Unit" = "屏幕单元选则";
+"UnitControl_Unit_Select" = "选择单元";
+"UnitControl_Unit_All" = "全选";
+"UnitControl_Unit_None" = "全不选";
+"UnitControl_ConUnit" = "单元控制";
+"UnitControl_ShowID" = "显示编号";
+"UnitControl_HideID" = "隐藏编号";
+"UnitControl_Power" = "开机";
+"UnitControl_Shutdown" = "关机";
+"UnitControl_Position" = "位置自动调整";
+"UnitControl_Balance" = "白平衡自动调整";
+"UnitControl_Adjust" = "亮度对比度调整";
+"UnitControl_Brightness" = "亮度调整";
+"UnitControl_Contrast" = "对比度调整";
+"UnitControl_Reset" = "复位";
+"UnitControl_VirtualTitle" = "开启虚拟键盘控制菜单";
+"UnitControl_Virtual" = "虚拟键盘";
+"UnitControl_VirtualButton" = "虚拟按键";
+"UnitControl_UP" = "上";
+"UnitControl_Down" = "下";
+"UnitControl_Left" = "左";
+"UnitControl_Right" = "右";
+"UnitControl_Exit" = "退出";
+"UnitControl_Signal" = "信号";
+"UnitControl_Dis" = "屏显";
+"UnitControl_Confirm" = "确认";
+
+// 扩展视图
+"ExFunctionView" = "功能扩展视图，请根据需要点击右侧按钮！";
+"ExFunctionInfo_CVBS" = "CVBS信号新建：所有窗口以CVBS信号一对一输出";
+"ExFunctionInfo_VGA" = "CVBS信号新建：所有窗口以VGA信号一对一输出";
+"ExFunctionInfo_HDMI" = "CVBS信号新建：所有窗口以HDMI信号一对一输出";
+"ExFunctionInfo_DVI" = "CVBS信号新建：所有窗口以DVI信号一对一输出";
+
+// 窗口功能菜单
+"WinMenu" = "窗口功能菜单";
+"WinMenu_Title" = "功能选项";
+"WinMenu_Full" = "全屏";
+"WinMenu_Resolve" = "大画面分解";
+"WinMenu_SwitchSignal" = "信号切换";
+"WinMenu_Info" = "全屏：让拼接墙全屏显示本窗口\n大画面分解：将大画面状态窗口分解成单画面\nCVBS信号切换：点击进入CVBS信号切换页面选择输入信号\nVGA信号切换：点击进入VGA信号切换页面选择输入信号\nHDMI信号切换：点击进入HDMI信号切换页面选择输入信号\nDVI信号切换：点击进入DVI信号切换页面选择输入信号";
+
+// 提示
+"SysInfo" = "提示";
+"SysInfo_full" = "窗口全屏功能在大画面状态不能够使用";
+"SysInfo_resolve" = "大画面分解只能在窗口是大画面状态下使用";
+"SysInfo_OK" = "知道了";
+"SysInfo_noCVBSmatrix" = "CVBS矩阵未接入，请调整输入通道";
+"SysInfo_noVGAmatrix" = "VGA矩阵未接入，请调整输入通道";
+"SysInfo_noHDMImatrix" = "HDMI矩阵未接入，请调整输入通道";
+"SysInfo_noDVImatrix" = "DVI矩阵未接入，请调整输入通道";
+
+// 情景模式
+"ModeProfile" = "情景模式";
+"ModeProfile_save" = "保存情景";
+"ModeProfile_delete" = "删除情景";
+"ModeProfile_NoMode" = "当前情景没有保存";
+

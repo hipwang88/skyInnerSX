@@ -956,7 +956,7 @@ static CGFloat skyDistanceWithTwoPoints(CGPoint point1, CGPoint point2)
     }
     else
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"窗口全屏功能在大画面状态不能够使用" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"SysInfo", nil) message:NSLocalizedString(@"SysInfo_full", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"SysInfo_OK", nil) otherButtonTitles:nil, nil];
         [alert show];
     }
 }
@@ -975,7 +975,7 @@ static CGFloat skyDistanceWithTwoPoints(CGPoint point1, CGPoint point2)
     }
     else
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"大画面分解只能在窗口是大画面状态下使用" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"SysInfo", nil) message:NSLocalizedString(@"SysInfo_resolve", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"SysInfo_OK", nil) otherButtonTitles:nil, nil];
         [alert show];
     }
 }
