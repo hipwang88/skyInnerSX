@@ -80,6 +80,9 @@
 		0662F45519D4EF1B006FADD7 /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 0662F45419D4EF1B006FADD7 /* AsyncSocket.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		0662F45819D4EFDB006FADD7 /* skyInner6M48TVSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 0662F45719D4EFDB006FADD7 /* skyInner6M48TVSDK.m */; };
 		0662F45B19D4EFFF006FADD7 /* skyProtocolAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0662F45A19D4EFFF006FADD7 /* skyProtocolAdapter.m */; };
+		0663E9B81AB11D9A00986F4A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0663E9BA1AB11D9A00986F4A /* Localizable.strings */; };
+		0663E9CD1AB1828000986F4A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0663E9CC1AB1828000986F4A /* Info.plist */; };
+		0663E9D01AB1838800986F4A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0663E9D21AB1838800986F4A /* InfoPlist.strings */; };
 		066B23C219D90290005C6A55 /* skyCVBSSignalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 066B23C119D90290005C6A55 /* skyCVBSSignalView.m */; };
 		066B23C519D902A7005C6A55 /* skyVGASignalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 066B23C419D902A7005C6A55 /* skyVGASignalView.m */; };
 		066B23C819D902BB005C6A55 /* skyHDMISignalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 066B23C719D902BB005C6A55 /* skyHDMISignalView.m */; };
@@ -181,7 +184,6 @@
 		064CA94819DA62CD006E33F5 /* HDMIDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HDMIDown.png; path = Resources/HDMIDown.png; sourceTree = "<group>"; };
 		064CA94919DA62CD006E33F5 /* HDMINor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HDMINor.png; path = Resources/HDMINor.png; sourceTree = "<group>"; };
 		0661F54319D1181B00756D17 /* skyInnerSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = skyInnerSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		0661F54719D1181B00756D17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0661F54819D1181B00756D17 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0661F54A19D1181B00756D17 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0661F54B19D1181B00756D17 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -218,6 +220,11 @@
 		0662F45719D4EFDB006FADD7 /* skyInner6M48TVSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = skyInner6M48TVSDK.m; path = SDKS/skyInner6M48TVSDK.m; sourceTree = "<group>"; };
 		0662F45919D4EFFF006FADD7 /* skyProtocolAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = skyProtocolAdapter.h; path = "Protocol Adapter/skyProtocolAdapter.h"; sourceTree = "<group>"; };
 		0662F45A19D4EFFF006FADD7 /* skyProtocolAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = skyProtocolAdapter.m; path = "Protocol Adapter/skyProtocolAdapter.m"; sourceTree = "<group>"; };
+		0663E9B91AB11D9A00986F4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0663E9BB1AB11D9D00986F4A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0663E9CC1AB1828000986F4A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0663E9D11AB1838800986F4A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0663E9D31AB1838900986F4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		066B23C019D90290005C6A55 /* skyCVBSSignalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = skyCVBSSignalView.h; path = "Popover Views/Signal Popover View/skyCVBSSignalView.h"; sourceTree = "<group>"; };
 		066B23C119D90290005C6A55 /* skyCVBSSignalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = skyCVBSSignalView.m; path = "Popover Views/Signal Popover View/skyCVBSSignalView.m"; sourceTree = "<group>"; };
 		066B23C319D902A7005C6A55 /* skyVGASignalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = skyVGASignalView.h; path = "Popover Views/Signal Popover View/skyVGASignalView.h"; sourceTree = "<group>"; };
@@ -336,8 +343,10 @@
 		0661F54619D1181B00756D17 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				0661F54719D1181B00756D17 /* Info.plist */,
+				0663E9CC1AB1828000986F4A /* Info.plist */,
+				0663E9D21AB1838800986F4A /* InfoPlist.strings */,
 				0661F54819D1181B00756D17 /* main.m */,
+				0663E9BA1AB11D9A00986F4A /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -708,6 +717,7 @@
 				064CA91B19DA4A0F006E33F5 /* signal_CVBS-Small.png in Resources */,
 				06A7150C19D25C51001DD984 /* skyVGAMatrixSetting.xib in Resources */,
 				064CA91819DA4A0F006E33F5 /* scxWin_Btn_Normal.png in Resources */,
+				0663E9CD1AB1828000986F4A /* Info.plist in Resources */,
 				06A7151619D25C85001DD984 /* skyDVIMatrixSetting.xib in Resources */,
 				06A7151119D25C6E001DD984 /* skyHDMIMatrixSetting.xib in Resources */,
 				060947D919D93756007A12C2 /* skyCell1.xib in Resources */,
@@ -743,9 +753,11 @@
 				060947DB19D93756007A12C2 /* skyCell2.xib in Resources */,
 				06AF3EF719D1893D007D4E2E /* skySettingConfig.xib in Resources */,
 				064CA90C19DA4A0F006E33F5 /* DVICardDown.png in Resources */,
+				0663E9D01AB1838800986F4A /* InfoPlist.strings in Resources */,
 				0677F50B19D3B7E70051AC0C /* skyMenuCell.xib in Resources */,
 				064CA92919DA4A2A006E33F5 /* skyModelCell.xib in Resources */,
 				064CA90B19DA4A0F006E33F5 /* dvi_switch.png in Resources */,
+				0663E9B81AB11D9A00986F4A /* Localizable.strings in Resources */,
 				064CA92B19DA4A98006E33F5 /* notsaved.png in Resources */,
 				064CA90D19DA4A0F006E33F5 /* hdmi_switch.png in Resources */,
 				064CA91619DA4A0F006E33F5 /* ProtocalSet.png in Resources */,
@@ -834,6 +846,26 @@
 				0661F55619D1181B00756D17 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		0663E9BA1AB11D9A00986F4A /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0663E9B91AB11D9A00986F4A /* Base */,
+				0663E9BB1AB11D9D00986F4A /* en */,
+			);
+			name = Localizable.strings;
+			path = Localization;
+			sourceTree = "<group>";
+		};
+		0663E9D21AB1838800986F4A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0663E9D11AB1838800986F4A /* en */,
+				0663E9D31AB1838900986F4A /* Base */,
+			);
+			name = InfoPlist.strings;
+			path = Localization;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

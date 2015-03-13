@@ -382,7 +382,8 @@
         }
         
         // 编辑Cell
-        selectionCell.textLabel.text = @"屏幕单元选择";
+        //selectionCell.textLabel.text = @"屏幕单元选择";
+        selectionCell.textLabel.text = NSLocalizedString(@"UnitControl_Unit", nil);
         selectionCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
         return selectionCell;
@@ -401,37 +402,43 @@
         switch (indexPath.row)
         {
             case 0: // 显示编号
-                cell.textLabel.text = @"显示编号";
+                //cell.textLabel.text = @"显示编号";
+                cell.textLabel.text = NSLocalizedString(@"UnitControl_ShowID", nil);
                 cell.textLabel.textColor = [UIColor colorWithRed:0.9 green:0.1 blue:0.0 alpha:1.0];
                 cell.textLabel.textAlignment = NSTextAlignmentCenter;
                 break;
                 
             case 1: // 隐藏编号
-                cell.textLabel.text = @"隐藏编号";
+                //cell.textLabel.text = @"隐藏编号";
+                cell.textLabel.text = NSLocalizedString(@"UnitControl_HideID", nil);
                 cell.textLabel.textColor = [UIColor colorWithRed:0.9 green:0.1 blue:0.0 alpha:1.0];
                 cell.textLabel.textAlignment = NSTextAlignmentCenter;
                 break;
                 
             case 2: // 屏幕开启
-                cell.textLabel.text = @"屏幕开启";
+                //cell.textLabel.text = @"屏幕开启";
+                cell.textLabel.text = NSLocalizedString(@"UnitControl_Power", nil);
                 cell.textLabel.textColor = [UIColor colorWithRed:0.9 green:0.1 blue:0.0 alpha:1.0];
                 cell.textLabel.textAlignment = NSTextAlignmentCenter;
                 break;
                 
             case 3: // 屏幕关闭
-                cell.textLabel.text = @"屏幕关闭";
+                //cell.textLabel.text = @"屏幕关闭";
+                cell.textLabel.text = NSLocalizedString(@"UnitControl_Shutdown", nil);
                 cell.textLabel.textColor = [UIColor colorWithRed:0.9 green:0.1 blue:0.0 alpha:1.0];
                 cell.textLabel.textAlignment = NSTextAlignmentCenter;
                 break;
                 
             case 4: // 位置自动调整
-                cell.textLabel.text = @"位置自动调整";
+                //cell.textLabel.text = @"位置自动调整";
+                cell.textLabel.text = NSLocalizedString(@"UnitControl_Position", nil);
                 cell.textLabel.textColor = [UIColor colorWithRed:0.9 green:0.1 blue:0.0 alpha:1.0];
                 cell.textLabel.textAlignment = NSTextAlignmentCenter;
                 break;
                 
             case 5: // 白平衡自动调整
-                cell.textLabel.text = @"白平衡自动调整";
+                //cell.textLabel.text = @"白平衡自动调整";
+                cell.textLabel.text = NSLocalizedString(@"UnitControl_Balance", nil);
                 cell.textLabel.textColor = [UIColor colorWithRed:0.9 green:0.1 blue:0.0 alpha:1.0];
                 cell.textLabel.textAlignment = NSTextAlignmentCenter;
                 break;
@@ -446,27 +453,33 @@
         switch (indexPath.row)
         {
             case 0: // 亮度调整
-                stepperBtnCell.cellTitle.text = @"亮度调整";
+                //stepperBtnCell.cellTitle.text = @"亮度调整";
+                stepperBtnCell.cellTitle.text = NSLocalizedString(@"UnitControl_Brightness", nil);
                 stepperBtnCell.cellStepper.minimumValue = 0;
                 stepperBtnCell.cellStepper.maximumValue = 512;
                 stepperBtnCell.cellStepper.stepValue = 1;
                 stepperBtnCell.cellStepper.value = nBrightnessValue;
                 [stepperBtnCell.cellStepper addTarget:self action:@selector(brightnessValueChangedEventHandler) forControlEvents:UIControlEventValueChanged];
-                [stepperBtnCell.cellBtn setTitle:@"复位" forState:UIControlStateNormal];
-                [stepperBtnCell.cellBtn setTitle:@"复位" forState:UIControlStateHighlighted];
+                //[stepperBtnCell.cellBtn setTitle:@"复位" forState:UIControlStateNormal];
+                //[stepperBtnCell.cellBtn setTitle:@"复位" forState:UIControlStateHighlighted];
+                [stepperBtnCell.cellBtn setTitle:NSLocalizedString(@"UnitControl_Reset", nil) forState:UIControlStateNormal];
+                [stepperBtnCell.cellBtn setTitle:NSLocalizedString(@"UnitControl_Reset", nil) forState:UIControlStateHighlighted];
                 [stepperBtnCell.cellBtn addTarget:self action:@selector(birghtnessResetEventHandler) forControlEvents:UIControlEventTouchUpInside];
                 stepperBtnCell.selectionStyle = UITableViewCellSelectionStyleNone;
                 break;
                 
             case 1: // 对比度调整
-                stepperBtnCell.cellTitle.text = @"对比度调整";
+                //stepperBtnCell.cellTitle.text = @"对比度调整";
+                stepperBtnCell.cellTitle.text = NSLocalizedString(@"UnitControl_Contrast", nil);
                 stepperBtnCell.cellStepper.minimumValue = 0;
                 stepperBtnCell.cellStepper.maximumValue = 512;
                 stepperBtnCell.cellStepper.stepValue = 1;
                 stepperBtnCell.cellStepper.value = nContrastValue;
                 [stepperBtnCell.cellStepper addTarget:self action:@selector(contrastValueChangedEventHandler) forControlEvents:UIControlEventValueChanged];
-                [stepperBtnCell.cellBtn setTitle:@"复位" forState:UIControlStateNormal];
-                [stepperBtnCell.cellBtn setTitle:@"复位" forState:UIControlStateHighlighted];
+                //[stepperBtnCell.cellBtn setTitle:@"复位" forState:UIControlStateNormal];
+                //[stepperBtnCell.cellBtn setTitle:@"复位" forState:UIControlStateHighlighted];
+                [stepperBtnCell.cellBtn setTitle:NSLocalizedString(@"UnitControl_Reset", nil) forState:UIControlStateNormal];
+                [stepperBtnCell.cellBtn setTitle:NSLocalizedString(@"UnitControl_Reset", nil) forState:UIControlStateHighlighted];
                 [stepperBtnCell.cellBtn addTarget:self action:@selector(contrastResetEventHandler) forControlEvents:UIControlEventTouchUpInside];
                 stepperBtnCell.selectionStyle = UITableViewCellSelectionStyleNone;
                 break;
@@ -497,7 +510,8 @@
         }
         
         // 属性设置
-        cell.textLabel.text = @"虚拟键盘";
+        //cell.textLabel.text = @"虚拟键盘";
+        cell.textLabel.text = NSLocalizedString(@"UnitControl_Virtual", nil);
         cell.accessoryView = _useKeyboardSwitch;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
@@ -555,23 +569,28 @@
     switch (section)
     {
         case 0:
-            result = @"显示单元选择";
+            //result = @"显示单元选择";
+            result = NSLocalizedString(@"UnitControl_Unit_Title", nil);
             break;
             
         case 1:
-            result = @"单元控制";
+            //result = @"单元控制";
+            result = NSLocalizedString(@"UnitControl_ConUnit", nil);
             break;
             
         case 2:
-            result = @"亮度对比度调整";
+            //result = @"亮度对比度调整";
+            result = NSLocalizedString(@"UnitControl_Adjust", nil);
             break;
             
         case 3:
-            result = @"开启虚拟键盘控制菜单";
+            //result = @"开启虚拟键盘控制菜单";
+            result = NSLocalizedString(@"UnitControl_VirtualTitle", nil);
             break;
             
         case 4:
-            result = @"虚拟按键";
+            //result = @"虚拟按键";
+            result = NSLocalizedString(@"UnitControl_VirtualButton", nil);
             break;
     }
     

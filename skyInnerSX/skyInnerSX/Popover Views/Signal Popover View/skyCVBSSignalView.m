@@ -50,7 +50,8 @@
 {
     [super viewDidLoad];
     
-    self.title = @"CVBS信号切换";
+    //self.title = @"CVBS信号切换";
+    self.title = [NSString stringWithFormat:@"%@ CVBS",NSLocalizedString(@"WinMenu_SwitchSignal", nil)];
     _isOpen = NO;
 }
 
@@ -240,7 +241,7 @@
             if (indexPath.section == _cvbsInputs / GROUP_NUMBER)
                 nEnd = _cvbsInputs;
     
-            cell.titleLabel.text = [NSString stringWithFormat:@"CVBS信号  %d ~ %d",nBegin,nEnd];
+            cell.titleLabel.text = [NSString stringWithFormat:@"CVBS  %d ~ %d",nBegin,nEnd];
             cell.imageView.image = [UIImage imageNamed:@"signal_Card-Small.png"];
             [cell changeArrowWithUp:([self.selectIndex isEqual:indexPath] ? YES : NO)];
             

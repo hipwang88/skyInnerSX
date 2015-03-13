@@ -196,7 +196,8 @@
         }
         
         // 布置cell外观
-        cell.textLabel.text = @"启用VGA矩阵";
+        //cell.textLabel.text = @"启用VGA矩阵";
+        cell.textLabel.text = NSLocalizedString(@"MatrixSet_UseMatrix", nil);
         cell.accessoryView = _useVGASwitch;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         // 设置状态
@@ -215,7 +216,8 @@
             nValue = nValue == 0 ? 1 : nValue;
             
             // 布置外观
-            sliderCell.labelTitle.text = @"矩阵输入路数";
+            //sliderCell.labelTitle.text = @"矩阵输入路数";
+            sliderCell.labelTitle.text = NSLocalizedString(@"MatrixSet_Input", nil);
             sliderCell.labelValue.text = [NSString stringWithFormat:@"%d",nValue];
             sliderCell.cellSilder.minimumValue = 1;
             sliderCell.cellSilder.maximumValue = 256;
@@ -237,7 +239,8 @@
             }
             
             // 布置cell
-            cell.textLabel.text = @"确认矩阵设置";
+            //cell.textLabel.text = @"确认矩阵设置";
+            cell.textLabel.text = NSLocalizedString(@"MatrixSet_Confirm", nil);
             cell.textLabel.textColor = [UIColor colorWithRed:0.9 green:0.1 blue:0.0 alpha:1.0];
             cell.textLabel.textAlignment = NSTextAlignmentCenter;
             
@@ -264,7 +267,8 @@
     
     if (section == 0)
     {
-        result = @"滑块控制矩阵启用";
+        //result = @"滑块控制矩阵启用";
+        result = NSLocalizedString(@"MatrixSet_Info", nil);
     }
     
     return result;
@@ -276,7 +280,8 @@
     
     if (_useVGASwitch.isOn && section == 1)
     {
-        result = @"矩阵输入路数范围[1,256]";
+        //result = @"矩阵输入路数范围[1,256]";
+        result = NSLocalizedString(@"MatrixSet_InputInfo", nil);
     }
     
     return result;

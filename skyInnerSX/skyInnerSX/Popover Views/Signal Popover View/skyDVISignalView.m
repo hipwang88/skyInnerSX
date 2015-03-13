@@ -50,7 +50,8 @@
 {
     [super viewDidLoad];
     
-    self.title = @"DVI信号切换";
+    //self.title = @"DVI信号切换";
+    self.title = [NSString stringWithFormat:@"%@ DVI",NSLocalizedString(@"WinMenu_SwitchSignal", nil)];
     _isOpen = NO;
 }
 
@@ -240,7 +241,7 @@
             if (indexPath.section == _dviInputs / GROUP_NUMBER)
                 nEnd = _dviInputs;
             
-            cell.titleLabel.text = [NSString stringWithFormat:@"DVI信号  %d ~ %d",nBegin,nEnd];
+            cell.titleLabel.text = [NSString stringWithFormat:@"DVI  %d ~ %d",nBegin,nEnd];
             cell.imageView.image = [UIImage imageNamed:@"signal_Card-Small.png"];
             [cell changeArrowWithUp:([self.selectIndex isEqual:indexPath] ? YES : NO)];
             

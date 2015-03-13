@@ -44,7 +44,8 @@
     self = [super initWithStyle:style];
     if (self)
     {
-        self.title = @"选择单元";
+        //self.title = @"选择单元";
+        self.title = NSLocalizedString(@"UnitControl_Unit_Select", nil);
     }
     return self;
 }
@@ -74,8 +75,8 @@
 - (void)initializeComponents
 {
     // Navigation Bar Item初始
-    _selectAllBarItem = [[UIBarButtonItem alloc] initWithTitle:@"全选" style:UIBarButtonItemStylePlain target:self action:@selector(selectAllEventHandler)];
-    _unSelectAllBarItem = [[UIBarButtonItem alloc] initWithTitle:@"全不选" style:UIBarButtonItemStylePlain target:self action:@selector(unSelectAllEventHandler)];
+    _selectAllBarItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"UnitControl_Unit_All", nil) style:UIBarButtonItemStylePlain target:self action:@selector(selectAllEventHandler)];
+    _unSelectAllBarItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"UnitControl_Unit_None", nil) style:UIBarButtonItemStylePlain target:self action:@selector(unSelectAllEventHandler)];
     [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:_unSelectAllBarItem,_selectAllBarItem, nil]];
 }
 

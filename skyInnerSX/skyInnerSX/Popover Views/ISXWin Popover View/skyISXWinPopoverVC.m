@@ -43,7 +43,8 @@
     [super viewDidLoad];
     
     // 菜单初始图标
-    self.title = @"窗口功能菜单";
+    //self.title = @"窗口功能菜单";
+    self.title = NSLocalizedString(@"WinMenu", nil);
     _array = [[NSMutableArray alloc] init];
     [_array addObject:[UIImage imageNamed:@"BigPic.png"]];
     [_array addObject:[UIImage imageNamed:@"Unit.png"]];
@@ -54,12 +55,13 @@
     
     // 菜单项初始
     _tableData = [[NSMutableArray alloc] init];
-    [_tableData addObject:[NSString stringWithFormat:@"全屏"]];
-    [_tableData addObject:[NSString stringWithFormat:@"大画面分解"]];
-    [_tableData addObject:[NSString stringWithFormat:@"CVBS信号切换"]];
-    [_tableData addObject:[NSString stringWithFormat:@"VGA信号切换"]];
-    [_tableData addObject:[NSString stringWithFormat:@"HDMI信号切换"]];
-    [_tableData addObject:[NSString stringWithFormat:@"DVI信号切换"]];
+    [_tableData addObject:[NSString stringWithFormat:@"%@",NSLocalizedString(@"WinMenu_Full", nil)]];
+    [_tableData addObject:[NSString stringWithFormat:@"%@",NSLocalizedString(@"WinMenu_Resolve", nil)]];
+    [_tableData addObject:[NSString stringWithFormat:@"%@ CVBS",NSLocalizedString(@"WinMenu_SwitchSignal", nil)]];
+    [_tableData addObject:[NSString stringWithFormat:@"%@ VGA",NSLocalizedString(@"WinMenu_SwitchSignal", nil)]];
+    [_tableData addObject:[NSString stringWithFormat:@"%@ HDMI",NSLocalizedString(@"WinMenu_SwitchSignal", nil)]];
+    [_tableData addObject:[NSString stringWithFormat:@"%@ DVI",NSLocalizedString(@"WinMenu_SwitchSignal", nil)]];
+
     
     self.tableView.sectionHeaderHeight = 0;
     self.tableView.sectionFooterHeight = 0;
@@ -126,12 +128,14 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return @"功能选项";
+    //return @"功能选项";
+    return NSLocalizedString(@"WinMenu_Title", nil);
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
-    return [NSString stringWithFormat:@"全屏：让拼接墙全屏显示本窗口\n大画面分解：将大画面状态窗口分解成单画面\nCVBS信号切换：点击进入CVBS信号切换页面选择输入信号\nVGA信号切换：点击进入VGA信号切换页面选择输入信号\nHDMI信号切换：点击进入HDMI信号切换页面选择输入信号\nDVI信号切换：点击进入DVI信号切换页面选择输入信号"];
+    //return [NSString stringWithFormat:@"全屏：让拼接墙全屏显示本窗口\n大画面分解：将大画面状态窗口分解成单画面\nCVBS信号切换：点击进入CVBS信号切换页面选择输入信号\nVGA信号切换：点击进入VGA信号切换页面选择输入信号\nHDMI信号切换：点击进入HDMI信号切换页面选择输入信号\nDVI信号切换：点击进入DVI信号切换页面选择输入信号"];
+    return [NSString stringWithFormat:@"%@",NSLocalizedString(@"WinMenu_Info", nil)];
 }
 
 #pragma mark - Table view Delegate
@@ -154,7 +158,7 @@
             }
             else
             {
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"CVBS矩阵未接入，请调整输入通道" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"SysInfo", nil) message:NSLocalizedString(@"SysInfo_noCVBSmatrix", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"SysInfo_OK", nil) otherButtonTitles:nil, nil];
                 [alertView show];
             }
             break;
@@ -166,7 +170,7 @@
             }
             else
             {
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"VGA矩阵未接入，请调整输入通道" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"SysInfo", nil) message:NSLocalizedString(@"SysInfo_noVGAmatrix", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"SysInfo_OK", nil) otherButtonTitles:nil, nil];
                 [alertView show];
             }
             break;
@@ -178,7 +182,7 @@
             }
             else
             {
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"HDMI矩阵未接入，请调整输入通道" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"SysInfo", nil) message:NSLocalizedString(@"SysInfo_noHDMImatrix", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"SysInfo_OK", nil) otherButtonTitles:nil, nil];
                 [alertView show];
             }
             break;
@@ -190,7 +194,7 @@
             }
             else
             {
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"DVI矩阵未接入，请调整输入通道" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"SysInfo", nil) message:NSLocalizedString(@"SysInfo_noDVImatrix", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"SysInfo_OK", nil) otherButtonTitles:nil, nil];
                 [alertView show];
             }
             break;

@@ -99,7 +99,8 @@
     _configLabel.backgroundColor = [UIColor clearColor];
     _configLabel.textColor = [UIColor whiteColor];
     _configLabel.font = [UIFont boldSystemFontOfSize:18.0f];
-    _configLabel.text = @"功能扩展视图，请根据需要点击右侧按钮！";
+    //_configLabel.text = @"功能扩展视图，请根据需要点击右侧按钮！";
+    _configLabel.text = NSLocalizedString(@"ExFunctionView", nil);
     
     // 模拟信号新建
     CGRect cvbsBtnFrame = CGRectMake(frameWidth-210, 2, 40, 40);
@@ -149,7 +150,8 @@
 // 还原说明文字
 - (void)resetConfigLabel
 {
-    _configLabel.text = @"功能扩展视图，请根据需要点击右侧按钮！";
+    //_configLabel.text = @"功能扩展视图，请根据需要点击右侧按钮！";
+    _configLabel.text = NSLocalizedString(@"ExFunctionView", nil);
 }
 
 #pragma mark - UIGestureRecognizerDelegate
@@ -167,7 +169,8 @@
 // CVBS新建按钮按下消息
 - (void)cvbsBtnClickHandle:(id)sender
 {
-    _configLabel.text = @"CVBS信号新建：所有窗口以CVBS信号一对一输出。";
+    //_configLabel.text = @"CVBS信号新建：所有窗口以CVBS信号一对一输出。";
+    _configLabel.text = NSLocalizedString(@"ExFunctionInfo_CVBS", nil);
     
     // 通过代理对象发送模拟新建功能
     [_delegate newSignalWithCVBS];
@@ -176,7 +179,8 @@
 // VGA新建按钮按下消息
 - (void)vgaBtnClickHandle:(id)sender
 {
-    _configLabel.text = @"VGA信号新建：所有窗口以VGA信号一对一输出。";
+    //_configLabel.text = @"VGA信号新建：所有窗口以VGA信号一对一输出。";
+    _configLabel.text = NSLocalizedString(@"ExFunctionInfo_VGA", nil);
     
     [_delegate newSignalWithVGA];
 }
@@ -184,7 +188,8 @@
 // HDMI新建按钮按下消息
 - (void)hdmiBtnClickHandle:(id)sender
 {
-    _configLabel.text = @"HDMI信号新建：所有窗口以HDMI信号一对一输出。";
+    //_configLabel.text = @"HDMI信号新建：所有窗口以HDMI信号一对一输出。";
+    _configLabel.text = NSLocalizedString(@"ExFunctionInfo_HDMI", nil);
     
     // 通过代理对象发送高清新建功能
     [_delegate newSignalWithHDMI];
@@ -193,7 +198,8 @@
 // DVI新建按钮按下消息
 - (void)dviBtnClickHandle:(id)sender
 {
-    _configLabel.text = @"DVI信号新建：所有窗口以DVI信号一对一输出。";
+    //_configLabel.text = @"DVI信号新建：所有窗口以DVI信号一对一输出。";
+    _configLabel.text = NSLocalizedString(@"ExFunctionInfo_DVI", nil);
     
     [_delegate newSignalWithDVI];
 }

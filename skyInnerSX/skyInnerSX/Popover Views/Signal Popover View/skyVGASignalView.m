@@ -49,7 +49,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"VGA信号切换";
+    //self.title = @"VGA信号切换";
+    self.title = [NSString stringWithFormat:@"%@ VGA",NSLocalizedString(@"WinMenu_SwitchSignal", nil)];
     _isOpen = NO;
 }
 
@@ -238,7 +239,7 @@
             if (indexPath.section == _vgaInputs / GROUP_NUMBER)
                 nEnd = _vgaInputs;
             
-            cell.titleLabel.text = [NSString stringWithFormat:@"VGA信号  %d ~ %d",nBegin,nEnd];
+            cell.titleLabel.text = [NSString stringWithFormat:@"VGA  %d ~ %d",nBegin,nEnd];
             cell.imageView.image = [UIImage imageNamed:@"signal_Card-Small.png"];
             [cell changeArrowWithUp:([self.selectIndex isEqual:indexPath] ? YES : NO)];
             
