@@ -78,9 +78,9 @@
 // 扩展视图
 "ExFunctionView" = "功能扩展视图，请根据需要点击右侧按钮！";
 "ExFunctionInfo_CVBS" = "CVBS信号新建：所有窗口以CVBS信号一对一输出";
-"ExFunctionInfo_VGA" = "CVBS信号新建：所有窗口以VGA信号一对一输出";
-"ExFunctionInfo_HDMI" = "CVBS信号新建：所有窗口以HDMI信号一对一输出";
-"ExFunctionInfo_DVI" = "CVBS信号新建：所有窗口以DVI信号一对一输出";
+"ExFunctionInfo_VGA" = "VGA信号新建：所有窗口以VGA信号一对一输出";
+"ExFunctionInfo_HDMI" = "HDMI信号新建：所有窗口以HDMI信号一对一输出";
+"ExFunctionInfo_DVI" = "DVI信号新建：所有窗口以DVI信号一对一输出";
 
 // 窗口功能菜单
 "WinMenu" = "窗口功能菜单";
