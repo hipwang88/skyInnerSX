@@ -25,7 +25,7 @@
 "ConnectSet_IP" = "IP";
 "ConnectSet_Port" = "Port";
 "ConnectSet_Info" = "Input the HUB485 IP and Port";
-"ConnectSet_GetCon" = "confirm";
+"ConnectSet_GetCon" = "connect";
 
 // 规格参数设置
 "SpecSet_Title" = "Change the specifications";
@@ -72,8 +72,9 @@
 "UnitControl_Right" = "right";
 "UnitControl_Exit" = "exit";
 "UnitControl_Signal" = "signal";
-"UnitControl_Dis" = "screen dis";
+"UnitControl_Dis" = "dis";
 "UnitControl_Confirm" = "confirm";
+"UnitControl_Menu" = "menu";
 
 // 扩展视图
 "ExFunctionView" = "Ex-Functions View, Select fucntions what you want!";
