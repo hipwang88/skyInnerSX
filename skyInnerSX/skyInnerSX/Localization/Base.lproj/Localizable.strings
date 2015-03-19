@@ -74,6 +74,7 @@
 "UnitControl_Signal" = "信号";
 "UnitControl_Dis" = "屏显";
 "UnitControl_Confirm" = "确认";
+"UnitControl_Menu" = "菜单";
 
 // 扩展视图
 "ExFunctionView" = "功能扩展视图，请根据需要点击右侧按钮！";
